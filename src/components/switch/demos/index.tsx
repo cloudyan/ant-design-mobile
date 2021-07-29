@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, Space, Switch } from 'antd-mobile'
-import { DemoBlock } from 'antd-mobile/src/demos/demo-block'
+import { Switch } from 'antd-mobile'
+import { DemoBlock } from '../../demo-block'
 import { useToggle } from 'ahooks'
 import './index.less'
 
@@ -28,22 +28,18 @@ export default () => {
         <Switch defaultChecked />
       </DemoBlock>
       <DemoBlock title='禁用状态'>
-        <Space>
-          <Switch disabled />
-          <Switch disabled defaultChecked />
-        </Space>
+        <Switch disabled />
+        <Switch disabled defaultChecked />
       </DemoBlock>
       <DemoBlock title='加载状态'>
-        <Space align='center'>
-          <Button
-            onClick={() => {
-              toggle()
-            }}
-          >
-            切换加载状态
-          </Button>
-          <Switch loading={loading} />
-        </Space>
+        <button
+          onClick={() => {
+            toggle()
+          }}
+        >
+          切换加载状态
+        </button>
+        <Switch loading={loading} />
       </DemoBlock>
       <DemoBlock title='loading状态和禁用状态共存时不显示loading'>
         <Switch disabled loading={loading} />
