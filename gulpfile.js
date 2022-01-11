@@ -12,38 +12,29 @@ const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const tsconfig = require('./tsconfig.json')
 
+// https://github.com/csstools/postcss-preset-env/blob/main/INSTALL.md#gulp
 const postcssPresetEnv = require('postcss-preset-env')
 const pxMultiplePlugin = require('postcss-px-multiple')({ times: 2 })
-const cssVariables = require('postcss-css-variables')()
-
-const postcssEnv = postcssPresetEnv({
-  importFrom: './src/global/theme.less',
-})
 
 function clean() {
   return del('./lib/**')
 }
 
 function buildStyle() {
-  return (
-    gulp
-      .src(['./src/**/*.less'], {
-        base: './src/',
-        ignore: ['**/demos/**/*', '**/tests/**/*'],
+  return gulp
+    .src(['./src/**/*.less'], {
+      base: './src/',
+      ignore: ['**/demos/**/*', '**/tests/**/*'],
+    })
+    .pipe(
+      less({
+        paths: [path.join(__dirname, 'src')],
+        relativeUrls: true,
       })
-      .pipe(
-        less({
-          paths: [path.join(__dirname, 'src')],
-          relativeUrls: true,
-        })
-      )
-      // .pipe(postcss([
-      //   // pxMultiplePlugin,
-      //   cssVariables
-      // ]))
-      .pipe(gulp.dest('./lib/es'))
-      .pipe(gulp.dest('./lib/cjs'))
-  )
+    )
+    .pipe(postcss([postcssPresetEnv(/* pluginOptions */)]))
+    .pipe(gulp.dest('./lib/es'))
+    .pipe(gulp.dest('./lib/cjs'))
 }
 
 function copyAssets() {
@@ -204,13 +195,7 @@ function build2xCSS() {
     .src('./lib/2x/**/*.css', {
       base: './lib/2x/',
     })
-    .pipe(
-      postcss([
-        // pxMultiplePlugin,
-        postcssEnv,
-        cssVariables,
-      ])
-    )
+    .pipe(postcss([pxMultiplePlugin]))
     .pipe(
       gulp.dest('./lib/2x', {
         overwrite: true,
@@ -219,6 +204,13 @@ function build2xCSS() {
 }
 
 exports.umdWebpack = umdWebpack
+
+exports.css = gulp.task('css', () =>
+  gulp
+    .src('./lib/es/global/*.css')
+    .pipe(postcss([postcssPresetEnv(/* pluginOptions */)]))
+    .pipe(gulp.dest('./dist/'))
+)
 
 exports.default = gulp.series(
   clean,

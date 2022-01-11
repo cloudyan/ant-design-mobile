@@ -1,0 +1,12 @@
+# https://juejin.cn/post/6844903669524086797
+# https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25z
+# https://github.com/browserslist/browserslist#queries
+# npx browserslist
+
+defaults
+safari >= 9
+iOS >= 9
+android >= 4.4
+ie >= 9
+last 2 versions
+> 0.1%
