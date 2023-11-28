@@ -122,8 +122,10 @@ export default () => {
       </DemoBlock>
 
       <DemoBlock title='背景蒙层的颜色'>
-        <White />
-        <CustomColor />
+        <Space wrap>
+          <White />
+          <CustomColor />
+        </Space>
       </DemoBlock>
 
       <DemoBlock title='自定义内容'>

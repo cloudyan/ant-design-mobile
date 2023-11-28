@@ -6,6 +6,14 @@
 
 组件列表
 
+- 常用
+  - mask 背景蒙层
+  - toast 轻提示（全局唯一）
+  - popup 弹出层
+  - dialog vs modal
+    - Dialog 对话框(包含 alert, confirm)
+    - Modal 弹窗、模态框
+  - form
 - 通用 common
   - [x] button
     - loading="auto" 功能很不错
@@ -67,7 +75,7 @@
   - [ ] empty
   - [ ] error-block
   - [ ] loading
-  - [ ] mask
+  - [x] mask
   - [ ] modal
   - [ ] popover
   - [ ] popup

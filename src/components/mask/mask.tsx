@@ -1,9 +1,9 @@
-import { NativeProps, withNativeProps } from '../../utils/native-props'
 import React, { useMemo, useRef, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { useUnmountedRef } from 'ahooks'
-import { useLockScroll } from '../../utils/use-lock-scroll'
 import { useSpring, animated } from '@react-spring/web'
+import { NativeProps, withNativeProps } from '../../utils/native-props'
+import { useLockScroll } from '../../utils/use-lock-scroll'
 import {
   renderToContainer,
   GetContainer,
@@ -30,6 +30,7 @@ const colorRecord: Record<string, string> = {
 
 export type MaskProps = {
   visible?: boolean
+  // 外部控制变更 visible 值
   onMaskClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   destroyOnClose?: boolean
   forceRender?: boolean
@@ -60,6 +61,7 @@ export const Mask: FC<MaskProps> = p => {
 
   const ref = useRef<HTMLDivElement>(null)
 
+  // 锁定滚动
   useLockScroll(ref, props.visible && props.disableBodyScroll)
 
   const background = useMemo(() => {
@@ -71,6 +73,10 @@ export const Mask: FC<MaskProps> = p => {
   const [active, setActive] = useState(props.visible)
 
   const unmountedRef = useUnmountedRef()
+
+  // 流畅动画 https://www.react-spring.dev
+  // useSpring 弹簧效果
+  // 下面的本质是不断变化 opacity，并渲染
   const { opacity } = useSpring({
     opacity: props.visible ? 1 : 0,
     config: {
@@ -94,6 +100,7 @@ export const Mask: FC<MaskProps> = p => {
     },
   })
 
+  // 将事件处理程序附加阻止冒泡功能
   const node = withStopPropagation(
     props.stopPropagation,
     withNativeProps(
@@ -110,6 +117,7 @@ export const Mask: FC<MaskProps> = p => {
         }}
         onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
           if (e.target === e.currentTarget) {
+            // 当前元素
             props.onMaskClick?.(e)
           }
         }}

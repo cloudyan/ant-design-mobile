@@ -4,6 +4,7 @@ const MIN_DISTANCE = 10
 
 type Direction = '' | 'vertical' | 'horizontal'
 
+// 给定两个移动距离，获取移动方向
 function getDirection(x: number, y: number) {
   if (x > y && x > MIN_DISTANCE) {
     return 'horizontal'
@@ -14,17 +15,22 @@ function getDirection(x: number, y: number) {
   return ''
 }
 
+/**
+ * 处理触摸事件
+ * @description 获取和记录触摸事件的起始位置和移动距离，以及移动方向
+ * @returns 返回触摸事件的处理函数对象
+ */
 export function useTouch() {
-  const startX = useRef(0)
+  const startX = useRef(0) // 触摸事件的起始位置的坐标
   const startY = useRef(0)
-  const deltaX = useRef(0)
+  const deltaX = useRef(0) // 触摸事件的滑动距离的坐标
   const deltaY = useRef(0)
-  const offsetX = useRef(0)
+  const offsetX = useRef(0) // 触摸事件的移动距离的绝对值的坐标
   const offsetY = useRef(0)
-  const direction = useRef<Direction>('')
+  const direction = useRef<Direction>('') // 触摸事件的方向
 
-  const isVertical = () => direction.current === 'vertical'
-  const isHorizontal = () => direction.current === 'horizontal'
+  const isVertical = () => direction.current === 'vertical' // 垂直方向
+  const isHorizontal = () => direction.current === 'horizontal' // 水平方向
 
   const reset = () => {
     deltaX.current = 0

@@ -15,12 +15,19 @@ export type ImperativeHandler = {
   replace: (element: TargetElement) => void
 }
 
+/**
+ * 以命令式的方式渲染给定的元素。
+ *
+ * @param {TargetElement} element - 要渲染的元素。
+ * @return {ImperativeHandler} 包含关闭和替换功能的对象。
+ */
 export function renderImperatively(element: TargetElement) {
   const Wrapper = React.forwardRef<ImperativeHandler>((_, ref) => {
     const [visible, setVisible] = useState(false)
     const closedRef = useRef(false)
     const [elementToRender, setElementToRender] = useState(element)
     const keyRef = useRef(0)
+
     useEffect(() => {
       if (!closedRef.current) {
         setVisible(true)
@@ -28,6 +35,7 @@ export function renderImperatively(element: TargetElement) {
         afterClose()
       }
     }, [])
+
     function onClose() {
       closedRef.current = true
       setVisible(false)
@@ -37,6 +45,8 @@ export function renderImperatively(element: TargetElement) {
       unmount()
       elementToRender.props.afterClose?.()
     }
+
+    // 选择性地暴露子组件中的一些功能
     useImperativeHandle(ref, () => ({
       close: onClose,
       replace: element => {
@@ -45,6 +55,8 @@ export function renderImperatively(element: TargetElement) {
         setElementToRender(element)
       },
     }))
+
+    // 返回 clone，并添加了 props
     return React.cloneElement(elementToRender, {
       ...elementToRender.props,
       key: keyRef.current,
@@ -53,8 +65,10 @@ export function renderImperatively(element: TargetElement) {
       afterClose,
     })
   })
+
   const wrapperRef = React.createRef<ImperativeHandler>()
   const unmount = renderToBody(<Wrapper ref={wrapperRef} />)
+
   return {
     close: async () => {
       if (!wrapperRef.current) {
