@@ -59,6 +59,12 @@ export function show(p: ToastShowProps | string) {
   return currentHandler as ToastHandler
 }
 
+/**
+ * 清除当前的处理程序。
+ *
+ * @param {void} - 此函数不接受任何参数。
+ * @return {void} - 此函数不返回任何值。
+ */
 export function clear() {
   currentHandler?.close()
   currentHandler = null

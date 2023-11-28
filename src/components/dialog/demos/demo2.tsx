@@ -35,6 +35,8 @@ export default () => {
           >
             自定义内容区域
           </Button>
+
+          {/* TODO: 这个图片加载有点慢，有闪动，可支持占位优化 */}
           <Button
             block
             onClick={() => {
@@ -136,6 +138,9 @@ const Declarative = () => {
           {
             key: 'confirm',
             text: '我知道了',
+            onClick: () => {
+              console.log('我知道了')
+            },
           },
         ]}
       />

@@ -1,19 +1,31 @@
 # 源码分析
 
-基础
+## 重点
+
+- [x] mask 背景蒙层
+  - `ShouldRender`
+  - `renderToContainer`
+  - `withStopPropagation`
+- [x] toast 轻提示（全局唯一）
+  - `renderImperatively`
+  - `useImperativeHandle`
+  - `renderToBody`
+- popup 弹出层
+- [x] Dialog 对话框(包含 alert, confirm)
+  - `CenterPopup`
+  - `Dialog.alert`
+  - `Dialog.confirm`
+  - `Dialog.show`
+- Modal 弹窗、模态框
+- form
+
+## 基础
 
 - utils
+  - `usePropsValue`
 
-组件列表
+## 组件列表
 
-- 常用
-  - mask 背景蒙层
-  - toast 轻提示（全局唯一）
-  - popup 弹出层
-  - dialog vs modal
-    - Dialog 对话框(包含 alert, confirm)
-    - Modal 弹窗、模态框
-  - form
 - 通用 common
   - [x] button
     - loading="auto" 功能很不错
@@ -71,10 +83,10 @@
   - [ ] text-area
 - 反馈 feedback
   - [ ] action-sheet
-  - [ ] dialog
+  - [x] dialog
   - [ ] empty
   - [ ] error-block
-  - [ ] loading
+  - [x] loading // @deprecated
   - [x] mask
   - [ ] modal
   - [ ] popover
@@ -85,7 +97,7 @@
   - [ ] result
   - [ ] skeleton
   - [ ] swipe-action
-  - [ ] toast
+  - [x] toast
 - 引导提示 guidance
   - [ ] badge
   - [ ] notice-bar

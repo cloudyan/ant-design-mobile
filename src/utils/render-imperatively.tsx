@@ -56,7 +56,8 @@ export function renderImperatively(element: TargetElement) {
       },
     }))
 
-    // 返回 clone，并添加了 props
+    // 返回 clone 子元素，并添加了 props: key、visible、onClose、afterClose
+    // 关闭当前元素，即 onClose
     return React.cloneElement(elementToRender, {
       ...elementToRender.props,
       key: keyRef.current,
@@ -70,6 +71,7 @@ export function renderImperatively(element: TargetElement) {
   const unmount = renderToBody(<Wrapper ref={wrapperRef} />)
 
   return {
+    // 关闭、卸载组件
     close: async () => {
       if (!wrapperRef.current) {
         // it means the wrapper is not mounted yet, call `unmount` directly

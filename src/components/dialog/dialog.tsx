@@ -79,11 +79,17 @@ export const Dialog: FC<DialogProps> = p => {
                   key={action.key}
                   action={action}
                   onAction={async () => {
+                    // TIP: 当 Promise.all 中有异常(throw error or reject)时
                     await Promise.all([
                       action.onClick?.(),
                       props.onAction?.(action, index),
                     ])
+                    // 上述代码 reject，后面的代码就不再执行了
+                    // console.log('Dialog onAction', 'call')
                     if (props.closeOnAction) {
+                      // 此处 onClose 方法
+                      // 命令式调用，是 renderImperatively 中添加的，外部可不传入
+                      // 声明式调用，则外部外部定义传入，可控组件
                       props.onClose?.()
                     }
                   }}

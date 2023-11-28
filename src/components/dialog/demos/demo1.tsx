@@ -15,6 +15,9 @@ export default () => {
                 onConfirm: () => {
                   console.log('Confirmed')
                 },
+                onClose() {
+                  console.log('Closed')
+                },
               })
             }
           >
@@ -101,7 +104,9 @@ export default () => {
                     content: '提交失败',
                     position: 'bottom',
                   })
-                  throw new Error()
+                  console.log('onConfirm', 'success')
+                  // throw new Error() // or reject
+                  return Promise.reject('fail')
                 },
               })
             }

@@ -72,6 +72,7 @@ export const CenterPopup: FC<CenterPopupProps> = props => {
   const ref = useRef<HTMLDivElement>(null)
   useLockScroll(ref, mergedProps.disableBodyScroll && active)
 
+  // 这里可使用 usePropsValue ?
   const maskVisible = useInnerVisible(active && mergedProps.visible)
 
   const body = (

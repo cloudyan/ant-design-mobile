@@ -29,6 +29,7 @@ export function confirm(p: DialogConfirmProps) {
     },
     p
   )
+
   return new Promise<boolean>(resolve => {
     show({
       ...props,
