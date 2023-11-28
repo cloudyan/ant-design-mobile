@@ -1,0 +1,93 @@
+# 源码分析
+
+基础
+
+- utils
+
+组件列表
+
+- 通用 common
+  - [ ] button
+  - [ ] icon
+- 布局 layout
+  - [ ] auto-center
+  - [x] divider
+  - [ ] grid
+  - [ ] safe-area
+  - [ ] space
+- 导航 navigation
+  - [ ] capsule-tabs
+  - [ ] index-bar
+  - [ ] jumbo-tabs
+  - [ ] nav-bar
+  - [ ] side-bar
+  - [ ] tab-bar
+  - [ ] tabs
+- 信息展示 dataDisplay
+  - [ ] avatar
+  - [x] card
+  - [ ] collapse
+  - [ ] ellipsis
+  - [ ] floating-panel
+  - [ ] image
+  - [ ] image-viewer
+  - [ ] infinite-scroll
+  - [ ] list
+  - [ ] page-indicator
+  - [ ] steps
+  - [ ] swiper
+  - [ ] tag
+  - [ ] water-mark
+  - [ ] footer
+- 信息录入 dataEntry
+  - [ ] cascader
+  - [ ] cascader-view
+  - [ ] check-list
+  - [ ] checkbox
+  - [ ] form
+  - [ ] input
+  - [ ] picker
+  - [ ] picker-view
+  - [ ] radio
+  - [ ] rate
+  - [ ] search-bar
+  - [ ] selector
+  - [ ] slider
+  - [ ] stepper
+  - [ ] switch
+  - [ ] text-area
+- 反馈 feedback
+  - [ ] action-sheet
+  - [ ] dialog
+  - [ ] empty
+  - [ ] error-block
+  - [ ] loading
+  - [ ] mask
+  - [ ] modal
+  - [ ] popover
+  - [ ] popup
+  - [ ] progress-bar
+  - [ ] progress-circle
+  - [ ] pull-to-refresh
+  - [ ] result
+  - [ ] skeleton
+  - [ ] swipe-action
+  - [ ] toast
+- 引导提示 guidance
+  - [ ] badge
+  - [ ] notice-bar
+- 其他 other
+  - [ ] config-provider
+- 试验性 experimental
+  - [ ] calendar
+  - [ ] calendar-picker
+  - [ ] calendar-picker-view
+  - [ ] dropdown
+  - [ ] floating-bubble
+  - [ ] image-uploader
+  - [ ] number-keyboard
+  - [ ] passcode-input
+  - [ ] result-page
+  - [ ] tree-select
+  - [ ] virtual-input
+  - [ ] // scroll-mask

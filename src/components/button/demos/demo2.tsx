@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Space } from 'antd-mobile'
+import { Button, Space, SpinLoading } from 'antd-mobile'
 import { DemoBlock, sleep } from 'demos'
 import { SearchOutline } from 'antd-mobile-icons'
 
@@ -30,13 +30,27 @@ export default () => {
       </DemoBlock>
 
       <DemoBlock title='加载状态'>
-        <Space wrap>
+        <Space direction='vertical' style={{ 'display': 'flex' }}>
           <Button loading color='primary' loadingText='正在加载'>
             Loading
           </Button>
           <Button loading>Loading</Button>
+
+          {/* 还差个动画 */}
           <Button
+            block
+            color='primary'
+            shape='rounded'
             loading='auto'
+            loadingText='加载中'
+            loadingIcon={
+              <SpinLoading color='currentColor' style={{ '--size': '16px' }} />
+            }
+            style={{
+              height: 50,
+              fontSize: 16,
+              fontWeight: 500,
+            }}
             onClick={async () => {
               await sleep(1000)
             }}

@@ -61,6 +61,8 @@ const defaultProps: ButtonProps = {
   size: 'middle',
 }
 
+// 这个 loading='auto' 功能很好
+// 可以基于业务需求，定制默认配置，推广使用
 export const Button = forwardRef<ButtonRef, ButtonProps>((p, ref) => {
   const props = mergeProps(defaultProps, p)
   const [innerLoading, setInnerLoading] = useState(false)
@@ -120,8 +122,12 @@ export const Button = forwardRef<ButtonRef, ButtonProps>((p, ref) => {
     >
       {loading ? (
         <div className={`${classPrefix}-loading-wrapper`}>
-          {props.loadingIcon}
-          {props.loadingText}
+          <span className={`${classPrefix}-loading-icon`}>
+            {props.loadingIcon}
+          </span>
+          <span className={`${classPrefix}-loading-text`}>
+            {props.loadingText}
+          </span>
         </div>
       ) : (
         <span>{props.children}</span>

@@ -12,6 +12,16 @@ const pxToRem = require('postcss-pxtorem')
 const postcssDisableCSSVars = require('../scripts/postcss-disable-css-vars.js')
 
 const config: IConfig = {
+  // umi 中，点击组件跳转至编辑器源码位置
+  // clickToComponent: {
+  //   editor: 'vscode',
+  // },
+  // ant-desigin-mobile 中，高清方案 @umijs/plugin-antd-mobile
+  // antdMobile: {
+  //   hd: true
+  // },
+  // plugins: ['@umijs/plugin-antd-mobile'],
+
   mode: 'site',
   title: 'Ant Design Mobile',
   logo: 'https://gw.alipayobjects.com/zos/bmw-prod/b874caa9-4458-412a-9ac6-a61486180a62.svg',
