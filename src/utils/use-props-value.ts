@@ -7,6 +7,8 @@ type Options<T> = {
   onChange?: (v: T) => void
 }
 
+// 提炼过程，参见 [React 组件的受控与非受控](https://www.yuque.com/awmleer/rocket/xmx2gb)
+
 export function usePropsValue<T>(options: Options<T>) {
   const { value, defaultValue, onChange } = options
 

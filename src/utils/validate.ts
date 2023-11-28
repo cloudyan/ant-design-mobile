@@ -21,6 +21,7 @@ export function isDate(val: unknown): val is Date {
   )
 }
 
+// https://regexp.deepjs.cn/
 export function isMobile(value: string): boolean {
   value = value.replace(/[^-|\d]/g, '')
   return (
