@@ -30,7 +30,7 @@ export default () => {
       </DemoBlock>
 
       <DemoBlock title='加载状态'>
-        <Space direction='vertical' style={{ 'display': 'flex' }}>
+        <Space direction='vertical' block>
           <Button loading color='primary' loadingText='正在加载'>
             Loading
           </Button>
@@ -52,7 +52,7 @@ export default () => {
               fontWeight: 500,
             }}
             onClick={async () => {
-              await sleep(1000)
+              await sleep(2000)
             }}
           >
             Auto Loading

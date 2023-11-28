@@ -12,6 +12,8 @@ export type GridProps = {
   children?: ReactNode
 } & NativeProps<'--gap' | '--gap-vertical' | '--gap-horizontal'>
 
+// 支持控制列 columns
+// 暂不支持控制行 rows，放不下时横向滚动？
 export const Grid: FC<GridProps> = props => {
   const style: GridProps['style'] & Record<'--columns', string> = {
     '--columns': props.columns.toString(),

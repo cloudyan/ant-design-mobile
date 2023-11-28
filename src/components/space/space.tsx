@@ -9,6 +9,7 @@ const classPrefix = `adm-space`
 export type SpaceProps = {
   direction?: 'horizontal' | 'vertical'
   align?: 'start' | 'end' | 'center' | 'baseline'
+  itemStyle?: NativeProps['style']
   justify?:
     | 'start'
     | 'end'
@@ -29,7 +30,7 @@ const defaultProps = {
 
 export const Space: FC<SpaceProps> = p => {
   const props = mergeProps(defaultProps, p)
-  const { direction, onClick } = props
+  const { itemStyle, direction, onClick } = props
   return withNativeProps(
     props,
     <div
@@ -46,7 +47,9 @@ export const Space: FC<SpaceProps> = p => {
         return (
           child !== null &&
           child !== undefined && (
-            <div className={`${classPrefix}-item`}>{child}</div>
+            <div className={`${classPrefix}-item`} style={itemStyle}>
+              {child}
+            </div>
           )
         )
       })}

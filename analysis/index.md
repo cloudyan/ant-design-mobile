@@ -7,14 +7,19 @@
 组件列表
 
 - 通用 common
-  - [ ] button
-  - [ ] icon
+  - [x] button
+    - loading="auto" 功能很不错
+  - [x] icon => `antd-mobile-icons`
+    - 仅仅是 ICON 库
 - 布局 layout
-  - [ ] auto-center
+  - [x] auto-center
   - [x] divider
-  - [ ] grid
-  - [ ] safe-area
-  - [ ] space
+  - [x] grid
+    - grid 布局系统
+  - [x] safe-area
+    - 底层实现是 `env(safe-area-inset-xxx)`
+  - [x] space
+    - flex 布局, 扩展 itemStyle
 - 导航 navigation
   - [ ] capsule-tabs
   - [ ] index-bar

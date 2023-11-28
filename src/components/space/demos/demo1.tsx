@@ -76,6 +76,23 @@ export default () => {
           </Button>
         </Space>
       </DemoBlock>
+
+      {/* 支持布局商品列表 */}
+      <DemoBlock title='商品列表（1 列、2 列或 3 列）'>
+        <Space
+          wrap
+          block
+          align='end'
+          style={{ '--gap-horizontal': '0' }}
+          itemStyle={{ width: '33.3%' }}
+        >
+          {[1, 2, 3, 4, 5].map((item, index) => (
+            <div key={index} style={{ background: 'rgba(255,0,0,0.1)' }}>
+              {item}
+            </div>
+          ))}
+        </Space>
+      </DemoBlock>
     </>
   )
 }

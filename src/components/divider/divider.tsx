@@ -20,7 +20,7 @@ const defaultProps = {
 // 设计非常精简
 // 通过样式控制位置 方向
 // 无法精细控制位置以及分割线高度
-// 是否支持 0.5px 细线？使用高清适配方案，缩放一倍？
+// 是否支持 0.5px 细线？使用高清适配方案，页面整体缩放一倍？
 export const Divider: FC<DividerProps> = p => {
   const props = mergeProps(defaultProps, p)
   return withNativeProps(
