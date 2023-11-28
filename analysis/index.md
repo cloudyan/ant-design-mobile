@@ -10,13 +10,16 @@
   - `renderImperatively`
   - `useImperativeHandle`
   - `renderToBody`
-- popup 弹出层
 - [x] Dialog 对话框(包含 alert, confirm)
   - `CenterPopup`
   - `Dialog.alert`
   - `Dialog.confirm`
   - `Dialog.show`
 - Modal 弹窗、模态框
+- dialog vs modal, 有区别吗？
+  - 对话框仍允许用户在打开页面时与页面上的其他内容进行交互（即单击对话框周围可见的按钮和链接）
+  - 模式锁定页面，直到完成某些操作。这通常是在涵盖所有其他内容的背景中完成的，因此必须处理模态。这个相比与对话框则更具破坏性。
+- Popup 弹出层
 - form
 
 ## 基础
