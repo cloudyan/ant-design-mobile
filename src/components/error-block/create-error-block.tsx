@@ -27,6 +27,8 @@ const defaultProps = {
   status: 'default',
 }
 
+// 不支持扩展自定义状态，
+// 但支持自定义 image（支持连接或 react 组件）
 export function createErrorBlock(imageRecord: ImageRecord) {
   const ErrorBlock: FC<ErrorBlockProps> = p => {
     const props = mergeProps(defaultProps, p)
