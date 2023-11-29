@@ -12,6 +12,12 @@ import {
 
 const classPrefix = `adm-ellipsis`
 
+// 取中间数
+function getMiddle([x, y]: [number, number], mathFn: (x: number) => number) {
+  // 避免溢出，将 (x+y)/2 改为 x + (y-x)/2
+  return x + mathFn((y - x) / 2)
+}
+
 export type EllipsisProps = {
   content: string
   direction?: 'start' | 'end' | 'middle'
@@ -45,17 +51,18 @@ export const Ellipsis: FC<EllipsisProps> = p => {
   const expandElRef = useRef<HTMLAnchorElement>(null)
   const collapseElRef = useRef<HTMLAnchorElement>(null)
 
-  const [ellipsised, setEllipsised] = useState<EllipsisedValue>({})
-  const [expanded, setExpanded] = useState(props.defaultExpanded)
-  const [exceeded, setExceeded] = useState(false)
+  const [ellipsised, setEllipsised] = useState<EllipsisedValue>({}) // 是否要省略
+  const [expanded, setExpanded] = useState(props.defaultExpanded) // 是否展开
+  const [exceeded, setExceeded] = useState(false) // 是否超出
 
+  // 有效划分字符串
   const chars = useMemo(() => runes(props.content), [props.content])
   function getSubString(start: number, end: number) {
     return chars.slice(start, end).join('')
   }
 
   /**
-   * 计算根据指定行数截断后的文本内容
+   * 根据指定行数，计算截断后的文本内容（计算省略内容）
    *
    * @return {void} 此函数不返回任何值。
    */
@@ -75,8 +82,10 @@ export const Ellipsis: FC<EllipsisProps> = p => {
       container.style.setProperty(name, originStyle.getPropertyValue(name))
     })
 
+    // 恢复 root 元素的原始显示样式
     root.style.display = originDisplay
 
+    // 将新元素的高度、最小高度、最大高度、文本溢出、行数限制和现实样式设置为特定值
     container.style.height = 'auto'
     container.style.minHeight = 'auto'
     container.style.maxHeight = 'auto'
@@ -84,6 +93,8 @@ export const Ellipsis: FC<EllipsisProps> = p => {
     container.style.webkitLineClamp = 'unset'
     container.style.display = 'block'
 
+    // 根据行数和其他样式属性计算新元素的最大高度
+    // 计算规则 行高 * (行数+0.5) + padding-top + padding-bottom
     const lineHeight = pxToNumber(originStyle.lineHeight)
     const maxHeight = Math.floor(
       lineHeight * (props.rows + 0.5) +
@@ -91,26 +102,35 @@ export const Ellipsis: FC<EllipsisProps> = p => {
         pxToNumber(originStyle.paddingBottom)
     )
 
+    // 将新元素的文本内容设置为提供的文本
     container.innerText = props.content
     document.body.appendChild(container)
 
+    // 检查新元素的高度是否小于或等于最大高度
     if (container.offsetHeight <= maxHeight) {
       setExceeded(false)
     } else {
+      // 如果高度超过最大高度，则将 exceeded 是否超出状态设置为 true，
+      // 然后使用二分搜索并根据指定方向（开始、中间或末尾）查找对应的省略文本。
       setExceeded(true)
       const end = props.content.length
 
+      // 折叠元素
       const collapseEl =
         typeof props.collapseText === 'string'
           ? props.collapseText
           : collapseElRef.current?.innerHTML
+      // 展开元素
       const expandEl =
         typeof props.expandText === 'string'
           ? props.expandText
           : expandElRef.current?.innerHTML
+      // 展开/折叠按钮
       const actionText = expanded ? collapseEl : expandEl
 
+      // 计算省略内容（头部省略或尾部省略时）
       function check(left: number, right: number): EllipsisedValue {
+        // 递归终止条件
         if (right - left <= 1) {
           if (props.direction === 'end') {
             return {
@@ -122,7 +142,9 @@ export const Ellipsis: FC<EllipsisProps> = p => {
             }
           }
         }
-        const middle = Math.round((left + right) / 2)
+
+        // 二分搜索
+        const middle = getMiddle([left, right], Math.round)
         if (props.direction === 'end') {
           container.innerHTML = getSubString(0, middle) + '...' + actionText
         } else {
@@ -130,24 +152,33 @@ export const Ellipsis: FC<EllipsisProps> = p => {
         }
 
         if (container.offsetHeight <= maxHeight) {
+          // 未超出，继续向末端方向查找
           if (props.direction === 'end') {
             return check(middle, right)
           } else {
             return check(left, middle)
           }
         } else {
+          // 否则，则向起始端方向查找
           if (props.direction === 'end') {
             return check(left, middle)
           } else {
             return check(middle, right)
           }
         }
+        // 上面判断逻辑的重构版本
+        // const [start, end] = props.direction === 'end' ? [middle, right] : [left, middle]
+        // return container.offsetHeight <= maxHeight
+        //   ? check(start, end)
+        //   : check(end, start)
       }
 
+      // 计算省略内容（中间省略时）
       function checkMiddle(
         leftPart: [number, number],
         rightPart: [number, number]
       ): EllipsisedValue {
+        // 递归终止条件
         if (
           leftPart[1] - leftPart[0] <= 1 &&
           rightPart[1] - rightPart[0] <= 1
@@ -157,20 +188,26 @@ export const Ellipsis: FC<EllipsisProps> = p => {
             tailing: '...' + getSubString(rightPart[1], end),
           }
         }
-        const leftPartMiddle = Math.floor((leftPart[0] + leftPart[1]) / 2)
-        const rightPartMiddle = Math.ceil((rightPart[0] + rightPart[1]) / 2)
+
+        const leftPartMiddle = getMiddle(leftPart, Math.floor) // 向下取整
+        const rightPartMiddle = getMiddle(rightPart, Math.ceil) // 向上取整
+
         container.innerHTML =
           getSubString(0, leftPartMiddle) +
           '...' +
           actionText +
           '...' +
           getSubString(rightPartMiddle, end)
+
+        // 二分查找，第一次是超出的（不超出不会走二分查找逻辑）
         if (container.offsetHeight <= maxHeight) {
+          // 未超出，则向中间方向取值（超出时，使用一次二分，可能就不超出了，所以向中间方向取值）
           return checkMiddle(
             [leftPartMiddle, leftPart[1]],
             [rightPart[0], rightPartMiddle]
           )
         } else {
+          // 超出，向两边方向取值
           return checkMiddle(
             [leftPart[0], leftPartMiddle],
             [rightPartMiddle, rightPart[1]]
@@ -178,7 +215,10 @@ export const Ellipsis: FC<EllipsisProps> = p => {
         }
       }
 
-      const middle = Math.floor((0 + end) / 2)
+      // 中间值
+      const middle = getMiddle([0, end], Math.round)
+
+      // 获取到省略内容
       const ellipsised =
         props.direction === 'middle'
           ? checkMiddle([0, middle], [middle, end])
@@ -189,6 +229,8 @@ export const Ellipsis: FC<EllipsisProps> = p => {
   }
 
   useResizeEffect(calcEllipsised, rootRef)
+
+  // 同步渲染
   useIsomorphicLayoutEffect(() => {
     calcEllipsised()
   }, [
@@ -228,15 +270,19 @@ export const Ellipsis: FC<EllipsisProps> = p => {
     )
 
   const renderContent = () => {
+    // 不超出，直接渲染全部内容
     if (!exceeded) return props.content
 
-    if (expanded)
+    if (expanded) {
+      // 展开时，显示全部内容和折叠操作按钮
       return (
         <>
           {props.content}
           {collapseActionElement}
         </>
       )
+    }
+    // 非展开时，显示省略内容和展开操作按钮
     return (
       <>
         {ellipsised.leading}

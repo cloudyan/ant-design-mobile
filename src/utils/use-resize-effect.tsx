@@ -18,6 +18,8 @@ export function useResizeEffect<T extends HTMLElement>(
   useIsomorphicLayoutEffect(() => {
     const target = targetRef.current
     if (!target) return
+
+    // ResizeObserver 兼容性 iOS 13.5+, Android 5+
     if (window.ResizeObserver) {
       let animationFrame: number
 
@@ -33,6 +35,7 @@ export function useResizeEffect<T extends HTMLElement>(
         observer.disconnect()
       }
     } else {
+      // 要加防抖吗?
       fn(target)
     }
   }, [targetRef])
