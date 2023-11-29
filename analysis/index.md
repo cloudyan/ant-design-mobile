@@ -21,6 +21,11 @@
   - 模式锁定页面，直到完成某些操作。这通常是在涵盖所有其他内容的背景中完成的，因此必须处理模态。这个相比与对话框则更具破坏性。
 - Popup 弹出层
 - form
+- [ ] ellipsis
+  - `runes2` 字符串分割
+  - `calcEllipsised`
+  - `useResizeEffect`
+  - `checkMiddle`
 
 ## 基础
 

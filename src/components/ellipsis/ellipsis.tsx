@@ -1,10 +1,10 @@
 import React, { useMemo, useRef, useState } from 'react'
 import type { FC, ReactNode } from 'react'
+import { useIsomorphicLayoutEffect } from 'ahooks'
 import runes from 'runes2'
 import { mergeProps } from '../../utils/with-default-props'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 import { useResizeEffect } from '../../utils/use-resize-effect'
-import { useIsomorphicLayoutEffect } from 'ahooks'
 import {
   PropagationEvent,
   withStopPropagation,
@@ -54,6 +54,11 @@ export const Ellipsis: FC<EllipsisProps> = p => {
     return chars.slice(start, end).join('')
   }
 
+  /**
+   * 计算根据指定行数截断后的文本内容
+   *
+   * @return {void} 此函数不返回任何值。
+   */
   function calcEllipsised() {
     const root = rootRef.current
     if (!root) return
@@ -64,6 +69,7 @@ export const Ellipsis: FC<EllipsisProps> = p => {
     const originStyle = window.getComputedStyle(root)
     const container = document.createElement('div')
 
+    // 这里 Array.prototype.slice.apply 不同于 Object.keys()
     const styleNames: string[] = Array.prototype.slice.apply(originStyle)
     styleNames.forEach(name => {
       container.style.setProperty(name, originStyle.getPropertyValue(name))

@@ -79,6 +79,20 @@ export default () => {
           }
         />
       </DemoBlock>
+
+      <DemoBlock title='中英混合内容'>
+        <Ellipsis
+          direction='end'
+          content='阅读并同意《用户协议》，《用户隐私政策》。read and accept the user agreement and the user privacy agreement'
+          rows={2}
+          expandText={
+            <>
+              展开
+              <DownOutline />
+            </>
+          }
+        />
+      </DemoBlock>
     </>
   )
 }
