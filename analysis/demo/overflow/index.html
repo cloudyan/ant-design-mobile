@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overflow</title>
+    <style>
+      html {
+        height: 100%;
+      }
+      .demo {
+        margin: 0;
+        padding: 0 0 100px;
+        height: 100vh;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        background: aliceblue;
+      }
+      .content {
+        width: 400px;
+        max-height: calc(200px + 10px);
+        overflow: hidden;
+        border-radius: 4px;
+        outline: 2px dashed royalblue;
+      }
+      .section {
+        display: flex;
+      }
+      pre {
+        white-space: pre-wrap;
+      }
+      .content::before {
+        content: '';
+        width: 100px;
+        height: 100%;
+        float: left;
+
+        box-shadow: inset 0 -35px 15px -20px red;
+      }
+      .btn {
+        float: right;
+        width: 100px;
+        text-align: center;
+        position: relative;
+        left: calc(50% - 50px);
+        transform: translateY(-100%);
+        cursor: pointer;
+
+        /* float: right;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        left: 0;
+        transform: translateY(-100%);
+        cursor: pointer; */
+      }
+      .btn::after {
+        content: '';
+        display: block;
+        height: 34px;
+        background-color: #666;
+        transition: 0.2s background-color;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E %3Cpath d='M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z'%3E%3C/path%3E %3C/svg%3E")
+          center/ 24px 24px no-repeat;
+      }
+      .btn:hover::after {
+        background-color: royalblue;
+      }
+      .btn::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 34px;
+      }
+      .text {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px 15px;
+        float: right;
+        line-height: 1.5;
+        margin: 0;
+        margin-left: -100px;
+        font-size: 18px;
+        color: #232323;
+
+        /* 加点遮罩 */
+        /* -webkit-mask: linear-gradient(red 150px, transparent 200px); */
+      }
+
+      /* 点击动效 */
+      .content-check:checked + .content {
+        max-height: fit-content;
+      }
+      .content-check:checked + .content .btn {
+        left: auto;
+        right: calc(50% - 50px);
+      }
+      .content-check:checked + .content .btn::after {
+        transform: scaleY(-1);
+      }
+      .content-check:checked + .content .text {
+        -webkit-mask: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo">
+      <div class="wrap">
+        <h4>内容较多时</h4>
+        <style>
+          .overflow {
+            width: 400px;
+            max-height: calc(200px + 0px);
+            overflow: hidden;
+            border-radius: 4px;
+            outline: 2px dashed royalblue;
+            /* height 用于测试 */
+            /* height: 200px; */
+          }
+          .A {
+            float: left;
+            width: 100px;
+            height: 100%;
+            background-color: rgba(255, 0, 0, 0.2);
+          }
+          .B {
+            float: right;
+            box-sizing: border-box;
+            padding: 16px;
+            width: 100%;
+            margin-left: -100px;
+            /* height 用于测试 */
+            /* height: 200px; */
+            background-color: rgba(0, 255, 0, 0.2);
+            text-align: center;
+          }
+          .C {
+            float: right;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 255, 0.2);
+            transform: translateY(-100%);
+            position: relative;
+            /* 居中 */
+            /* left: calc(50% - 50px);  */
+            /* 靠右 */
+            left: calc(100% - 100px);
+            cursor: pointer;
+          }
+          .f12 {
+            font-size: 12px;
+          }
+
+          /* 控制交互-点击动效 */
+          .overflow-check:checked + .overflow {
+            /* fit-content 行为类似于 fit-content(stretch)。盒子会使用可用的空间，但永远不会超过 max-content。 */
+            max-height: fit-content;
+          }
+          .overflow-check:checked + .overflow .C {
+            left: auto;
+            /* 居中 */
+            /* right: calc(50% - 50px);  */
+            /* 靠右 */
+            right: 0;
+            /* transform: scaleY(-1); */
+            background-color: rgba(255, 255, 0, 0.2);
+          }
+        </style>
+        <!-- 比较好的位置是居中，加一些渐变遮罩 -->
+        <div class="section">
+          <input class="overflow-check" type="checkbox" id="checked" hidden />
+          <div class="overflow">
+            <div class="A">A</div>
+            <div class="B">
+              B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B
+            </div>
+            <label for="checked" class="overflow-check-btn">
+              <div class="C center">C<br /></div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="demo">
+      <div class="wrap">
+        <h4>内容较多时</h4>
+        <div class="section">
+          <input class="content-check" type="checkbox" id="c1" hidden />
+          <div class="content">
+            <pre class="text">
+  .content{
+    width: 500px;
+    max-height: 200px;
+    overflow: hidden;
+    outline: 1px dashed;
+  }
+  .content label{
+    float: right;
+    width: 100px;
+    text-align: center;
+    position: relative;
+    left: calc(50% - 50px);
+    transform: translateY(-100%);
+    cursor: pointer;
+  }</pre
+            >
+            <label for="c1" class="btn"></label>
+          </div>
+        </div>
+      </div>
+      <div class="wrap">
+        <h4>内容较少时</h4>
+        <div class="section">
+          <input class="content-check" type="checkbox" id="c2" hidden />
+          <div class="content">
+            <!-- 这里 </pre> 缩进（前面有空格），就导致多了一行 -->
+            <pre class="text">
+  .content{
+    width: 500px;
+    max-height: 200px;
+    overflow: hidden;
+    outline: 1px dashed;
+  }
+  .content label{}
+</pre
+            >
+            <label for="c2" class="btn"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p>浮动布局的奥妙：A（占位）左浮动，B（内容）、C（操作按钮）右浮动</p>
+      <p>
+        当 B 内容不超出时，C 浮动在容器最右侧；当 B 内容超出时，C 会跑到 A
+        正下方，在容器最左侧；(调整 C 的偏移，就可以纯 css
+        实现动态控制显示是否超出的操作按钮了)
+      </p>
+      <p>效果图如下：</p>
+      <p><img src="./effect.webp" /></p>
+    </div>
+    <!-- https://juejin.cn/post/7202030221793165368 -->
+  </body>
+</html>

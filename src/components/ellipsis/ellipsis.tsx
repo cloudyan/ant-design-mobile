@@ -55,7 +55,13 @@ export const Ellipsis: FC<EllipsisProps> = p => {
   const [expanded, setExpanded] = useState(props.defaultExpanded) // 是否展开
   const [exceeded, setExceeded] = useState(false) // 是否超出
 
-  // 有效划分字符串
+  // TODO: 不支持富文本或 React 组件，
+  // 若要支持，需要换个实现思路：天然的因内容会超出容器，布局会受到影响
+  // 被影响的元素，可以用来做标记，可以重新封装一个组件 Overflow
+  if (typeof props.content !== 'string') {
+    throw new Error('Ellipsis only supports string content')
+  }
+  // 有效划分字符串（props.content 仅支持 string）
   const chars = useMemo(() => runes(props.content), [props.content])
   function getSubString(start: number, end: number) {
     return chars.slice(start, end).join('')
