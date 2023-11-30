@@ -15,14 +15,17 @@
   - `Dialog.alert`
   - `Dialog.confirm`
   - `Dialog.show`
-- Modal 弹窗、模态框
+- [x] Modal 弹窗、模态框
 - dialog vs modal, 有区别吗？
   - 对话框仍允许用户在打开页面时与页面上的其他内容进行交互（即单击对话框周围可见的按钮和链接）
   - 模式锁定页面，直到完成某些操作。这通常是在涵盖所有其他内容的背景中完成的，因此必须处理模态。这个相比与对话框则更具破坏性。
   - antd-mobile 中实现基本一致，略有差异
     - modal 支持 showCloseButton
     - dialog 支持 actions 配置双层数组
-- Popup 弹出层
+- [x] Popup 弹出层
+  - `useInnerVisible`
+  - useSpring ==> `@react-spring/web` 流畅动画库
+  - useDrag ==> `@use-gesture/react` 手势库
 - [x] ellipsis
   - `runes2` 字符串分割
   - `calcEllipsised`
@@ -35,6 +38,13 @@
 
 - utils
   - `usePropsValue`
+  - `isNodeWithContent`
+
+```css
+flex: none; ==> 0 0 auto;
+flex: 1;    ==> 1 1 0%
+flex: 0;    ==> 0 1 0%
+```
 
 ## 组件列表
 
@@ -96,17 +106,17 @@
 - 反馈 feedback
   - [ ] action-sheet
   - [x] dialog
-  - [ ] empty // @deprecated 使用 ErrorBlock 替代
-  - [ ] error-block
+  - [x] empty // @deprecated 使用 ErrorBlock 替代
+  - [x] error-block
   - [x] loading // @deprecated 使用 DotLoading 替代
   - [x] mask
   - [x] modal
   - [ ] popover
-  - [ ] popup
-  - [ ] progress-bar
-  - [ ] progress-circle
+  - [x] popup
+  - [x] progress-bar
+  - [x] progress-circle 本质使用 svg 实现
   - [ ] pull-to-refresh
-  - [ ] result
+  - [x] result
   - [ ] skeleton
   - [ ] swipe-action
   - [x] toast

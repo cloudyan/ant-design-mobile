@@ -36,7 +36,7 @@ export default () => {
             自定义内容区域
           </Button>
 
-          {/* TODO: 这个图片加载有点慢，有闪动，可支持占位优化 */}
+          {/* TODO: 这个图片加载有点慢，有闪动，可支持占位优化，图片配置都包含 url以及宽高 */}
           <Button
             block
             onClick={() => {

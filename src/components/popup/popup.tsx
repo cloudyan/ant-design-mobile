@@ -1,19 +1,19 @@
-import classNames from 'classnames'
-import React, { useState, useRef } from 'react'
-import type { FC, PropsWithChildren } from 'react'
-import { useIsomorphicLayoutEffect, useUnmountedRef } from 'ahooks'
-import { NativeProps, withNativeProps } from '../../utils/native-props'
-import { mergeProps } from '../../utils/with-default-props'
-import Mask from '../mask'
-import { useLockScroll } from '../../utils/use-lock-scroll'
-import { renderToContainer } from '../../utils/render-to-container'
-import { useSpring, animated } from '@react-spring/web'
-import { withStopPropagation } from '../../utils/with-stop-propagation'
-import { ShouldRender } from '../../utils/should-render'
-import { defaultPopupBaseProps, PopupBaseProps } from './popup-base-props'
-import { useInnerVisible } from '../../utils/use-inner-visible'
-import { useConfig } from '../config-provider'
+import { animated, useSpring } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
+import { useIsomorphicLayoutEffect, useUnmountedRef } from 'ahooks'
+import classNames from 'classnames'
+import type { FC, PropsWithChildren } from 'react'
+import React, { useRef, useState } from 'react'
+import { NativeProps, withNativeProps } from '../../utils/native-props'
+import { renderToContainer } from '../../utils/render-to-container'
+import { ShouldRender } from '../../utils/should-render'
+import { useInnerVisible } from '../../utils/use-inner-visible'
+import { useLockScroll } from '../../utils/use-lock-scroll'
+import { mergeProps } from '../../utils/with-default-props'
+import { withStopPropagation } from '../../utils/with-stop-propagation'
+import { useConfig } from '../config-provider'
+import Mask from '../mask'
+import { defaultPopupBaseProps, PopupBaseProps } from './popup-base-props'
 
 const classPrefix = `adm-popup`
 
@@ -42,8 +42,8 @@ export const Popup: FC<PopupProps> = p => {
 
   const [active, setActive] = useState(props.visible)
   const ref = useRef<HTMLDivElement>(null)
-  useLockScroll(ref, props.disableBodyScroll && active ? 'strict' : false)
 
+  useLockScroll(ref, props.disableBodyScroll && active ? 'strict' : false)
   useIsomorphicLayoutEffect(() => {
     if (props.visible) {
       setActive(true)
@@ -70,6 +70,7 @@ export const Popup: FC<PopupProps> = p => {
     },
   })
 
+  // TODO: useDrag 上下滑动关闭？无效果啊
   const bind = useDrag(
     ({ swipe: [, swipeY] }) => {
       if (!props.closeOnSwipe) return
@@ -86,6 +87,8 @@ export const Popup: FC<PopupProps> = p => {
     }
   )
 
+  // 保持状态一致
+  // TODO: 直接写赋值不行吗，active && props.visible 变更都会触发 rerender，有问题吗？
   const maskVisible = useInnerVisible(active && props.visible)
 
   const node = withStopPropagation(
@@ -126,19 +129,14 @@ export const Popup: FC<PopupProps> = p => {
             ...props.bodyStyle,
             pointerEvents: percent.to(v => (v === 0 ? 'unset' : 'none')),
             transform: percent.to(v => {
-              if (props.position === 'bottom') {
-                return `translate(0, ${v}%)`
+              // 惰性计算
+              const map = {
+                bottom: `translate(0, ${v}%)`,
+                top: `translate(0, -${v}%)`,
+                left: `translate(-${v}%, 0)`,
+                right: `translate(${v}%, 0)`,
               }
-              if (props.position === 'top') {
-                return `translate(0, -${v}%)`
-              }
-              if (props.position === 'left') {
-                return `translate(-${v}%, 0)`
-              }
-              if (props.position === 'right') {
-                return `translate(${v}%, 0)`
-              }
-              return 'none'
+              return map[props.position] || 'none'
             }),
           }}
           ref={ref}

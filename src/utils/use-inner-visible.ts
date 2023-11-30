@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useIsomorphicLayoutEffect } from 'ahooks'
 
 /**
- * 管理内部元素的可见性状态的 Hook，基于外部可见性状态。
- *
+ * 基于外部可见性状态，同步管理内部元素的可见性状态
+ * 作用：让内部的状态跟外部某属性状态保持一致
  * @param {boolean} outerVisible - 外部元素的可见性状态。
  * @return {boolean} 内部元素的可见性状态。
  */

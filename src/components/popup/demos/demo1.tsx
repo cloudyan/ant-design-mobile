@@ -22,7 +22,7 @@ export default () => {
                 setVisible1(true)
               }}
             >
-              底部弹出
+              底部弹出(上下滑动关闭无效？)
             </Button>
             <Popup
               visible={visible1}

@@ -18,6 +18,7 @@ export type ResultProps = {
   icon?: ReactNode
 } & NativeProps
 
+// 不支持全屏吗？
 export const Result: FC<ResultProps> = p => {
   const props = mergeProps(defaultProps, p)
   const { status, title, description, icon } = props

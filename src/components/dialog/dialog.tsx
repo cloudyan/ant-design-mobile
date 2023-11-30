@@ -1,12 +1,12 @@
 import React from 'react'
+import classNames from 'classnames'
 import type { FC, ReactNode } from 'react'
 import { mergeProps } from '../../utils/with-default-props'
-import classNames from 'classnames'
-import { Action, DialogActionButton } from './dialog-action-button'
 import Image from '../image'
-import AutoCenter from '../auto-center'
 import { NativeProps } from '../../utils/native-props'
 import CenterPopup, { CenterPopupProps } from '../center-popup'
+import AutoCenter from '../auto-center'
+import { Action, DialogActionButton } from './dialog-action-button'
 
 export type DialogProps = Pick<
   CenterPopupProps,

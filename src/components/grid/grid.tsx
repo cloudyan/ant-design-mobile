@@ -14,6 +14,7 @@ export type GridProps = {
 
 // 支持控制列 columns
 // 暂不支持控制行 rows，放不下时横向滚动？
+// 术语：金刚位： “金刚区"是banner下方的功能入口导航区域，通常以“图标+文字”的宫格导航的形式出现
 export const Grid: FC<GridProps> = props => {
   const style: GridProps['style'] & Record<'--columns', string> = {
     '--columns': props.columns.toString(),

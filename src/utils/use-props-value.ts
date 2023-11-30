@@ -9,7 +9,8 @@ type Options<T> = {
 
 /**
  * 生成一个值和一个设置函数来管理状态。
- * @description 支持能够切换受控和非受控模式。提炼过程，参见 [React 组件的受控与非受控](https://www.yuque.com/awmleer/rocket/xmx2gb)
+ * @description 支持能够切换受控和非受控模式。
+ * 提炼过程，参见 [React 组件的受控与非受控](https://www.yuque.com/awmleer/rocket/xmx2gb)
  * @template T - 状态值的类型
  * @param {Options<T>} options - 选项对象
  * @param {T} options.value - 当前状态值

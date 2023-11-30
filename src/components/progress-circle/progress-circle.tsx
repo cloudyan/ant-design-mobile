@@ -10,11 +10,13 @@ export type ProgressCircleProps = {
   children?: ReactNode
 } & NativeProps<'--size' | '--track-width' | '--track-color' | '--fill-color'>
 
+// 支持动画
 export const ProgressCircle: FC<ProgressCircleProps> = p => {
   const props = mergeProps({ percent: 0 }, p)
   const style: CSSProperties & Record<'--percent', string> = {
     '--percent': props.percent.toString(),
   }
+
   return withNativeProps(
     props,
     <div className={`${classPrefix}`} style={style}>

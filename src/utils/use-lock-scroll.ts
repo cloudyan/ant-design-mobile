@@ -35,9 +35,9 @@ function getScrollableElement(el: HTMLElement | null) {
   return null
 }
 
-// 移植自vant：https://github.com/youzan/vant/blob/HEAD/src/composables/use-lock-scroll.ts
+// 移植自 vant：https://github.com/youzan/vant/blob/HEAD/src/composables/use-lock-scroll.ts
 /**
- * 使用useLockScroll函数来锁定或解锁滚动
+ * 使用 useLockScroll 函数来锁定或解锁滚动
  * @param rootRef 引用 HTMLElement 的 RefObject
  * @param shouldLock 是否锁定滚动，可以是一个布尔值或字符串'strict'
  */
