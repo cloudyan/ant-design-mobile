@@ -1,12 +1,12 @@
 import classNames from 'classnames'
-import React, { useState } from 'react'
 import type { FC, ReactNode } from 'react'
+import React, { useState } from 'react'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 import { usePropsValue } from '../../utils/use-props-value'
-import { mergeProps } from '../../utils/with-default-props'
-import { SpinIcon } from './spin-icon'
-import { useConfig } from '../config-provider'
 import { isPromise } from '../../utils/validate'
+import { mergeProps } from '../../utils/with-default-props'
+import { useConfig } from '../config-provider'
+import { SpinIcon } from './spin-icon'
 
 const classPrefix = `adm-switch`
 

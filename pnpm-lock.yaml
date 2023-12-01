@@ -211,7 +211,10 @@ devDependencies:
     version: 7.33.2(eslint@8.57.0)
   eslint-plugin-react-hooks:
     specifier: ^4.6.0
-    version: 4.6.0(eslint@8.57.0)
+    version: 4.6.0(eslint@8.49.0)
+  eslint-plugin-simple-import-sort:
+    specifier: ^10.0.0
+    version: 10.0.0(eslint@8.49.0)
   gulp:
     specifier: ^4.0.2
     version: 4.0.2
@@ -8370,6 +8373,14 @@ packages:
       resolve: 2.0.0-next.4
       semver: 6.3.1
       string.prototype.matchall: 4.0.10
+    dev: true
+
+  /eslint-plugin-simple-import-sort@10.0.0(eslint@8.49.0):
+    resolution: {integrity: sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==}
+    peerDependencies:
+      eslint: '>=5.0.0'
+    dependencies:
+      eslint: 8.49.0
     dev: true
 
   /eslint-scope@4.0.3:

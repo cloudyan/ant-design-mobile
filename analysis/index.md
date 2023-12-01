@@ -107,7 +107,7 @@ flex: 0;    ==> 0 1 0%
   - [ ] action-sheet
   - [x] dialog
   - [x] empty // @deprecated 使用 ErrorBlock 替代
-  - [x] error-block
+  - [x] error-block // 不一定是错误，应该有更通用的名称
   - [x] loading // @deprecated 使用 DotLoading 替代
   - [x] mask
   - [x] modal
@@ -121,7 +121,7 @@ flex: 0;    ==> 0 1 0%
   - [ ] swipe-action
   - [x] toast
 - 引导提示 guidance
-  - [ ] badge
+  - [x] badge
   - [ ] notice-bar
 - 其他 other
   - [ ] config-provider

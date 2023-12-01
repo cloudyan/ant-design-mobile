@@ -1,6 +1,6 @@
 import classNames from 'classnames'
+import type { CSSProperties, FC, ReactNode } from 'react'
 import React from 'react'
-import type { FC, ReactNode, CSSProperties } from 'react'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 
 const classPrefix = `adm-badge`
@@ -27,24 +27,22 @@ export const Badge: FC<BadgeProps> = props => {
     [`${classPrefix}-bordered`]: props.bordered,
   })
 
-  const element =
-    content || content === 0
-      ? withNativeProps(
-          props,
-          <div
-            className={badgeClass}
-            style={
-              {
-                '--color': color,
-              } as BadgeProps['style']
-            }
-          >
-            {!isDot && (
-              <div className={`${classPrefix}-content`}>{content}</div>
-            )}
-          </div>
-        )
-      : null
+  let element = null
+  if (content || content === 0) {
+    element = withNativeProps(
+      props,
+      <div
+        className={badgeClass}
+        style={
+          {
+            '--color': color,
+          } as BadgeProps['style']
+        }
+      >
+        {!isDot && <div className={`${classPrefix}-content`}>{content}</div>}
+      </div>
+    )
+  }
 
   return children ? (
     <div

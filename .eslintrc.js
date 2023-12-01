@@ -9,6 +9,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
+    'simple-import-sort',
     'prettier',
   ],
   'parser': '@typescript-eslint/parser',
@@ -18,6 +19,7 @@ module.exports = {
   },
   'plugins': ['@typescript-eslint'],
   'rules': {
+    'simple-import-sort/exports': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',

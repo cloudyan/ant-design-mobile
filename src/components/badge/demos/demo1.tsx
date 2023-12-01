@@ -1,6 +1,6 @@
-import React from 'react'
 import { Badge, Space } from 'antd-mobile'
 import { DemoBlock } from 'demos'
+import React from 'react'
 
 import styles from './demo1.less'
 
