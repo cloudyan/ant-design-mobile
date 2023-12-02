@@ -1,5 +1,7 @@
 # 源码分析
 
+目的是学习以及总结最佳实践
+
 ## 重点
 
 - [x] mask 背景蒙层
@@ -26,13 +28,45 @@
   - `useInnerVisible`
   - useSpring ==> `@react-spring/web` 流畅动画库
   - useDrag ==> `@use-gesture/react` 手势库
-- [x] ellipsis
+- [x] ellipsis 文本省略
   - `runes2` 字符串分割
   - `calcEllipsised`
   - `useResizeEffect`
   - `checkMiddle`
 - form
   - Checkbox
+- 业务组件
+
+可参考 vant 继续扩展常用组件即功能
+
+- 基础组件
+  - 内置样式
+  - 倒计时 countdown
+  - 粘性布局 sticky
+  - 懒加载 lazyload
+  - 分享面板 share-panel
+  - 消息提示 notify
+  - 弹幕 barrage
+  - 高亮文本 highlight-text
+  - 翻滚文本 rolling-text
+  - 文件上传 uploader
+  - 签名 signature
+  - 二维码 qrcode
+  - 回到顶部 back-top
+- 业务组件
+  - 优惠券 coupon
+  - 协议 agreement
+  - 省市区选择 area
+- 电商组件
+  - 动作栏 action-bar
+  - 地址编辑 address-edit
+  - 地址列表 address-list
+  - 商品卡片 goods-card
+  - 商品列表 goods-list
+  - 联系人卡片 contact-card
+  - 联系人编辑 contact-edit
+  - 联系人列表 contact-list
+  - 提交订单栏 submit-bar
 
 ## 基础
 
@@ -111,7 +145,7 @@ flex: 0;    ==> 0 1 0%
   - [x] loading // @deprecated 使用 DotLoading 替代
   - [x] mask
   - [x] modal
-  - [ ] popover
+  - [ ] popover 气泡弹出框
   - [x] popup
   - [x] progress-bar
   - [x] progress-circle 本质使用 svg 实现
