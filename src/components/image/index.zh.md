@@ -19,7 +19,7 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| alt | 图片描述 | `string` | - |
+| alt | 回退文本，图片描述 | `string` | - |
 | draggable | 是否允许用户拖拽图片 | `boolean` | `false` |
 | fallback | 加载失败的占位 | `ReactNode` | 默认占位 |
 | fit | 图片填充模式 | `'contain' \| 'cover' \| 'fill' \| 'none' \| 'scale-down'` | `'fill'` |

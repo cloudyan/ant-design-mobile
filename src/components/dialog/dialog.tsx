@@ -1,11 +1,11 @@
-import React from 'react'
 import classNames from 'classnames'
 import type { FC, ReactNode } from 'react'
-import { mergeProps } from '../../utils/with-default-props'
-import Image from '../image'
+import React from 'react'
 import { NativeProps } from '../../utils/native-props'
-import CenterPopup, { CenterPopupProps } from '../center-popup'
+import { mergeProps } from '../../utils/with-default-props'
 import AutoCenter from '../auto-center'
+import CenterPopup, { CenterPopupProps } from '../center-popup'
+import Image from '../image'
 import { Action, DialogActionButton } from './dialog-action-button'
 
 export type DialogProps = Pick<
@@ -80,11 +80,11 @@ export const Dialog: FC<DialogProps> = p => {
                   action={action}
                   onAction={async () => {
                     // TIP: 当 Promise.all 中有异常(throw error or reject)时
+                    // 代码 reject，导致 Promise.all 后面的代码就不再执行了
                     await Promise.all([
                       action.onClick?.(),
                       props.onAction?.(action, index),
                     ])
-                    // 上述代码 reject，后面的代码就不再执行了
                     // console.log('Dialog onAction', 'call')
                     if (props.closeOnAction) {
                       // 此处 onClose 方法

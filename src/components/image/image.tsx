@@ -1,13 +1,13 @@
-import { mergeProps } from '../../utils/with-default-props'
-import React, { useState, useRef, useEffect } from 'react'
 import type { ReactNode } from 'react'
-import { NativeProps, withNativeProps } from '../../utils/native-props'
+import React, { useEffect, useRef, useState } from 'react'
 import { staged } from 'staged-components'
+import { NativeProps, withNativeProps } from '../../utils/native-props'
 import { toCSSLength } from '../../utils/to-css-length'
-import { LazyDetector } from './lazy-detector'
 import { useIsomorphicUpdateLayoutEffect } from '../../utils/use-isomorphic-update-layout-effect'
-import { ImageIcon } from './image-icon'
+import { mergeProps } from '../../utils/with-default-props'
 import { BrokenImageIcon } from './broken-image-icon'
+import { ImageIcon } from './image-icon'
+import { LazyDetector } from './lazy-detector'
 
 const classPrefix = `adm-image`
 
@@ -54,6 +54,7 @@ const defaultProps = {
   draggable: false,
 }
 
+// 使用 staged 函数创建组件
 export const Image = staged<ImageProps>(p => {
   const props = mergeProps(defaultProps, p)
 
@@ -134,6 +135,8 @@ export const Image = staged<ImageProps>(p => {
     style['--height'] = toCSSLength(props.height)
     style['height'] = toCSSLength(props.height)
   }
+
+  // 通过 return 一个函数的语法，创建一个新的 stage
   return withNativeProps(
     props,
     <div
