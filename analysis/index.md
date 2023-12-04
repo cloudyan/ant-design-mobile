@@ -35,6 +35,9 @@
   - `checkMiddle`
 - form
   - Checkbox
+- Image
+  - `LazyDetector`
+  - `useInViewport`
 - 业务组件
 
 可参考 vant 继续扩展常用组件即功能

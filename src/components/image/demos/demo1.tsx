@@ -1,8 +1,9 @@
-import React from 'react'
 import { Image, Space } from 'antd-mobile'
 import { DemoBlock } from 'demos'
+import React from 'react'
 
-import styles from './demo1.less'
+import './demo1.less'
+import fitImg from './placeholder.png'
 
 const demoSrc =
   'https://images.unsplash.com/photo-1567945716310-4745a6b7844b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60'
@@ -13,17 +14,26 @@ export default () => {
   return (
     <div style={{ userSelect: 'none' }}>
       <DemoBlock title='基础用法'>
+        {/* 默认 fit='fill' */}
         <Image src={demoSrc} />
       </DemoBlock>
 
       <DemoBlock title='多种填充模式'>
-        <Space wrap>
-          <Image src={demoSrc} width={100} height={100} fit='fill' />
-          <Image src={demoSrc} width={100} height={100} fit='contain' />
-          <Image src={demoSrc} width={100} height={100} fit='cover' />
-          <Image src={demoSrc} width={100} height={100} fit='scale-down' />
-          <Image src={demoSrc} width={100} height={100} fit='none' />
-        </Space>
+        <p>使用 svg 图标对填充模式表现不匹配</p>
+        <div className='shadow'>
+          <Space wrap>
+            {/* 拉伸图片，填满元素 */}
+            <Image src={fitImg} width={100} height={100} fit='fill' />
+            {/* 等比，长边完全显示 */}
+            <Image src={fitImg} width={100} height={100} fit='contain' />
+            {/* 等比，短边完全显示，裁剪长边 */}
+            <Image src={fitImg} width={100} height={100} fit='cover' />
+            {/* 取 none 或 contain 的较小值 */}
+            <Image src={fitImg} width={100} height={100} fit='scale-down' />
+            {/* 显示原有尺寸 */}
+            <Image src={fitImg} width={100} height={100} fit='none' />
+          </Space>
+        </div>
       </DemoBlock>
 
       <DemoBlock title='自定义圆角'>
@@ -53,7 +63,7 @@ export default () => {
       </DemoBlock>
 
       <DemoBlock title='通过 CSS 变量统一设置图片大小'>
-        <div className={styles.imagesContainer}>
+        <div className='imagesContainer'>
           <Space wrap>
             <Image src={demoSrc} />
             <Image src={demoSrc} />
