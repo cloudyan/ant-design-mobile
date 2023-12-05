@@ -19,7 +19,16 @@ export default () => {
       </DemoBlock>
 
       <DemoBlock title='多种填充模式'>
-        <p>使用 svg 图标对填充模式表现不匹配</p>
+        <p>
+          使用 svg 图标对填充模式表现不匹配，
+          <a
+            href='https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit'
+            target='_blank'
+            rel='noreferrer nofollow'
+          >
+            object-fit 填充模式
+          </a>
+        </p>
         <div className='shadow'>
           <Space wrap>
             {/* 拉伸图片，填满元素 */}
