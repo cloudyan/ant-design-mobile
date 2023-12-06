@@ -1,9 +1,10 @@
-import React, { useMemo, useRef, useState } from 'react'
-import type { FC, ReactNode } from 'react'
 import { useIsomorphicLayoutEffect } from 'ahooks'
-import { mergeProps } from '../../utils/with-default-props'
+import classNames from 'classnames'
+import type { FC, ReactNode } from 'react'
+import React, { useRef, useState } from 'react'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 import { useResizeEffect } from '../../utils/use-resize-effect'
+import { mergeProps } from '../../utils/with-default-props'
 import {
   PropagationEvent,
   withStopPropagation,
@@ -13,21 +14,25 @@ const classPrefix = `adm-overflow`
 
 export type OverflowProps = {
   content: ReactNode
-  direction?: 'start' | 'end' | 'middle'
+  justify?: 'start' | 'end' | 'center'
+  align?: 'start' | 'end' | 'center'
   rows?: number
   expandText?: ReactNode
   collapseText?: ReactNode
   stopPropagationForActionButtons?: PropagationEvent[]
   onContentClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   defaultExpanded?: boolean
-} & NativeProps
+} & NativeProps<
+  '--overflow-background' | '--more-background' | '--less-background'
+>
 
 const defaultProps = {
-  direction: 'end',
-  rows: 1,
-  expandText: '',
+  justify: 'end',
+  align: 'center',
+  rows: 2,
+  expandText: '更多',
   content: '',
-  collapseText: '',
+  collapseText: '收起',
   stopPropagationForActionButtons: [],
   onContentClick: () => {},
   defaultExpanded: false,
@@ -36,17 +41,55 @@ const defaultProps = {
 export const Overflow: FC<OverflowProps> = p => {
   const props = mergeProps(defaultProps, p)
   const rootRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
   const expandElRef = useRef<HTMLAnchorElement>(null)
   const collapseElRef = useRef<HTMLAnchorElement>(null)
+  const [maxHeight, setMaxHeight] = useState<number>()
+  const [contentHeight, setContentHeight] = useState<number>()
 
   const [expanded, setExpanded] = useState(props.defaultExpanded) // 是否展开
-  const [exceeded, setExceeded] = useState(false) // 是否超出
+  // const [exceeded, setExceeded] = useState(false) // 是否超出
 
+  /**
+   * 根据指定行数，计算截断后的文本内容（计算省略内容）
+   *
+   * @return {void} 此函数不返回任何值。
+   */
+  function calcEllipsised() {
+    const root = rootRef.current
+    if (!root) return
+    root.style.display = 'block'
+    const originStyle = window.getComputedStyle(root)
+    if (contentRef.current) {
+      const contentStyle = window.getComputedStyle(contentRef.current)
+      setContentHeight(Math.floor(pxToNumber(contentStyle.height)))
+    }
+
+    // 根据行数和其他样式属性计算新元素的最大高度
+    // 计算规则 行高 * (行数+0.5) + padding-top + padding-bottom
+    const lineHeight = pxToNumber(originStyle.lineHeight)
+    const calcMaxHeight = Math.floor(
+      lineHeight * props.rows +
+        pxToNumber(originStyle.paddingTop) +
+        pxToNumber(originStyle.paddingBottom)
+    )
+    setMaxHeight(calcMaxHeight)
+  }
+
+  useResizeEffect(calcEllipsised, rootRef)
+
+  // 同步渲染
+  useIsomorphicLayoutEffect(() => {
+    calcEllipsised()
+  }, [props.rows])
+
+  // 展开按钮
   const expandActionElement =
     !!props.expandText &&
     withStopPropagation(
       props.stopPropagationForActionButtons,
       <a
+        className={`${classPrefix}-more-text`}
         ref={expandElRef}
         onClick={() => {
           setExpanded(true)
@@ -56,11 +99,13 @@ export const Overflow: FC<OverflowProps> = p => {
       </a>
     )
 
+  // 收起按钮
   const collapseActionElement =
     !!props.collapseText &&
     withStopPropagation(
       props.stopPropagationForActionButtons,
       <a
+        className={`${classPrefix}-less-text`}
         ref={collapseElRef}
         onClick={() => {
           setExpanded(false)
@@ -70,30 +115,46 @@ export const Overflow: FC<OverflowProps> = p => {
       </a>
     )
 
-  const renderContent = () => {
-    // 不超出，直接渲染全部内容
-    if (!exceeded) return props.content
-
-    return (
-      <>
-        {props.content}
-        {expanded ? collapseActionElement : expandActionElement}
-      </>
-    )
-  }
-
   return withNativeProps(
     props,
     <div
       ref={rootRef}
       className={classPrefix}
+      style={{
+        height: expanded ? 'auto' : maxHeight,
+      }}
       onClick={e => {
         if (e.target === e.currentTarget) {
           props.onContentClick(e)
         }
       }}
     >
-      {renderContent()}
+      <div
+        className={`${classPrefix}-inner`}
+        style={{
+          height: contentHeight,
+          maxHeight: expanded ? 'none' : maxHeight,
+        }}
+      >
+        <div className={`${classPrefix}-shadow`}></div>
+        <div className={`${classPrefix}-content`} ref={contentRef}>
+          {props.content}
+        </div>
+        <div
+          className={classNames(`${classPrefix}-more`, {
+            [`${classPrefix}-align-${props.align}`]: !!props.align,
+            [`${classPrefix}-justify-${props.justify}`]: !!props.justify,
+          })}
+        >
+          {expanded ? collapseActionElement : expandActionElement}
+        </div>
+      </div>
     </div>
   )
+}
+
+function pxToNumber(value: string | null): number {
+  if (!value) return 0
+  const match = value.match(/^\d*(\.\d*)?/)
+  return match ? Number(match[0]) : 0
 }

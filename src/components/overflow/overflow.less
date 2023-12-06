@@ -1,6 +1,71 @@
 @class-prefix-overflow: ~'adm-overflow';
 
 .@{class-prefix-overflow} {
+  // --overflow-background: #fff;
+  // --more-background: var(--overflow-background);
+  // --less-background: var(--overflow-background);
+
   overflow: hidden;
   line-height: 1.5;
+  // max-height: calc(100px + 0px);
+  /* height 用于测试 */
+  // height: 100px;
+
+  &-inner {
+    margin-left: -100%;
+    width: 200%;
+    height: 100%;
+  }
+  &-shadow {
+    float: left;
+    width: 50%;
+    height: 100%;
+  }
+  &-content {
+    float: right;
+    box-sizing: border-box;
+    width: 50%;
+  }
+  &-more {
+    display: flex;
+    float: right;
+    position: relative;
+    left: 50%;
+    width: 50%;
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+  &-more-text {
+    background: #fff;
+    // background: var(--more-background);
+    pointer-events: auto;
+  }
+  &-less-text {
+    background: #fff;
+    // background: var(--less-background);
+    pointer-events: auto;
+  }
+
+  &-align {
+    &-center {
+      align-items: center;
+    }
+    &-start {
+      align-items: flex-start;
+    }
+    &-end {
+      align-items: flex-end;
+    }
+  }
+  &-justify {
+    &-center {
+      justify-content: center;
+    }
+    &-start {
+      justify-content: flex-start;
+    }
+    &-end {
+      justify-content: flex-end;
+    }
+  }
 }

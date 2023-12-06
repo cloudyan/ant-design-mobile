@@ -118,11 +118,17 @@
             border-radius: 4px;
             outline: 2px dashed royalblue;
             /* height 用于测试 */
-            /* height: 200px; */
+            height: 200px;
+          }
+          .overflow-inner {
+            margin-left: -100%;
+            width: 200%;
+            outline: 1px dashed red;
+            height: 100%;
           }
           .A {
             float: left;
-            width: 100px;
+            width: 50%;
             height: 100%;
             background-color: rgba(255, 0, 0, 0.2);
           }
@@ -130,25 +136,26 @@
             float: right;
             box-sizing: border-box;
             padding: 16px;
-            width: 100%;
-            margin-left: -100px;
+            width: 50%;
+            margin-left: 0;
             /* height 用于测试 */
-            /* height: 200px; */
+            height: 200px;
             background-color: rgba(0, 255, 0, 0.2);
             text-align: center;
           }
           .C {
             float: right;
-            width: 50px;
+            width: 50%;
             height: 50px;
             background-color: rgba(0, 0, 255, 0.2);
-            transform: translateY(-100%);
             position: relative;
             /* 居中 */
             /* left: calc(50% - 50px);  */
             /* 靠右 */
-            left: calc(100% - 100px);
+            /* left: calc(100% - 100px); */
+            /* transform: translateY(-100%); */
             cursor: pointer;
+            text-align: right;
           }
           .f12 {
             font-size: 12px;
@@ -171,15 +178,17 @@
         </style>
         <!-- 比较好的位置是居中，加一些渐变遮罩 -->
         <div class="section">
-          <input class="overflow-check" type="checkbox" id="checked" hidden />
           <div class="overflow">
-            <div class="A">A</div>
-            <div class="B">
-              B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B
+            <input class="overflow-check" type="checkbox" id="checked" hidden />
+            <div class="overflow-inner">
+              <div class="A">A</div>
+              <div class="B">
+                B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B<br />B
+              </div>
+              <label for="checked" class="overflow-check-btn">
+                <div class="C center">C<br /></div>
+              </label>
             </div>
-            <label for="checked" class="overflow-check-btn">
-              <div class="C center">C<br /></div>
-            </label>
           </div>
         </div>
       </div>

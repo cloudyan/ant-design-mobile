@@ -21,6 +21,7 @@ export const components = {
     '/components/card',
     '/components/collapse',
     '/components/ellipsis',
+    '/components/overflow',
     '/components/floating-panel',
     '/components/image',
     '/components/image-viewer',
