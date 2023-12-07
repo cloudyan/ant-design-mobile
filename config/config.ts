@@ -95,6 +95,7 @@ const config: IConfig = {
   // ssr: {},
   exportStatic: {},
   dynamicImport: {},
+  mfsu: false,
 }
 
 export default config

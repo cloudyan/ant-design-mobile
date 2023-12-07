@@ -14,8 +14,7 @@ const classPrefix = `adm-overflow`
 
 export type OverflowProps = {
   content: ReactNode
-  justify?: 'start' | 'end' | 'center'
-  align?: 'start' | 'end' | 'center'
+  justify?: 'end' | 'center'
   rows?: number
   expandText?: ReactNode
   collapseText?: ReactNode
@@ -29,22 +28,28 @@ export type OverflowProps = {
 const defaultProps = {
   justify: 'end',
   align: 'center',
-  rows: 2,
-  expandText: '更多',
+  rows: 1,
   content: '',
-  collapseText: '收起',
+  expandText: '更多', // 展开
+  collapseText: '收起', // 收起
   stopPropagationForActionButtons: [],
   onContentClick: () => {},
   defaultExpanded: false,
 }
 
+/**
+ * 排版超出因此，展开收起（内容不仅仅支持文字，还支持富文本、组件等）
+ * 简单模式，纯 css 实现
+ * float 模式
+ * 加强模式
+ */
 export const Overflow: FC<OverflowProps> = p => {
   const props = mergeProps(defaultProps, p)
   const rootRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const expandElRef = useRef<HTMLAnchorElement>(null)
   const collapseElRef = useRef<HTMLAnchorElement>(null)
-  const [maxHeight, setMaxHeight] = useState<number>()
+  const [maxHeight, setMaxHeight] = useState<number>(0)
   const [contentHeight, setContentHeight] = useState<number>()
 
   const [expanded, setExpanded] = useState(props.defaultExpanded) // 是否展开
@@ -89,7 +94,6 @@ export const Overflow: FC<OverflowProps> = p => {
     withStopPropagation(
       props.stopPropagationForActionButtons,
       <a
-        className={`${classPrefix}-more-text`}
         ref={expandElRef}
         onClick={() => {
           setExpanded(true)
@@ -105,7 +109,6 @@ export const Overflow: FC<OverflowProps> = p => {
     withStopPropagation(
       props.stopPropagationForActionButtons,
       <a
-        className={`${classPrefix}-less-text`}
         ref={collapseElRef}
         onClick={() => {
           setExpanded(false)
@@ -133,20 +136,25 @@ export const Overflow: FC<OverflowProps> = p => {
         className={`${classPrefix}-inner`}
         style={{
           height: contentHeight,
-          maxHeight: expanded ? 'none' : maxHeight,
+          maxHeight: expanded ? 'none' : maxHeight - 1,
         }}
       >
-        <div className={`${classPrefix}-shadow`}></div>
         <div className={`${classPrefix}-content`} ref={contentRef}>
           {props.content}
         </div>
         <div
-          className={classNames(`${classPrefix}-more`, {
-            [`${classPrefix}-align-${props.align}`]: !!props.align,
+          className={classNames(`${classPrefix}-btns`, {
             [`${classPrefix}-justify-${props.justify}`]: !!props.justify,
           })}
         >
-          {expanded ? collapseActionElement : expandActionElement}
+          <div
+            className={classNames({
+              [`${classPrefix}-less`]: expanded,
+              [`${classPrefix}-more`]: !expanded,
+            })}
+          >
+            {expanded ? collapseActionElement : expandActionElement}
+          </div>
         </div>
       </div>
     </div>

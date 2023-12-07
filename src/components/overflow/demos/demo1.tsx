@@ -22,7 +22,7 @@ const contractStr = `蚂蚁的企业级产品是一个庞大且复杂的体系�
 
 // 富文本 String
 const contractListStr =
-  '蚂蚁的企业级产品是一个庞大且复杂的体系。为享受更好的服务质量和用户体验，请阅读并同意以下协议：' +
+  '蚂蚁的企业级产品是一个复杂体系。为享受更好的服务质量和用户体验，请阅读并同意以下协议：' +
   contractList
     .map((item, index) => {
       return `<a key="${index}" href="${item.link}" target="_blank" rel="noreferrer">
@@ -42,10 +42,6 @@ export default () => {
         <Overflow content={content} />
       </DemoBlock>
 
-      <DemoBlock title='头部省略'>
-        <Overflow justify='start' content={content} />
-      </DemoBlock>
-
       <DemoBlock title='中间省略'>
         <Overflow justify='center' content={content} />
       </DemoBlock>
@@ -61,7 +57,6 @@ export default () => {
       <DemoBlock title='仅展开'>
         <Space block direction='vertical'>
           <Overflow content={content} expandText='展开' />
-          <Overflow justify='start' content={content} expandText='展开' />
           <Overflow justify='center' content={content} expandText='展开' />
         </Space>
       </DemoBlock>
@@ -116,9 +111,8 @@ export default () => {
       </DemoBlock>
 
       {/* 目前不支持富文本或 React 组件 */}
-      {/* <DemoBlock title='内容为富文本或 React 组件'>
+      <DemoBlock title='内容支持富文本或 React 组件'>
         <Overflow
-
           content={<RichContent />}
           rows={2}
           expandText={
@@ -127,8 +121,14 @@ export default () => {
               <DownOutline />
             </>
           }
+          collapseText={
+            <>
+              收起
+              <UpOutline />
+            </>
+          }
         />
-      </DemoBlock> */}
+      </DemoBlock>
     </>
   )
 }

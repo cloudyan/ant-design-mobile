@@ -1,12 +1,13 @@
 @class-prefix-overflow: ~'adm-overflow';
 
 .@{class-prefix-overflow} {
-  // --overflow-background: #fff;
-  // --more-background: var(--overflow-background);
-  // --less-background: var(--overflow-background);
+  --background: #fff;
+  --btn-background: #fff;
+  --more-background: var(--btn-background);
+  --less-background: var(--btn-background);
 
   overflow: hidden;
-  line-height: 1.5;
+  line-height: 1.4;
   // max-height: calc(100px + 0px);
   /* height 用于测试 */
   // height: 100px;
@@ -16,7 +17,10 @@
     width: 200%;
     height: 100%;
   }
-  &-shadow {
+  // shadow
+  &-inner::before {
+    content: '';
+    display: block;
     float: left;
     width: 50%;
     height: 100%;
@@ -25,38 +29,34 @@
     float: right;
     box-sizing: border-box;
     width: 50%;
+    word-break: break-all;
   }
-  &-more {
+  &-content * {
+    word-break: break-all;
+    display: inline;
+    text-decoration: none;
+  }
+  &-btns {
     display: flex;
+    align-items: center;
     float: right;
     position: relative;
     left: 50%;
     width: 50%;
-    transform: translateY(-100%);
     pointer-events: none;
+    transform: translateY(-100%);
   }
-  &-more-text {
+  &-more {
     background: #fff;
-    // background: var(--more-background);
+    background: var(--more-background);
     pointer-events: auto;
   }
-  &-less-text {
+  &-less {
     background: #fff;
-    // background: var(--less-background);
+    background: var(--less-background);
     pointer-events: auto;
   }
 
-  &-align {
-    &-center {
-      align-items: center;
-    }
-    &-start {
-      align-items: flex-start;
-    }
-    &-end {
-      align-items: flex-end;
-    }
-  }
   &-justify {
     &-center {
       justify-content: center;
