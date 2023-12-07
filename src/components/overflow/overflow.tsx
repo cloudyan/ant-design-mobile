@@ -13,9 +13,9 @@ import {
 const classPrefix = `adm-overflow`
 
 export type OverflowProps = {
+  rows?: number
   content: ReactNode
   justify?: 'end' | 'center'
-  rows?: number
   expandText?: ReactNode
   collapseText?: ReactNode
   stopPropagationForActionButtons?: PropagationEvent[]
@@ -37,8 +37,9 @@ const defaultProps = {
 }
 
 /**
- * 排版超出因此，展开收起（内容不仅仅支持文字，还支持富文本、组件等）
- * 简单模式，纯 css 实现
+ * Overflow 超出省略，展开更多
+ * @description 内容支持富文本、组件等
+ * 简单模式，纯 css 实现，提供内置样式
  * float 模式
  * 加强模式
  */

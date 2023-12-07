@@ -51,3 +51,98 @@ div.adm-px-tester {
   user-select: none;
   pointer-events: none;
 }
+
+// built-in 内置样式
+
+// 优化点击区域
+.human {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    bottom: -4px;
+    left: -4px;
+  }
+}
+
+// 超出省略
+.ellipsis,
+.max-line-1 {
+  text-overflow: ellipsis;
+
+  /* Needed to make it work */
+  overflow: hidden;
+  white-space: nowrap;
+  /* 兼容低版本浏览器 */
+  max-width: 100%;
+}
+.max-line-2,
+.max-line-3 {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  word-break: break-all;
+  // line-height: 1.4;
+}
+/* 必须自己设定 max-height 并指定单位，不同字体大小高度不同，这里无法计算 max-height */
+.max-line-2 {
+  -webkit-line-clamp: 2;
+}
+.max-line-3 {
+  -webkit-line-clamp: 3;
+}
+
+// 推荐以采用 antd-mobile 的高清方案
+// 0.5px 细线
+[class*='cc-hairline']::after {
+  content: ' ';
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: scale(0.5);
+  transform-origin: right bottom;
+  box-sizing: border-box;
+  pointer-events: none;
+  border: 0 solid #ebedf0;
+  /* border: 1px solid rgba(0,0,0,.2); */
+}
+
+.cc-hairline {
+  &,
+  &--top,
+  &--left,
+  &--right,
+  &--bottom,
+  &--border,
+  &--surround,
+  &--top-bottom {
+    position: relative;
+  }
+  &--top::after {
+    border-top-width: 1px;
+  }
+  &--left::after {
+    border-left-width: 1px;
+  }
+  &--right::after {
+    border-right-width: 1px;
+  }
+  &--bottom::after {
+    border-bottom-width: 1px;
+  }
+  &--top-bottom::after,
+  &-unset--top-bottom::after {
+    border-width: 1px 0;
+  }
+  &--border::after,
+  &--surround::after {
+    border-width: 1px;
+  }
+}
