@@ -27,11 +27,10 @@ export type OverflowProps = {
 
 const defaultProps = {
   justify: 'end',
-  align: 'center',
-  rows: 1,
+  rows: 1, // 推荐至少两行
   content: '',
-  expandText: '更多', // 展开
-  collapseText: '收起', // 收起
+  expandText: '...', // 展开
+  collapseText: '', // 收起
   stopPropagationForActionButtons: [],
   onContentClick: () => {},
   defaultExpanded: false,
@@ -50,7 +49,7 @@ export const Overflow: FC<OverflowProps> = p => {
   const expandElRef = useRef<HTMLAnchorElement>(null)
   const collapseElRef = useRef<HTMLAnchorElement>(null)
   const [maxHeight, setMaxHeight] = useState<number>(0)
-  const [contentHeight, setContentHeight] = useState<number>()
+  const [contentHeight, setContentHeight] = useState<number>(0)
 
   const [expanded, setExpanded] = useState(props.defaultExpanded) // 是否展开
   // const [exceeded, setExceeded] = useState(false) // 是否超出
@@ -65,20 +64,22 @@ export const Overflow: FC<OverflowProps> = p => {
     if (!root) return
     root.style.display = 'block'
     const originStyle = window.getComputedStyle(root)
-    if (contentRef.current) {
-      const contentStyle = window.getComputedStyle(contentRef.current)
-      setContentHeight(Math.floor(pxToNumber(contentStyle.height)))
+
+    const content = contentRef.current
+    if (content) {
+      const contentStyle = window.getComputedStyle(content)
+      setContentHeight(pxToNumber(contentStyle.height))
     }
 
     // 根据行数和其他样式属性计算新元素的最大高度
     // 计算规则 行高 * (行数+0.5) + padding-top + padding-bottom
     const lineHeight = pxToNumber(originStyle.lineHeight)
-    const calcMaxHeight = Math.floor(
+    const calcMaxHeight =
       lineHeight * props.rows +
-        pxToNumber(originStyle.paddingTop) +
-        pxToNumber(originStyle.paddingBottom)
-    )
-    setMaxHeight(calcMaxHeight)
+      pxToNumber(originStyle.paddingTop) +
+      pxToNumber(originStyle.paddingBottom)
+
+    setMaxHeight(Math.round(calcMaxHeight))
   }
 
   useResizeEffect(calcEllipsised, rootRef)
@@ -86,7 +87,7 @@ export const Overflow: FC<OverflowProps> = p => {
   // 同步渲染
   useIsomorphicLayoutEffect(() => {
     calcEllipsised()
-  }, [props.rows])
+  }, [props.rows, props.content, props.expandText, props.collapseText])
 
   // 展开按钮
   const expandActionElement =
@@ -125,6 +126,7 @@ export const Overflow: FC<OverflowProps> = p => {
       className={classPrefix}
       style={{
         height: expanded ? 'auto' : maxHeight,
+        // maxHeight: expanded ? 'none' : maxHeight,
       }}
       onClick={e => {
         if (e.target === e.currentTarget) {
@@ -136,7 +138,7 @@ export const Overflow: FC<OverflowProps> = p => {
         className={`${classPrefix}-inner`}
         style={{
           height: contentHeight,
-          maxHeight: expanded ? 'none' : maxHeight - 1,
+          maxHeight: expanded ? 'none' : maxHeight,
         }}
       >
         <div className={`${classPrefix}-content`} ref={contentRef}>
