@@ -8,50 +8,99 @@
 
   overflow: hidden;
   line-height: 1.4;
-  // max-height: calc(100px + 0px);
-  /* height 用于测试 */
-  // height: 100px;
 
-  &-inner {
+  // 纯 css 实现
+  &-css {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    word-break: break-all;
+    // 默认不省略，配合 rows 控制以下属性
+    // -webkit-line-clamp: 1;
+  }
+
+  // &-content * {
+  //   word-break: break-all;
+  //   display: inline;
+  //   text-decoration: none;
+  // }
+
+  // float 实现
+  &-float {
+    box-sizing: border-box;
+  }
+  &-float-inner {
     margin-left: -100%;
     width: 200%;
     height: 100%;
   }
   // shadow
-  &-inner::before {
-    content: '';
+  &-float-shadow {
     display: block;
     float: left;
     width: 50%;
     height: 100%;
   }
-  &-content {
-    float: right;
+  &-float-content {
     box-sizing: border-box;
+    float: right;
     width: 50%;
     word-break: break-all;
   }
-  &-content * {
-    word-break: break-all;
-    display: inline;
-    text-decoration: none;
-  }
-  &-btns {
+  &-float-btns {
     display: flex;
     align-items: center;
     float: right;
     position: relative;
     left: 50%;
     width: 50%;
-    pointer-events: none;
     transform: translateY(-100%);
+    pointer-events: none;
   }
-  &-more {
+
+  &-float-more {
     background: #fff;
     background: var(--more-background);
     pointer-events: auto;
   }
-  &-less {
+  &-float-less {
+    background: #fff;
+    background: var(--less-background);
+    pointer-events: auto;
+    transform: translateY(100%);
+  }
+
+  // viewport
+  &-viewport-content {
+    overflow: hidden;
+    word-break: break-all;
+  }
+  &-viewport-content > * {
+    display: inline;
+  }
+  &-viewport-observer {
+    margin-left: -2px;
+    width: 2px;
+    height: 8px;
+    overflow: hidden;
+    display: inline-block;
+  }
+  &-viewport-btns {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+
+  &-viewport-more {
+    background: #fff;
+    background: var(--more-background);
+    pointer-events: auto;
+  }
+  &-viewport-less {
     background: #fff;
     background: var(--less-background);
     pointer-events: auto;

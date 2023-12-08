@@ -33,3 +33,11 @@
 showMore/hideMore
 
 ## FAQ
+
+实现方式
+
+1. css 模式，通过纯 css 实现，超出省略，结合内置样式实现即可（`.max-line-${n}`）
+   1. 不支持交互行为，如展开收起
+2. float 模式，通过 float 特性，实现超出省略，展示更多
+3. viewport 模式，通过监听元素是否进入 viewport 实现
+   1. 底层为 Intersection Observer API，检测目标元素与祖先元素或 viewport 相交情况

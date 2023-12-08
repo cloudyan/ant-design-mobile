@@ -1,5 +1,5 @@
-import './overflow.less'
 import { Overflow } from './overflow'
+import './overflow.less'
 
 export type { OverflowProps } from './overflow'
 

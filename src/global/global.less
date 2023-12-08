@@ -69,16 +69,6 @@ div.adm-px-tester {
 }
 
 // 超出省略
-.ellipsis,
-.max-line-1 {
-  text-overflow: ellipsis;
-
-  /* Needed to make it work */
-  overflow: hidden;
-  white-space: nowrap;
-  /* 兼容低版本浏览器 */
-  max-width: 100%;
-}
 .max-line-2,
 .max-line-3 {
   display: -webkit-box;
@@ -95,6 +85,17 @@ div.adm-px-tester {
 }
 .max-line-3 {
   -webkit-line-clamp: 3;
+}
+
+.ellipsis,
+.max-line-1 {
+  text-overflow: ellipsis;
+
+  /* Needed to make it work */
+  overflow: hidden;
+  white-space: nowrap;
+  /* 兼容低版本浏览器 */
+  max-width: 100%;
 }
 
 // 推荐以采用 antd-mobile 的高清方案
