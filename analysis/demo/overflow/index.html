@@ -109,6 +109,38 @@
   <body>
     <div class="demo">
       <div class="wrap">
+        <h4>监听元素</h4>
+        <style>
+          .overflow {
+            width: 400px;
+            max-height: calc(200px + 0px);
+            overflow: hidden;
+            border-radius: 4px;
+            outline: 2px dashed royalblue;
+            /* height 用于测试 */
+            height: 200px;
+          }
+          .block {
+            display: block;
+            display: flex;
+            background: rgba(255, 0, 0, 0.2);
+            height: 200px;
+          }
+          .observer {
+            width: 2px;
+            height: 10px;
+            display: inline;
+            margin-left: -2px;
+            background: rgba(0, 255, 0, 0.2);
+          }
+        </style>
+        <div class="overflow">
+          <div class="block"></div>
+          <span class="observer"></span>
+        </div>
+      </div>
+
+      <div class="wrap">
         <h4>内容较多时</h4>
         <style>
           .overflow {

@@ -12,8 +12,7 @@ import { pxToNumber } from './tool'
 
 const classPrefix = `adm-overflow`
 
-export type OverflowProps = {
-  mode?: 'css' | 'float' | 'viewport'
+export type OverflowViewportProps = {
   rows?: number
   content: ReactNode
   justify?: 'end' | 'center'
@@ -27,7 +26,6 @@ export type OverflowProps = {
 >
 
 const defaultProps = {
-  mode: 'viewport',
   justify: 'end',
   rows: 1, // 推荐至少两行
   content: '',
@@ -43,11 +41,14 @@ const defaultProps = {
 // 非展开状态时：如果超出，则显示更多；未超出则不显示更多
 // 展开状态时：有配置收起，则显示收起
 
+// 问题：如果内容是个 block，监听元素则被换行了
+// 解决方案：使用定位解决
+
 /**
  * Overflow 超出省略，展开更多
  * @description 内容支持富文本、组件等
  */
-export const OverflowViewport: FC<OverflowProps> = p => {
+export const OverflowViewport: FC<OverflowViewportProps> = p => {
   const props = mergeProps(defaultProps, p)
   const rootRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
@@ -90,6 +91,7 @@ export const OverflowViewport: FC<OverflowProps> = p => {
     withStopPropagation(
       props.stopPropagationForActionButtons,
       <a
+        className={classNames(`${classPrefix}-link`, `${classPrefix}-shadow`)}
         ref={expandElRef}
         onClick={() => {
           setExpanded(true)
@@ -105,6 +107,7 @@ export const OverflowViewport: FC<OverflowProps> = p => {
     withStopPropagation(
       props.stopPropagationForActionButtons,
       <a
+        className={classNames(`${classPrefix}-link`)}
         ref={collapseElRef}
         onClick={() => {
           setExpanded(false)
@@ -118,7 +121,7 @@ export const OverflowViewport: FC<OverflowProps> = p => {
     props,
     <div
       ref={rootRef}
-      className={classNames(classPrefix, `${classPrefix}-${props.mode}`)}
+      className={classNames(classPrefix, `${classPrefix}-viewport`)}
       style={
         {
           // height: expanded ? 'auto' : maxHeight,
@@ -140,11 +143,13 @@ export const OverflowViewport: FC<OverflowProps> = p => {
           // maxHeight: expanded ? 'none' : contentHeight,
         }}
       >
-        {props.content}
-        {/* block or inline */}
-        <div ref={ovserverRef} className={`${classPrefix}-viewport-observer`}>
-          {' '}
-        </div>
+        <span className={`${classPrefix}-viewport-inline`}>
+          {props.content}
+          <div
+            ref={ovserverRef}
+            className={`${classPrefix}-viewport-observer`}
+          ></div>
+        </span>
       </div>
       <div
         className={classNames(`${classPrefix}-viewport-btns`, {
@@ -153,8 +158,8 @@ export const OverflowViewport: FC<OverflowProps> = p => {
       >
         <div
           className={classNames({
-            [`${classPrefix}-viewport-less`]: expanded,
-            [`${classPrefix}-viewport-more`]: !expanded,
+            [`${classPrefix}-less`]: expanded,
+            [`${classPrefix}-more`]: !expanded,
           })}
         >
           {expanded

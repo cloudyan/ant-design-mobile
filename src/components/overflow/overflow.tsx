@@ -25,7 +25,7 @@ export type OverflowProps = {
 >
 
 const defaultProps = {
-  mode: 'css',
+  mode: 'viewport',
   justify: 'end',
   rows: 1,
   content: '',
@@ -41,9 +41,9 @@ const defaultProps = {
  * @description 内容支持富文本、组件等
  */
 export const Overflow: FC<OverflowProps> = p => {
-  const props = mergeProps(defaultProps, p)
+  const { mode, ...props } = mergeProps(defaultProps, p)
 
-  switch (props.mode) {
+  switch (mode) {
     case 'viewport':
       return <OverflowViewport {...props} />
     case 'float':

@@ -3,32 +3,27 @@ import type { FC, ReactNode } from 'react'
 import React, { useState } from 'react'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 import { mergeProps } from '../../utils/with-default-props'
-import { PropagationEvent } from '../../utils/with-stop-propagation'
 
 const classPrefix = `adm-overflow`
 
-export type OverflowProps = {
-  mode?: 'css' | 'float' | 'viewport'
+export type OverflowCssProps = {
   rows?: number
   content: ReactNode
-  justify?: 'end' | 'center'
-  expandText?: ReactNode
-  collapseText?: ReactNode
-  stopPropagationForActionButtons?: PropagationEvent[]
+  // justify?: 'end' | 'center'
+  // expandText?: ReactNode
+  // collapseText?: ReactNode
+  // stopPropagationForActionButtons?: PropagationEvent[]
   onContentClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   defaultExpanded?: boolean
-} & NativeProps<
-  '--overflow-background' | '--more-background' | '--less-background'
->
+} & NativeProps
 
 const defaultProps = {
-  mode: 'css',
-  justify: 'end',
   rows: 2,
   content: '',
-  expandText: '...', // 展开
-  collapseText: '', // 收起
-  stopPropagationForActionButtons: [],
+  // justify: 'end',
+  // expandText: '...', // 展开
+  // collapseText: '', // 收起
+  // stopPropagationForActionButtons: [],
   onContentClick: () => {},
   defaultExpanded: false,
 }
@@ -48,7 +43,7 @@ const defaultProps = {
  *  .max-line-2
  *  .max-line-3
  */
-export const OverflowCss: FC<OverflowProps> = p => {
+export const OverflowCss: FC<OverflowCssProps> = p => {
   const props = mergeProps(defaultProps, p)
   const [expanded, setExpanded] = useState(props.defaultExpanded) // 是否展开
 
@@ -60,7 +55,7 @@ export const OverflowCss: FC<OverflowProps> = p => {
   return withNativeProps(
     props,
     <div
-      className={classNames(classPrefix, `${classPrefix}-${props.mode}`)}
+      className={classNames(classPrefix, `${classPrefix}-css`)}
       style={rootStyle}
       onClick={e => {
         if (e.target === e.currentTarget) {

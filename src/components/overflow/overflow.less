@@ -17,14 +17,15 @@
     -webkit-box-orient: vertical;
     white-space: normal;
     word-break: break-all;
+
     // 默认不省略，配合 rows 控制以下属性
     // -webkit-line-clamp: 1;
   }
 
-  // &-content * {
-  //   word-break: break-all;
+  // &-float-content *,
+  // &-viewport-content * {
   //   display: inline;
-  //   text-decoration: none;
+  //   word-break: break-all;
   // }
 
   // float 实现
@@ -36,8 +37,8 @@
     width: 200%;
     height: 100%;
   }
-  // shadow
-  &-float-shadow {
+
+  &-float-placeholder {
     display: block;
     float: left;
     width: 50%;
@@ -60,28 +61,20 @@
     pointer-events: none;
   }
 
-  &-float-more {
-    background: #fff;
-    background: var(--more-background);
-    pointer-events: auto;
-  }
-  &-float-less {
-    background: #fff;
-    background: var(--less-background);
-    pointer-events: auto;
-    transform: translateY(100%);
-  }
-
   // viewport
   &-viewport-content {
     overflow: hidden;
     word-break: break-all;
   }
-  &-viewport-content > * {
+  // 让 observer 前面的元素是 inline
+  &-viewport-inline {
+    position: relative;
     display: inline;
   }
   &-viewport-observer {
-    margin-left: -2px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     width: 2px;
     height: 8px;
     overflow: hidden;
@@ -95,13 +88,11 @@
     pointer-events: none;
   }
 
-  &-viewport-more {
-    background: #fff;
+  &-more {
     background: var(--more-background);
     pointer-events: auto;
   }
-  &-viewport-less {
-    background: #fff;
+  &-less {
     background: var(--less-background);
     pointer-events: auto;
     transform: translateY(100%);
@@ -118,4 +109,16 @@
       justify-content: flex-end;
     }
   }
+
+  &-justify-end &-shadow {
+    box-shadow: -12px 0px 6px -4px var(--more-background),
+      -8px 0px 4px -2px var(--more-background),
+      -4px 0px 2px 0px var(--more-background),
+      -2px 0px 0px 0px var(--more-background);
+  }
+
+  // &-link {
+  //   display: inline;
+  //   text-decoration: none;;
+  // }
 }

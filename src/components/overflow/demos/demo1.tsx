@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 const content =
   '蚂蚁的企业级产品是一个庞大且复杂的体系。这类产品不仅量级巨大且功能复杂，而且变动和并发频繁，常常需要设计与开发能够快速的做出响应。同时这类产品中有存在很多类似的页面以及组件，可以通过抽象得到一些稳定且高复用性的内容。'
 
-const contractList = [
+const agreementList = [
   {
     title: '《用户协议》',
     link: 'https://baidu.com',
@@ -17,19 +17,27 @@ const contractList = [
   },
 ]
 
-// 富文本 String
-const richText =
-  '蚂蚁的企业级产品是一个复杂体系。为享受更好的服务质量和用户体验，请阅读并同意以下协议：' +
-  contractList
-    .map((item, index) => {
-      return `<a key="${index}" href="${item.link}" target="_blank" rel="noreferrer">
+// 富文本
+const ReactText = () => {
+  return (
+    <>富文本。{content}为享受更好的服务质量和用户体验，请阅读并同意以下协议：</>
+  )
+}
+const richText = agreementList
+  .map((item, index) => {
+    return `<a key="${index}" href="${item.link}" target="_blank" rel="noreferrer">
       ${item.title}
     </a>`
-    })
-    .join('')
+  })
+  .join('')
 
 const RichContent = () => {
-  return <div dangerouslySetInnerHTML={{ __html: richText }} />
+  return (
+    <div>
+      <ReactText />
+      <span dangerouslySetInnerHTML={{ __html: richText }} />
+    </div>
+  )
 }
 
 const modes = ['css', 'float', 'viewport']
