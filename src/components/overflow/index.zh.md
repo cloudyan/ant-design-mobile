@@ -1,8 +1,8 @@
 # Overflow 超出省略
 
-用于展示空间不足时，隐去部分内容并用“...”替代，以及展开收起操作。
+> `Ellipsis` 仅支持文本，`Overflow` 支持富文本以及 React 组件。
 
-`Overflow` 仅支持 string 类型，`Overflow` 支持 ReactNode 类型。
+用于展示空间不足时，隐去部分内容并用“...”替代，以及展开收起操作。
 
 ## 何时使用
 
