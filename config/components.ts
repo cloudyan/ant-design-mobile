@@ -20,6 +20,7 @@ export const components = {
     '/components/avatar',
     '/components/card',
     '/components/collapse',
+    '/components/count-down',
     '/components/ellipsis',
     '/components/overflow',
     '/components/floating-panel',
