@@ -112,6 +112,7 @@ flex: 0;    ==> 0 1 0%
   - [x] card
   - [ ] collapse
   - [x] ellipsis
+  - [x] overflow
   - [ ] floating-panel
   - [ ] image
   - [ ] image-viewer

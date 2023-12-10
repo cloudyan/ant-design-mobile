@@ -19,6 +19,7 @@
 | bordered | 是否增加描边 | `boolean` | `false` |
 | color | 徽标背景色，等效于设置 `--color` CSS 变量 | `string` | - |
 | content | 徽标内容：如果传 `null` `undefined` `''` 或不传，则不显示徽标；如果传 `Badge.dot`，会显示小红点 | `React.ReactNode \| typeof Badge.dot` | - |
+| max | 最大值，超过最大值会显示 `{max}+`，仅当 content 为数字时有效 | `number \| string` | - |
 | wrapperClassName | `Badge` wrap 自定义类名 | `string` | - |
 | wrapperStyle | `Badge` wrap 自定义样式 | `React.CSSProperties` | - |
 

@@ -1,5 +1,7 @@
 import { canUseDom } from './can-use-dom'
 
+export type Numeric = number | string
+
 export function isDef<T>(val: T): val is NonNullable<T> {
   return val !== undefined && val !== null
 }
@@ -29,7 +31,7 @@ export function isMobile(value: string): boolean {
   )
 }
 
-export function isNumeric(val: string | number): val is string {
+export function isNumeric(val: any): val is Numeric {
   return typeof val === 'number' || /^\d+(\.\d+)?$/.test(val)
 }
 
