@@ -1,6 +1,6 @@
-import React, { AriaAttributes } from 'react'
-import type { CSSProperties, ReactElement } from 'react'
 import classNames from 'classnames'
+import type { CSSProperties, ReactElement } from 'react'
+import React, { AriaAttributes } from 'react'
 
 export type NativeProps<S extends string = never> = {
   className?: string
