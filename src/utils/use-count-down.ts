@@ -23,6 +23,7 @@ export type UseCountDownOptions = {
   targetDate?: TDate
   millisecond?: boolean
   interval?: number
+  autoStart?: boolean
   onChange?: (current: CurrentTime) => void
   onFinish?: () => void
 }
@@ -69,12 +70,8 @@ export function useCountDown(options: UseCountDownOptions = {}) {
     rafId: 0,
     current: parseTime(Number(options.time)),
   })
-  const update = useUpdate()
 
-  const pause = () => {
-    cacheRef.current.counting = false
-    cancelRaf(cacheRef.current.rafId)
-  }
+  const update = useUpdate()
 
   const updateRemain = (value: number) => {
     const { current } = cacheRef.current
@@ -83,7 +80,7 @@ export function useCountDown(options: UseCountDownOptions = {}) {
     update()
     options.onChange?.(current)
 
-    if (value === 0) {
+    if (value <= 0) {
       pause()
       options.onFinish?.()
     }
@@ -140,14 +137,21 @@ export function useCountDown(options: UseCountDownOptions = {}) {
     }
   }
 
+  const pause = () => {
+    cacheRef.current.counting = false
+    cancelRaf(cacheRef.current.rafId)
+  }
+
   const reset = (totalTime = options.time || 0) => {
-    cacheRef.current.remain = totalTime
+    updateRemain(totalTime)
     pause()
     update()
   }
 
   useEffect(() => {
-    start()
+    if (options.autoStart) {
+      start()
+    }
     return () => {
       pause()
     }
