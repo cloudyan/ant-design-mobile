@@ -1,5 +1,5 @@
 // import { useCountDown } from 'ahooks'
-import type { ForwardedRef } from 'react'
+import type { ReactNode, ForwardedRef } from 'react'
 import React, { forwardRef, useImperativeHandle } from 'react'
 import { NativeProps } from '../../utils/native-props'
 import type { CurrentTime } from '../../utils/use-count-down'
@@ -18,6 +18,7 @@ export type CountDownProps = {
   // onTick?: () => void // onChange
   onChange?: (current: CurrentTime) => void
   onFinish?: () => void
+  children?: (current: CurrentTime) => ReactNode
 } & NativeProps<
   '--overflow-background' | '--more-background' | '--less-background'
 >
@@ -36,7 +37,7 @@ export interface CountDownRef {
 
 /**
  * CountDown 倒计时
- * @description
+ * @description 倒计时组件，支持毫秒计时，暂停、继续等功能
  */
 export const CountDown = forwardRef<CountDownRef, CountDownProps>((p, ref) => {
   const props = mergeProps(defaultProps, p)
@@ -51,7 +52,7 @@ export const CountDown = forwardRef<CountDownRef, CountDownProps>((p, ref) => {
   })
 
   let timeText = ''
-  if (typeof props.format === 'string') {
+  if (!props.children && typeof props.format === 'string') {
     timeText = parseFormat(current, props.format)
   }
 
@@ -67,20 +68,15 @@ export const CountDown = forwardRef<CountDownRef, CountDownProps>((p, ref) => {
     [start, pause, reset]
   )
 
-  const { days, hours, minutes, seconds, milliseconds } = current
-
   return (
     <>
-      <div>{timeText}</div>
+      <div>{props.children ? props.children?.(current) : timeText}</div>
     </>
   )
 })
 
 export function padZero(num: Numeric, targetLength = 2): string {
   let str = num + ''
-  // while (str.length < targetLength) {
-  //   str = '0' + str
-  // }
   return str.padStart(targetLength, '0')
 }
 

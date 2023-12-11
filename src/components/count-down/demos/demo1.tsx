@@ -5,6 +5,8 @@ import { DemoBlock } from 'demos'
 import type { CSSProperties, MutableRefObject } from 'react'
 import React, { useRef } from 'react'
 
+import styles from './index.less'
+
 export default () => {
   const countDownRef: MutableRefObject<CountDownRef | null> = useRef(null)
 
@@ -45,13 +47,17 @@ export default () => {
         <CountDown time={100000} millisecond format='HH:mm:ss:SSS' />
       </DemoBlock>
       <DemoBlock title='自定义样式'>
-        {/* <CountDown time={100000}>
-          <span className="block">{{ currentTime.hours }}</span>
-          <span className="colon">:</span>
-          <span className="block">{{ currentTime.minutes }}</span>
-          <span className="colon">:</span>
-          <span className="block">{{ currentTime.seconds }}</span>
-        </CountDown> */}
+        <CountDown time={100000}>
+          {currentTime => (
+            <>
+              <span className={styles.block}>{currentTime.hours}</span>
+              <span className={styles.colon}>:</span>
+              <span className={styles.block}>{currentTime.minutes}</span>
+              <span className={styles.colon}>:</span>
+              <span className={styles.block}>{currentTime.seconds}</span>
+            </>
+          )}
+        </CountDown>
       </DemoBlock>
       <DemoBlock title='手动控制'>
         <CountDown
