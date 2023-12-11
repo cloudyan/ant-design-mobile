@@ -43,33 +43,33 @@
 可参考 vant 继续扩展常用组件即功能
 
 - 基础组件
-  - 内置样式
-  - 倒计时 countdown
-  - 粘性布局 sticky
-  - 懒加载 lazyload
-  - 分享面板 share-panel
-  - 消息提示 notify
-  - 弹幕 barrage
-  - 高亮文本 highlight-text
-  - 翻滚文本 rolling-text
-  - 文件上传 uploader
-  - 签名 signature
-  - 二维码 qrcode
-  - 回到顶部 back-top
+  - [x] 内置样式
+  - [x] 倒计时 countdown
+  - [ ] 粘性布局 sticky
+  - [ ] 懒加载 lazyload
+  - [ ] 分享面板 share-panel
+  - [ ] 消息提示 notify
+  - [ ] 弹幕 barrage
+  - [ ] 高亮文本 highlight-text
+  - [ ] 翻滚文本 rolling-text
+  - [ ] 文件上传 uploader
+  - [ ] 签名 signature
+  - [ ] 二维码 qrcode
+  - [ ] 回到顶部 back-top
 - 业务组件
-  - 优惠券 coupon
-  - 协议 agreement
-  - 省市区选择 area
+  - [ ] 优惠券 coupon
+  - [ ] 协议 agreement（N 秒后可交互/滚动到底部可交互）
+  - [ ] 省市区选择 area
 - 电商组件
-  - 动作栏 action-bar
-  - 地址编辑 address-edit
-  - 地址列表 address-list
-  - 商品卡片 goods-card
-  - 商品列表 goods-list
-  - 联系人卡片 contact-card
-  - 联系人编辑 contact-edit
-  - 联系人列表 contact-list
-  - 提交订单栏 submit-bar
+  - [ ] 动作栏 action-bar
+  - [ ] 地址编辑 address-edit
+  - [ ] 地址列表 address-list
+  - [ ] 商品卡片 goods-card
+  - [ ] 商品列表 goods-list
+  - [ ] 联系人卡片 contact-card
+  - [ ] 联系人编辑 contact-edit
+  - [ ] 联系人列表 contact-list
+  - [ ] 提交订单栏 submit-bar
 
 ## 基础
 
@@ -108,7 +108,7 @@ flex: 0;    ==> 0 1 0%
   - [ ] tab-bar
   - [ ] tabs
 - 信息展示 dataDisplay
-  - [ ] avatar
+  - [ ] avatar (基于 Image)
   - [x] card
   - [ ] collapse
   - [x] ellipsis
@@ -121,9 +121,9 @@ flex: 0;    ==> 0 1 0%
   - [ ] page-indicator
   - [ ] steps
   - [ ] swiper
-  - [ ] tag
+  - [x] tag
   - [ ] water-mark
-  - [ ] footer
+  - [x] footer
 - 信息录入 dataEntry
   - [ ] cascader
   - [ ] cascader-view
@@ -139,10 +139,11 @@ flex: 0;    ==> 0 1 0%
   - [ ] selector
   - [ ] slider
   - [ ] stepper
-  - [ ] switch
+  - [x] switch
+    - SpinIcon
   - [ ] text-area
 - 反馈 feedback
-  - [ ] action-sheet
+  - [x] action-sheet
   - [x] dialog
   - [x] empty // @deprecated 使用 ErrorBlock 替代
   - [x] error-block // 不一定是错误，应该有更通用的名称
@@ -155,7 +156,7 @@ flex: 0;    ==> 0 1 0%
   - [x] progress-circle 本质使用 svg 实现
   - [ ] pull-to-refresh
   - [x] result
-  - [ ] skeleton
+  - [x] skeleton
   - [ ] swipe-action
   - [x] toast
 - 引导提示 guidance

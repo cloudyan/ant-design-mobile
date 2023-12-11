@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { Popup, Space, Button } from 'antd-mobile'
+import { Button, Popup, Space } from 'antd-mobile'
 import { DemoBlock } from 'demos'
+import React, { useState } from 'react'
 
 export default () => {
   const [visible1, setVisible1] = useState(true)

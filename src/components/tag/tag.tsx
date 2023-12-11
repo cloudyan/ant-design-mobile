@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { FC, CSSProperties, ReactNode } from 'react'
 import { mergeProps } from '../../utils/with-default-props'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 import classNames from 'classnames'
+import { CloseOutline } from 'antd-mobile-icons'
 
 const classPrefix = `adm-tag`
 
@@ -26,6 +27,7 @@ export type TagProps = {
   round?: boolean
   onClick?: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void
   children?: ReactNode
+  closeable?: boolean
 } & NativeProps<
   '--border-color' | '--background-color' | '--text-color' | '--border-radius'
 >
@@ -34,11 +36,13 @@ const defaultProps = {
   color: 'default',
   fill: 'solid',
   round: false,
+  closeable: false,
 }
 
 export const Tag: FC<TagProps> = p => {
   const props = mergeProps(defaultProps, p)
   const color = colorRecord[props.color] ?? props.color
+  const [close, setClose] = useState(false)
 
   const style: CSSProperties & {
     '--border-color': string
@@ -49,16 +53,34 @@ export const Tag: FC<TagProps> = p => {
     '--text-color': props.fill === 'outline' ? color : '#ffffff',
     '--background-color': props.fill === 'outline' ? 'transparent' : color,
   }
-  return withNativeProps(
-    props,
-    <span
-      style={style}
-      onClick={props.onClick}
-      className={classNames(classPrefix, {
-        [`${classPrefix}-round`]: props.round,
-      })}
-    >
-      {props.children}
-    </span>
+
+  const onClose = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setClose(true)
+  }
+
+  // TODO: 缺少关闭渐隐动画
+  const closeIcon = props.closeable && (
+    <CloseOutline
+      name='cross'
+      className={`${classPrefix}-close`}
+      onClick={onClose}
+    />
   )
+
+  return close
+    ? null
+    : withNativeProps(
+        props,
+        <span
+          style={style}
+          onClick={props.onClick}
+          className={classNames(classPrefix, {
+            [`${classPrefix}-round`]: props.round,
+          })}
+        >
+          {props.children}
+          {closeIcon}
+        </span>
+      )
 }

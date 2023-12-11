@@ -84,6 +84,7 @@ export const Image = staged<ImageProps>(p => {
     }
   }, [])
 
+  // TODO: 加载超时失败，默认显示为点击刷新加载此图片
   function renderInner() {
     if (failed) {
       return <>{props.fallback}</>

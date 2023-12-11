@@ -9,7 +9,7 @@ export default () => {
         <Tag>123</Tag>
       </DemoBlock>
 
-      <DemoBlock title='线框标签'>
+      <DemoBlock title='线框标签(空心)'>
         <Space>
           <Tag color='primary' fill='outline'>
             Primary
@@ -77,6 +77,10 @@ export default () => {
             Danger
           </Tag>
         </Space>
+      </DemoBlock>
+
+      <DemoBlock title='可关闭标签'>
+        <Tag closeable>123</Tag>
       </DemoBlock>
     </>
   )

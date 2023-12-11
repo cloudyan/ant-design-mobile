@@ -20,7 +20,7 @@ export default () => {
 
       <DemoBlock title='多种填充模式'>
         <p>
-          使用 svg 图标对填充模式表现不匹配，
+          使用 svg 图片，填充模式会表现不一致
           <a
             href='https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit'
             target='_blank'

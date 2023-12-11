@@ -8,7 +8,7 @@ type Props = {
 
 /**
  * lazy 探测
- *
+ * @description 检测组件在可视区域内后，调用 onActive 回调
  * @param {Props} props - 组件的 props 参数
  * @returns {JSX.Element} 渲染的组件
  */
