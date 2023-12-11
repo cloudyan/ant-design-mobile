@@ -37,7 +37,8 @@ export default () => {
         <CountDown time={100000} />
       </DemoBlock>
       <DemoBlock title='自定义格式'>
-        <CountDown time={86400 * 20 * 1000} format='DD 天 HH 时 mm 分 ss 秒' />
+        <CountDown time={86400 * 5 * 1000} format='D 天 HH 时 mm 分 ss 秒' />
+        <CountDown time={86400 * 5 * 1000} format='HH 时 mm 分 ss 秒' />
       </DemoBlock>
       <DemoBlock title='毫秒级渲染'>
         <CountDown time={100000} millisecond format='HH:mm:ss:SS' />
@@ -56,7 +57,7 @@ export default () => {
         <CountDown
           ref={countDownRef}
           millisecond
-          time={10000}
+          time={3000}
           autoStart={false}
           format='ss:SSS'
           onFinish={onFinish}

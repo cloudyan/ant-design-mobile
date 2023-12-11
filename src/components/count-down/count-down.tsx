@@ -78,57 +78,89 @@ export const CountDown = forwardRef<CountDownRef, CountDownProps>((p, ref) => {
 
 export function padZero(num: Numeric, targetLength = 2): string {
   let str = num + ''
-
-  while (str.length < targetLength) {
-    str = '0' + str
-  }
-
-  return str
+  // while (str.length < targetLength) {
+  //   str = '0' + str
+  // }
+  return str.padStart(targetLength, '0')
 }
 
-// dayjs format: YYYY/[Q]Q/MM/年第w周/星期d/DDTHH:mm:ss
+// dayjs format: YYYY/[Q]Q/MM/年第w周/星期d/DDTHH:mm:ss SSS
+// const REGEX_FORMAT_DAYJS = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|S{1,3}/g
+const REGEX_FORMAT = /\[([^\]]+)]|D{1,2}|H{1,2}|m{1,2}|s{1,2}|S{1,3}/g
+// 这里不能使用全局，否则再次调用时，需要先设置 reg.lastIndex = 0;
+// 负向先行断言
+// /(?<!\[)D{1,2}/ [兼容性 iOS 16.4+ Android 5+](https://caniuse.com/js-regexp-lookbehind)
+const REGEX_HAS = {
+  D: /D{1,2}/,
+  H: /H{1,2}/,
+  m: /m{1,2}/,
+}
 export function parseFormat(
   currentTime: CurrentTime,
   format: string = 'HH:mm:ss'
-): string {
+) {
   const { days } = currentTime
   let { hours, minutes, seconds, milliseconds } = currentTime
 
-  if (format.includes('DD')) {
-    format = format.replace('DD', padZero(days))
-  } else {
+  const ms = padZero(milliseconds, 3)
+
+  // 增强格式处理
+  const hasFormat = {
+    D: REGEX_HAS.D.test(format),
+    H: REGEX_HAS.H.test(format),
+    m: REGEX_HAS.m.test(format),
+  }
+  if (!hasFormat.D) {
     hours += days * 24
   }
-
-  if (format.includes('HH')) {
-    format = format.replace('HH', padZero(hours))
-  } else {
+  if (!hasFormat.H) {
     minutes += hours * 60
   }
-
-  if (format.includes('mm')) {
-    format = format.replace('mm', padZero(minutes))
-  } else {
+  if (!hasFormat.m) {
     seconds += minutes * 60
   }
 
-  if (format.includes('ss')) {
-    format = format.replace('ss', padZero(seconds))
-  } else {
-    milliseconds += seconds * 1000
-  }
-
-  if (format.includes('S')) {
-    const ms = padZero(milliseconds, 3)
-
-    if (format.includes('SSS')) {
-      format = format.replace('SSS', ms)
-    } else if (format.includes('SS')) {
-      format = format.replace('SS', ms.slice(0, 2))
-    } else {
-      format = format.replace('S', ms.charAt(0))
+  const matches = (match: string) => {
+    switch (match) {
+      // case 'YY':
+      //   return years.slice(-2)
+      // case 'YYYY':
+      //   return padZero(years, 4)
+      // case 'M':
+      //   return months
+      // case 'MM':
+      //   return padZero(months)
+      case 'D':
+        return days
+      case 'DD':
+        return padZero(days)
+      case 'H':
+        return hours
+      case 'HH':
+        return padZero(hours)
+      case 'm':
+        return minutes
+      case 'mm':
+        return padZero(minutes)
+      case 's':
+        return seconds
+      case 'ss':
+        return padZero(seconds)
+      case 'S':
+        return ms.charAt(0)
+      case 'SS':
+        return ms.slice(0, 2)
+      case 'SSS':
+        return ms
+      default:
+        break
     }
+    return null
   }
 
-  return format
+  const formated = format.replace(
+    REGEX_FORMAT,
+    (match, $1) => $1 || matches(match)
+  ) // 'ZZ'
+  return formated
 }
