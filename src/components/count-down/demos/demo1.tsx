@@ -1,11 +1,12 @@
 import { CountDown, Grid, Toast } from 'antd-mobile'
+import type { CountDownRef } from 'antd-mobile'
 import { LoopOutline, PlayOutline, StopOutline } from 'antd-mobile-icons'
 import { DemoBlock } from 'demos'
-import type { CSSProperties } from 'react'
+import type { CSSProperties, MutableRefObject } from 'react'
 import React, { useRef } from 'react'
 
 export default () => {
-  const countDownRef = useRef()
+  const countDownRef: MutableRefObject<CountDownRef | null> = useRef(null)
 
   const onFinish = () => {
     Toast.show('finished')

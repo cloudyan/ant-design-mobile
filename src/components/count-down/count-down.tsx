@@ -9,10 +9,6 @@ import { mergeProps } from '../../utils/with-default-props'
 
 const classPrefix = `adm-count-down`
 
-export type CountDownRef = {
-  nativeElement: HTMLButtonElement | null
-}
-
 export type CountDownProps = {
   ref: ForwardedRef<any>
   time: number | string
@@ -32,7 +28,7 @@ const defaultProps = {
   autoStart: true,
 }
 
-export interface Ref {
+export interface CountDownRef {
   start: () => void
   pause: () => void
   reset: () => void
@@ -42,7 +38,7 @@ export interface Ref {
  * CountDown 倒计时
  * @description
  */
-export const CountDown = forwardRef<Ref, CountDownProps>((p, ref) => {
+export const CountDown = forwardRef<CountDownRef, CountDownProps>((p, ref) => {
   const props = mergeProps(defaultProps, p)
 
   const { current, start, pause, reset } = useCountDown({
@@ -68,7 +64,7 @@ export const CountDown = forwardRef<Ref, CountDownProps>((p, ref) => {
         reset,
       }
     },
-    []
+    [start, pause, reset]
   )
 
   const { days, hours, minutes, seconds, milliseconds } = current
