@@ -223,6 +223,8 @@ export type {
 } from './components/swipe-action'
 export { default as Swiper } from './components/swiper'
 export type { SwiperProps, SwiperRef } from './components/swiper'
+export { default as Sticky } from './components/sticky'
+export type { StickyProps } from './components/sticky'
 export { default as Switch } from './components/switch'
 export type { SwitchProps } from './components/switch'
 export { default as TabBar } from './components/tab-bar'

@@ -50,6 +50,7 @@ export const components = {
     '/components/selector',
     '/components/slider',
     '/components/stepper',
+    '/components/sticky',
     '/components/switch',
     '/components/text-area',
   ],

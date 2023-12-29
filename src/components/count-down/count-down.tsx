@@ -70,7 +70,9 @@ export const CountDown = forwardRef<CountDownRef, CountDownProps>((p, ref) => {
 
   return (
     <>
-      <div>{props.children ? props.children?.(current) : timeText}</div>
+      <div className={`${classPrefix}`}>
+        {props.children ? props.children?.(current) : timeText}
+      </div>
     </>
   )
 })

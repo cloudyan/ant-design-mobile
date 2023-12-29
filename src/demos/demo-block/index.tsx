@@ -1,13 +1,15 @@
 import React from 'react'
 import type { FC, ReactNode } from 'react'
 import styles from './index.less'
+import { NativeProps } from '../../utils/native-props'
 
-interface Props {
+type Props = {
   title: string
+  height?: number
   padding?: string
   background?: string
   children?: ReactNode
-}
+} & NativeProps
 
 export const DemoBlock: FC<Props> = props => {
   return (
@@ -17,6 +19,7 @@ export const DemoBlock: FC<Props> = props => {
         className={styles.main}
         style={{
           padding: props.padding,
+          height: props.height,
           background: props.background,
         }}
       >
