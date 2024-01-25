@@ -1,16 +1,23 @@
-import React, { useRef, useState } from 'react'
-import type { FC, PropsWithChildren } from 'react'
-import { Checkbox, List, Space } from 'antd-mobile'
+import { Checkbox, Collapse, Space } from 'antd-mobile'
 import { DemoBlock } from 'demos'
+import type { FC, PropsWithChildren } from 'react'
+import React, { useRef, useState } from 'react'
+import type { CheckboxValue } from '../checkbox'
 import { CheckboxRef } from '../checkbox'
+
+type Item = {
+  id: CheckboxValue
+  name: string
+}
 
 // 常见的多选列表
 const ListItemWithCheckbox: FC<
   PropsWithChildren<{
-    item: string
+    item: Item
   }>
 > = props => {
   const checkboxRef = useRef<CheckboxRef>(null)
+  const { item } = props
   return (
     <div
       className='flex'
@@ -21,51 +28,71 @@ const ListItemWithCheckbox: FC<
     >
       <Space>
         <div onClick={e => e.stopPropagation()}>
-          <Checkbox value={props.item} ref={checkboxRef} />
+          <Checkbox value={item.id} ref={checkboxRef} />
         </div>
-        {props.item}
+        {item.id}: {item.name}
       </Space>
     </div>
   )
 }
 const ListDemo2 = () => {
-  const items = ['Apple', 'Orange', 'Banana']
-  const [value, setValue] = useState(['Apple'])
+  const items: Item[] = [
+    {
+      id: 1,
+      name: 'Apple',
+    },
+    {
+      id: 2,
+      name: 'Orange',
+    },
+    {
+      id: 3,
+      name: 'Banana',
+    },
+  ]
+  const [value, setValue] = useState<CheckboxValue[]>([])
 
-  return (
-    <List>
+  const title = (
+    <div>
       <Space>
-        <Checkbox
-          indeterminate={value.length > 0 && value.length < items.length}
-          checked={value.length === items.length}
-          onChange={checked => {
-            if (checked) {
-              setValue(items)
-            } else {
-              setValue([])
-            }
-          }}
-        >
-          半选
-        </Checkbox>
-        <div>内容</div>
+        <div onClick={e => e.stopPropagation()}>
+          <Checkbox
+            indeterminate={value.length > 0 && value.length < items.length}
+            checked={value.length === items.length}
+            onChange={checked => {
+              if (checked) {
+                setValue(items.map(item => item.id))
+              } else {
+                setValue([])
+              }
+            }}
+          />
+        </div>
+        <div>{JSON.stringify(value)} </div>
         <div>展开、收起</div>
       </Space>
-      <Checkbox.Group
-        value={value}
-        onChange={v => {
-          // 定制选择逻辑
-          console.log(v)
-          setValue(v as string[])
-        }}
-      >
-        <div>
-          {items.map(item => (
-            <ListItemWithCheckbox key={item} item={item} />
-          ))}
-        </div>
-      </Checkbox.Group>
-    </List>
+    </div>
+  )
+
+  return (
+    <Collapse>
+      <Collapse.Panel key='1' title={title}>
+        <Checkbox.Group
+          value={value}
+          onChange={v => {
+            // 定制选择逻辑
+            console.log(v)
+            setValue(v)
+          }}
+        >
+          <Space direction='vertical'>
+            {items.map(item => (
+              <ListItemWithCheckbox key={item.id} item={item} />
+            ))}
+          </Space>
+        </Checkbox.Group>
+      </Collapse.Panel>
+    </Collapse>
   )
 }
 
