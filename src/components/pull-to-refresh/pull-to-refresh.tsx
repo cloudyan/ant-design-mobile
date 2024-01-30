@@ -9,10 +9,18 @@ import { convertPx } from '../../utils/convert-px'
 import { rubberbandIfOutOfBounds } from '../../utils/rubberband'
 import { useConfig } from '../config-provider'
 import { sleep } from '../../utils/sleep'
+import { NativeProps } from '../../utils/native-props'
+import classNames from 'classnames'
 
 const classPrefix = `adm-pull-to-refresh`
 
-export type PullStatus = 'pulling' | 'canRelease' | 'refreshing' | 'complete'
+// 增加一种状态，默认态，开始及刷新完成后恢复为默认态（避免消耗资源过多的状态成为默认态）
+export type PullStatus =
+  | 'default'
+  | 'pulling'
+  | 'canRelease'
+  | 'refreshing'
+  | 'complete'
 
 export type PullToRefreshProps = {
   onRefresh?: () => Promise<any>
@@ -26,9 +34,10 @@ export type PullToRefreshProps = {
   disabled?: boolean
   renderText?: (status: PullStatus) => ReactNode
   children?: ReactNode
-}
+} & NativeProps<''>
 
 export const defaultProps = {
+  defaultText: '',
   pullingText: '下拉刷新',
   canReleaseText: '释放立即刷新',
   refreshingText: '加载中...',
@@ -69,7 +78,7 @@ export const PullToRefresh: FC<PullToRefreshProps> = p => {
 
   const pullingRef = useRef(false)
 
-  //防止下拉时抖动
+  // 防止下拉时抖动
   useEffect(() => {
     elementRef.current?.addEventListener('touchmove', () => {})
   }, [])
@@ -81,7 +90,7 @@ export const PullToRefresh: FC<PullToRefreshProps> = p => {
           height: 0,
         },
         onResolve() {
-          setStatus('pulling')
+          setStatus('default')
           resolve()
         },
       })
@@ -104,9 +113,10 @@ export const PullToRefresh: FC<PullToRefreshProps> = p => {
     reset()
   }
 
+  // 开始下拉时，变为 pulling 态，完成或释放，恢复默认态
   useDrag(
     state => {
-      if (status === 'refreshing' || status === 'complete') return
+      if (['refreshing', 'complete'].includes(status)) return
 
       const { event } = state
 
@@ -171,6 +181,7 @@ export const PullToRefresh: FC<PullToRefreshProps> = p => {
       return props.renderText?.(status)
     }
 
+    if (status === 'default') return props.defaultText
     if (status === 'pulling') return props.pullingText
     if (status === 'canRelease') return props.canReleaseText
     if (status === 'refreshing') return props.refreshingText
@@ -178,7 +189,10 @@ export const PullToRefresh: FC<PullToRefreshProps> = p => {
   }
 
   return (
-    <animated.div ref={elementRef} className={classPrefix}>
+    <animated.div
+      ref={elementRef}
+      className={classNames(classPrefix, props.className)}
+    >
       <animated.div style={springStyles} className={`${classPrefix}-head`}>
         <div
           className={`${classPrefix}-head-content`}

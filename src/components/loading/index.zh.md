@@ -38,3 +38,5 @@
 ## Loading
 
 为了保持对旧版本用法的兼容，我们保留了 Loading 的引用，所以如果你继续使用 Loading，依旧是没有问题的。但由于未来的大版本升级中我们很有可能会移除掉 Loading 这个引用，所以如果你看到了这条提示，请尽快将项目中的 Loading 替换为 DotLoading。
+
+> 更多参考：[纯 CSS 制作的 580 多个 Loading 效果](https://css-loaders.com/spinner/)
