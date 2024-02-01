@@ -1,8 +1,14 @@
 @class-prefix-sticky: ~'adm-sticky';
 
 .@{class-prefix-sticky} {
+  position: sticky;
+  top: 0;
+
   .@{class-prefix-sticky}-content {
-    position: sticky;
-    top: 0;
+  }
+
+  &--fixed {
+    position: fixed;
+    z-index: 99;
   }
 }

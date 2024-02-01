@@ -11,17 +11,19 @@ export default () => {
         </Sticky>
       </DemoBlock>
       <DemoBlock height={200} title='吸顶距离'>
-        <Sticky>
+        <Sticky offsetTop={50}>
           <Button>吸顶距离</Button>
         </Sticky>
       </DemoBlock>
       <DemoBlock height={200} title='指定容器'>
-        <Sticky>
-          <Button>指定容器</Button>
-        </Sticky>
+        <div style={{ height: 300 }}>
+          <Sticky>
+            <Button>指定容器</Button>
+          </Sticky>
+        </div>
       </DemoBlock>
       <DemoBlock height={200} title='吸底距离'>
-        <Sticky>
+        <Sticky offsetBottom={50} position='bottom'>
           <Button>吸底距离</Button>
         </Sticky>
       </DemoBlock>

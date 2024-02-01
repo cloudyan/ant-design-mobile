@@ -59,8 +59,12 @@ type PullStatus = 'pulling' | 'canRelease' | 'refreshing' | 'complete'
 
 一些浏览器或者 webview 容器本身会有弹性效果或下拉刷新的逻辑，我们不太建议在这种环境中使用 PullToRefresh 组件，如果你一定要用的话，请禁用掉外层浏览器默认的下拉和弹性效果，不然可能会出现 PullToRefresh 和浏览器的默认行为同时被触发的情况，从而导致用户体验比较差。
 
+主要在 iOS 系统中，添加以下属性，即可关闭拖拽的弹性效果。
+
 ```css
 .no-behavior {
   overscroll-behavior: none;
 }
 ```
+
+可以直接通过联调 iOS webview，确定被影响的容器。

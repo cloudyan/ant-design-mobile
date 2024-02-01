@@ -10,7 +10,8 @@ type Item = {
   name: string
 }
 
-// 常见的多选列表
+// 常见的多选列表: 复杂的业务场景
+// 如果多组选择，要控互斥逻辑呢？从外部统一控制选中态逻辑
 const ListItemWithCheckbox: FC<
   PropsWithChildren<{
     item: Item

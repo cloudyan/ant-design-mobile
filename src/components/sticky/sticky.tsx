@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 import { mergeProps } from '../../utils/with-default-props'
 
+type numericProp = [Number, String]
+// type makeNumericProp = <T>(defaultVal: T) => ({
+//   type: numericProp,
+//   default: typeof defaultVal,
+// })
+
 export type StickyProps = {
+  zIndex?: numericProp
   position?: 'top' | 'bottom'
-  offsetTop?: number
-  offsetBottom?: number
-  children?: React.ReactNode
+  container?: ReactNode
+  offsetTop?: number // makeNumericProp(0)
+  offsetBottom?: number // makeNumericProp(0)
+  children?: ReactNode
 } & NativeProps
 
 const classPrefix = `adm-sticky`
@@ -19,6 +27,10 @@ const defaultProps = {
 // https://caniuse.com/?search=sticky
 export const Sticky = (p: StickyProps) => {
   const props = mergeProps(defaultProps, p)
+
+  // const offset = useMemo(() =>
+  //   unitToPx(props.position === 'top' ? props.offsetTop : props.offsetBottom),
+  // );
 
   return withNativeProps(
     props,
