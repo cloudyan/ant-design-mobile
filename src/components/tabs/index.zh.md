@@ -20,6 +20,10 @@
 
 <code src="./demos/demo5.tsx"></code>
 
+Tabs 怎么配合 Swiper、PullToRefresh、InfiniteScroll 实现一个复杂的信息流界面？
+
+<code src="./demos/demo9.tsx"></code>
+
 ## Tabs
 
 ### 属性
