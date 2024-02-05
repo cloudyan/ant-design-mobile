@@ -14,6 +14,7 @@
   &-header {
     position: relative;
     border-bottom: solid 1px var(--adm-color-border);
+    height: 100%;
   }
 
   &-tab-list {
@@ -23,6 +24,8 @@
     align-items: center;
     position: relative;
     overflow-x: scroll;
+    height: 100%;
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -37,6 +40,10 @@
   &-tab {
     white-space: nowrap;
     padding: 8px 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // 有兼容性问题 iOS 16+
     width: min-content;
     margin: 0 auto;
     font-size: var(--title-font-size);

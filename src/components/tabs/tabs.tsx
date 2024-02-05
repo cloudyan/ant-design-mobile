@@ -28,6 +28,7 @@ export const Tab: FC<TabProps> = () => {
 }
 
 export type TabsProps = {
+  height?: number | string
   activeKey?: string | null
   defaultActiveKey?: string | null
   activeLineMode?: 'auto' | 'full' | 'fixed'
@@ -282,6 +283,7 @@ export const Tabs: FC<TabsProps> = p => {
       className={classPrefix}
       style={{
         direction: props.direction,
+        height: props.height,
       }}
     >
       <div className={`${classPrefix}-header`}>

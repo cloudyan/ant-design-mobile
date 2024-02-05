@@ -4,6 +4,15 @@ import { SwiperRef } from 'antd-mobile/es/components/swiper'
 import GetPullToRefreshlData from './getPullToRefreshlData'
 // import './styles.css';
 
+// Tabs 配合 Swiper、PullToRefresh、InfiniteScroll 实现一个复杂的信息流界面
+
+// - Tabs 扩展支持 sticky 吸顶效果
+// - Tabs 定制高度 48px
+// - Tabs.Tab 拉伸效果，扩大点击区域
+// - tab 切换列表内容，支持缓存，提高交互体验
+// - tab 切换时，刷新列表内容（因刷新，会重新滚动到页面顶部）
+// - 列表进入详情返回时，不刷新列表（保持滚动位置，有需要可以刷具体某列表项）
+
 const tabItems = [
   { key: 'fruits', title: '水果' },
   { key: 'vegetables', title: '蔬菜' },
@@ -19,6 +28,8 @@ export default () => {
         style={{ position: 'sticky', top: 0, zIndex: 2, background: '#fff' }}
       >
         <Tabs
+          height={60}
+          style={{ '--active-line-height': '3px' }}
           activeKey={tabItems[activeIndex].key}
           onChange={key => {
             const index = tabItems.findIndex(item => item.key === key)
