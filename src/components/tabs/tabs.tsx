@@ -155,6 +155,7 @@ export const Tabs: FC<TabsProps> = p => {
       x = activeTabWrapperLeft
       width = activeTabWrapperWidth
     } else {
+      // activeLineMode === "fixed"
       x = activeTabLeft + (activeTabWidth - activeLineWidth) / 2
     }
 

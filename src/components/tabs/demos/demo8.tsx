@@ -21,6 +21,7 @@ export default () => {
       >
         <Tabs
           height={60}
+          // activeLineMode="auto"
           style={{ '--active-line-height': '3px' }}
           activeKey={tabItems[activeIndex].key}
           onChange={key => {

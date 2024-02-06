@@ -7,6 +7,7 @@
   --active-line-border-radius: var(--active-line-height);
   --active-line-color: var(--adm-color-primary);
   --active-title-color: var(--adm-color-primary);
+
   position: relative;
   // Hack for auto scroll fail when the parent element is a flex layout
   min-width: 0;
@@ -33,16 +34,19 @@
   }
   &-tab-wrapper {
     padding: 0 12px;
+    height: 100%;
+
     &-stretch {
       flex: auto;
     }
   }
   &-tab {
-    white-space: nowrap;
-    padding: 8px 0 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    white-space: nowrap;
+    padding: 8px 0 10px;
     // 有兼容性问题 iOS 16+
     width: min-content;
     margin: 0 auto;
