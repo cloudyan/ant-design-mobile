@@ -42,6 +42,8 @@
 
 <code src="./demos/demo7.tsx" debug></code>
 
+嵌套滚动，参见 tabs **信息流界面**示例
+
 ## Swiper
 
 ### 属性
