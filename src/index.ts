@@ -68,6 +68,8 @@ export {
 export type { ConfigProviderProps } from './components/config-provider'
 export { default as CountDown } from './components/count-down'
 export type { CountDownProps, CountDownRef } from './components/count-down'
+export { default as Coupon } from './components/coupon'
+export type { CouponProps, CouponRef } from './components/coupon'
 export { default as DatePicker } from './components/date-picker'
 export type { DatePickerProps, DatePickerRef } from './components/date-picker'
 export { default as DatePickerView } from './components/date-picker-view'

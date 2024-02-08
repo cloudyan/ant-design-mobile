@@ -197,5 +197,9 @@ export const menus = {
       title: '试验性',
       children: components.experimental,
     },
+    {
+      title: '业务组件',
+      children: components.business,
+    },
   ],
 }

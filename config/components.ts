@@ -89,4 +89,5 @@ export const components = {
     '/components/virtual-input',
     // '/components/scroll-mask',
   ],
+  business: ['/components/coupon'],
 }
