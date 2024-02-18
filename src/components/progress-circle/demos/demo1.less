@@ -18,3 +18,30 @@
   font-size: 10px;
   color: var(--adm-color-weak);
 }
+
+.box-circle {
+  height: 200px;
+  width: 200px;
+  position: relative;
+}
+
+.box-circle:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  transform: rotate(90deg);
+  background: conic-gradient(
+    from 90deg,
+    rgba(111, 232, 191, 1),
+    rgba(255, 175, 19, 1),
+    rgba(222, 19, 80, 1),
+    rgba(133, 14, 205, 1)
+  );
+  mask-image: url(#ring);
+  -webkit-mask-image: url(#ring);
+  mask-size: cover;
+  mask-repeat: no-repeat;
+}

@@ -35,7 +35,7 @@ export const Sticky = (p: StickyProps) => {
   return withNativeProps(
     props,
     <>
-      <div className={`${classPrefix}`}>
+      <div className={`${classPrefix}`} style={props.style}>
         <div className={`${classPrefix}-content`}>{props.children}</div>
       </div>
     </>
