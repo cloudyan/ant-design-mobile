@@ -1,7 +1,7 @@
-import React from 'react'
 import { Space, Switch } from 'antd-mobile'
+import { CheckOutline, CloseOutline } from 'antd-mobile-icons'
 import { DemoBlock } from 'demos'
-import { CloseOutline, CheckOutline } from 'antd-mobile-icons'
+import React from 'react'
 
 export default () => {
   return (
@@ -26,14 +26,23 @@ export default () => {
       </DemoBlock>
 
       <DemoBlock title='自定义样式'>
-        <Switch
-          defaultChecked
-          style={{
-            '--checked-color': '#00b578',
-            '--height': '36px',
-            '--width': '60px',
-          }}
-        />
+        <Space wrap>
+          <Switch
+            defaultChecked
+            style={{
+              '--checked-color': '#00b578',
+              '--height': '36px',
+              '--width': '60px',
+            }}
+          />
+          <Switch
+            uncheckedText='☀️'
+            checkedText='🌛'
+            style={{
+              '--checked-color': '#242526',
+            }}
+          />
+        </Space>
       </DemoBlock>
     </>
   )
