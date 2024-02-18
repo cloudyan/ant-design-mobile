@@ -5,33 +5,31 @@ import { DemoBlock, lorem } from 'demos'
 // 常用字段，全铺平即可
 // 可参考的优惠券字段
 const couponData = {
+  nameBefore: '',
   name: '优惠券名称',
-  value: 150,
-  disabled: false,
-  chosen: false,
-  currency: '¥',
-
-  // 通用券
-  valueDesc: '150',
-  unitDesc: '元',
-  // 满减券
-  // 折扣券
-  // valueDesc: '8.8',
-  // unitDesc: '折',
-  type: 1, // 券类型
-  typeText: '满减', // 券类型
+  nameAfter: '',
+  // 通用券 满减券 折扣券
+  valueBefore: '', // 优惠
+  value: 150, // 350 8.8
+  valueAfter: '', // 元 折
 
   // 使用条件
   condition: '无门槛\n最多优惠12元',
-  description: '满5元可用，最高可减12元',
-  // 不可用原因
-  reason: '优惠券不可用原因',
-
   startDate: '2021-05-10 18:29:49',
   endDate: '2029-06-11 18:29:49',
+
+  // 描述或不可用原因
+  description: '满5元可用，最高可减12元',
+  reason: '优惠券不可用原因',
+
+  tag: '', // 券 tag 标识 新用户专享
+  type: 1, // 券类型
+  typeText: '满减', // 券类型
   status: 1, // 券状态
   statusText: '', // 券状态
-  tag: '', // 券 tag 标识 新用户专享
+
+  chosen: false,
+  disabled: false,
 }
 
 const coupons = [
@@ -40,10 +38,10 @@ const coupons = [
     ...couponData,
     // 通用券/满减券
     name: '150元',
-    nameDesc: '减息券',
-    preValue: '优惠',
-    valueDesc: '550',
-    unitDesc: '元',
+    nameAfter: '减息券',
+    valueBefore: '优惠',
+    value: '550',
+    valueAfter: '元',
 
     // 使用条件
     today: true,
@@ -54,18 +52,18 @@ const coupons = [
     id: 2,
     ...couponData,
     name: '第2期利息',
-    nameDesc: '免息券',
+    nameAfter: '免息券',
     // 折扣券
-    preValue: '优惠',
-    valueDesc: '8.8',
-    unitDesc: '折',
+    valueBefore: '优惠',
+    value: '8.8',
+    valueAfter: '折',
     tag: '618嘉年华',
     chosen: true,
   },
   {
     id: 3,
     ...couponData,
-    disabled: true,
+    used: true,
     status: 2,
     statusText: '已占用',
     reason: '优惠券不可用原因',
@@ -74,7 +72,7 @@ const coupons = [
     id: 4,
     ...couponData,
     disabled: true,
-    divider: false,
+    // divider: false,
     reason: '优惠券不可用原因',
   },
 ]

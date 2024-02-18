@@ -2,46 +2,57 @@ import React, { useMemo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 import { mergeProps } from '../../utils/with-default-props'
-import Checkbox from '../checkbox'
+// import Checkbox from '../checkbox'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
 import { CheckOutline } from 'antd-mobile-icons'
 
 const classPrefix = 'adm-coupon'
 
+type stringNode = ReactNode | string | number
+
 export type CouponProps = {
-  name?: ReactNode
-  value?: number
-  disabled?: boolean
-  currency?: string
+  // name
+  // name nameBefor nameAfter => faceName
+  // value valueBefor valueAfter => faceValue
+  // condition || valid startDate endDate => faceCondition
+  // reson || description => faceDescription
+  // divider
+  // 辅助 props
+  // tag
+  // chosen disabled used
 
-  valueDesc?: string // 1.5 8.8
-  unitDesc?: string // 元 折
+  nameAfter?: string
+  valueBefore?: string
+  value?: string | number
+  valueAfter?: string
 
-  content?: ReactNode
-  divider?: ReactNode
-  description?: ReactNode
-  condition?: ReactNode
-  reason?: ReactNode
+  condition?: string
+  startDate?: Date | string
+  endDate?: Date | string
 
-  startDate?: Date
-  endDate?: Date
+  reason?: string | ReactNode
+  description?: string | ReactNode
 
-  children?: ReactNode
+  tag?: string
   type?: number | string
+  typeText?: string
   status?: number | string
   statusText?: string
-  tag?: string
+
   // select vs choose 参见 https://www.eisland.com.tw/Main.php?stat=a_gyrLoog&mid=54
   chosen?: boolean
+  disabled?: boolean
+  used?: boolean
+  divider?: ReactNode | boolean
 
   [key: string]: any
 } & NativeProps
 
 const defaultProps = {
-  currency: '¥',
-  disabled: false,
-  chosen: false,
+  // currency: '¥',
+  // disabled: false,
+  // chosen: false,
 }
 
 export interface CouponRef {
@@ -50,43 +61,43 @@ export interface CouponRef {
   // reset: () => void
 }
 
-// 规划
-// 1. 票据分割线
-
 export const Coupon: FC<CouponProps> = p => {
   const props = mergeProps(defaultProps, p)
 
-  const { chosen, disabled, reason, condition, name } = props
-  const description = (disabled && reason) || props.description
+  const { disabled, reason } = props
+  const faceDescription = (disabled && reason) || props.description
 
   const faceName = useMemo(() => {
-    const { name = '', nameDesc = '' } = props
-    return (
-      <>
-        <strong>{name}</strong>
-        <em>{nameDesc}</em>
-      </>
-    )
-  }, [props.name, props.nameDesc])
-
-  const faceAmount = useMemo(() => {
-    const { preValue = '', valueDesc, unitDesc } = props
+    const { name = '', nameBefore = '', nameAfter = '' } = props
     // 根据不同类型的券，返回不同的字段组合
     return (
       <>
-        <em>{preValue}</em>
-        <strong>{valueDesc}</strong>
-        <em>{unitDesc}</em>
+        <em>{nameBefore}</em>
+        <strong>{name}</strong>
+        <em>{nameAfter}</em>
       </>
     )
-  }, [props.preValue, props.valueDesc, props.unitDesc])
+  }, [props.name, props.nameBefore, props.nameAfter])
 
-  // const rangeDate = (dayjs(props.startDate).format('YYYY-MM-DD') + ' - ' + dayjs(props.endDate).format('YYYY-MM-DD'))
-  const rangeDate = useMemo(() => {
+  const faceValue = useMemo(() => {
+    const { value = '', valueBefore = '', valueAfter = '' } = props
+    // 根据不同类型的券，返回不同的字段组合
+    return (
+      <>
+        <em>{valueBefore}</em>
+        <strong>{value}</strong>
+        <em>{valueAfter}</em>
+      </>
+    )
+  }, [props.value, props.valueBefore, props.valueAfter])
+
+  // condition || valid
+  const faceCondition = useMemo(() => {
     // 今日到期
     if (props.today) {
       return <span className={`${classPrefix}-tag-taday`}>今日到期</span>
     }
+    // (dayjs(props.startDate).format('YYYY-MM-DD') + ' - ' + dayjs(props.endDate).format('YYYY-MM-DD'))
     return `有效期至` + dayjs(props.endDate).format('YYYY/MM/DD')
   }, [props.endDate, props.today])
 
@@ -98,23 +109,17 @@ export const Coupon: FC<CouponProps> = p => {
       className={classNames(classPrefix, {
         [`${classPrefix}-disabled`]: disabled,
         [`${classPrefix}-chosen`]: props.chosen,
+        [`${classPrefix}-used`]: props.used,
       })}
     >
       {props.tag && <div className={`${classPrefix}-tag`}>{props.tag}</div>}
       <div className={`${classPrefix}-content`}>
-        {props.content || (
+        {
           <>
-            {/* <div className={`${classPrefix}-head`}>
-              <div className={`${classPrefix}-amount`}>{faceAmount}</div>
-              <div className={`${classPrefix}-condition`}>{condition}</div>
-            </div> */}
             <div className={`${classPrefix}-body`}>
               <div className={`${classPrefix}-name`}>{faceName}</div>
-              <div className={`${classPrefix}-amount`}>{faceAmount}</div>
-              <div className={`${classPrefix}-valid`}>{rangeDate}</div>
-              {/* <div className={`${classPrefix}-corner`}>
-                <div className={`${classPrefix}-tag`}></div>
-              </div> */}
+              <div className={`${classPrefix}-value`}>{faceValue}</div>
+              <div className={`${classPrefix}-condition`}>{faceCondition}</div>
             </div>
             {/* {!props.disabled && (
               <div className={`${classPrefix}-corner`}>
@@ -129,14 +134,14 @@ export const Coupon: FC<CouponProps> = p => {
               </div>
             )}
           </>
-        )}
+        }
       </div>
       <div className={`${classPrefix}-divider`}>
         {props.divider || <div className={`${classPrefix}-divider-line`} />}
       </div>
       <div className={`${classPrefix}-footer`}>
-        {description && (
-          <div className={`${classPrefix}-description`}>{description}</div>
+        {faceDescription && (
+          <div className={`${classPrefix}-description`}>{faceDescription}</div>
         )}
       </div>
 

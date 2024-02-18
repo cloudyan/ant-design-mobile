@@ -1,37 +1,94 @@
 @class-prefix-coupon: ~'adm-coupon';
 
 .@{class-prefix-coupon} {
-  --adm-color-primary: #17b271;
-  --coupon-color-primary: var(--adm-color-primary);
-  --coupon-color-gray: #a0a4b3;
-  --coupon-border-color: #ccc;
+  // 绿色主题色 #17B271 #B0E3CE #FFFFFF ~ #FAFFFD
+  // 紫色主题色 #3E5DD8 #C9D3FB #FFFFFF ~ #FAFBFF
+
+  // 未勾选状态
+  //   框线 #E9EAEB
+  //   虚线 #B0E3CE
+  //   勾选角标 背景色#C2C5CC
+  //   字体 主要文字#17B271 #1D243E 次要文字#45464D 辅助文字#A0A4B3
+  //   背景 #FFFFFF ~ #FAFFFD
+  // 勾选状态（勾选后，变的仅仅是边框和勾选角标）
+  //   框线 #17B271
+  //   虚线 #B0E3CE
+  //   勾选角标 背景色#17B271
+  //   字体 主要文字#17B271 #1D243E 次要文字#45464D 辅助文字#A0A4B3
+  //   背景 #FFFFFF ~ #FAFFFD
+  // 已占用状态
+  //   框线 #F0F1F2
+  //   虚线 #E7E8EB
+  //   勾选角标 背景色#F0F1F2
+  //   已占用角标 背景色#F0F1F2  文字#9FA4B4
+  //   字体 主要文字#9FA4B4 辅助文字#A0A4B3
+  //   背景 #FFFFFF
+  // 不可用状态
+  //   框线 #F0F1F2
+  //   虚线 #E7E8EB
+  //   勾选角标 背景色#F0F1F2
+  //   字体 主要文字#9FA4B4 辅助文字#A0A4B3
+  //   背景 #FFFFFF
+
+  // 公共
   --coupon-border-width: 1px;
-  --coupon-background: var(--adm-color-background);
   --coupon-border-radius: 8px;
   --coupon-gap-lr: 20px;
   --coupon-line-gap: 3px;
+  --coupon-status-background: #f0f1f2;
+  --coupon-status-color: #9fa4b4;
+  --coupon-divider-background: #ffffff;
 
+  // 默认未勾选状态
+  // 主题色
+  --coupon-color-primary: #17b271;
+  --coupon-background: #fafffd;
+  --coupon-dashed-border-color: #b0e3ce;
+  --coupon-border-color: #e9eaeb;
+  --coupon-selector-background: #c2c5cc;
+
+  // 字体
+  --coupon-text-color-1: var(--coupon-color-primary);
+  --coupon-text-color-2: #1d243e;
+  --coupon-text-color-3: #45464d;
+  --coupon-text-color-4: #a0a4b3;
+
+  // 勾选状态
   &-chosen {
     --coupon-border-color: var(--coupon-color-primary);
+    --coupon-selector-background: var(--coupon-color-primary);
   }
 
-  &-disabled {
-    opacity: 0.4;
-    background: #fff;
-    --coupon-color-primary: #888;
-    --coupon-color-gray: #a0a4b3;
+  // 不可用状态，已占用状态（复用）
+  &-disabled,
+  &-used {
+    --coupon-border-color: #f0f1f2;
+    --coupon-dashed-border-color: #e7e8eb;
+    --coupon-background: #ffffff;
+    --coupon-selector-background: #f0f1f2;
 
-    .@{class-prefix-coupon}-selector {
-      opacity: 0.4;
-    }
+    --coupon-text-color-1: #9fa4b4;
+    --coupon-text-color-2: #9fa4b4;
+    --coupon-text-color-3: #a0a4b3;
+    --coupon-text-color-4: #a0a4b3;
+
+    // pointer-events: none;
+  }
+
+  // 已占用显示状态角标
+  &-used &-status {
+    display: flex;
   }
 
   position: relative;
   border-radius: var(--coupon-border-radius);
 
   // test
-  // background: linear-gradient(180deg, rgba(255,0,0,0.1) 0%, rgba(0,255,0,0.1) 100%);
-  background: linear-gradient(118deg, #ffffff 0%, #fafffd 100%);
+  background: linear-gradient(
+    118deg,
+    #ffffff 0%,
+    var(--coupon-background) 100%
+  );
 
   & + & {
     margin-top: 10px;
@@ -64,16 +121,16 @@
     font-weight: bold;
     margin-bottom: 10px;
     strong {
-      color: var(--coupon-color-primary);
+      color: var(--coupon-text-color-1);
     }
   }
-  &-amount {
+  &-value {
     position: absolute;
     right: 0;
     bottom: 0;
     display: flex;
     align-items: flex-end;
-    color: var(--coupon-color-primary);
+    color: var(--coupon-text-color-1);
 
     em {
       font-style: normal;
@@ -87,8 +144,8 @@
       font-weight: bold;
     }
   }
-  &-valid {
-    color: var(--coupon-color-gray);
+  &-condition {
+    color: var(--coupon-text-color-3);
     font-size: 12px;
   }
 
@@ -117,8 +174,7 @@
       border-style: solid;
       border-color: var(--coupon-border-color) var(--coupon-border-color)
         transparent transparent;
-      background-color: #fff;
-      // border-width: var(--coupon-border-width);
+      background-color: var(--coupon-divider-background);
       border-width: var(--coupon-border-width);
     }
     &::before {
@@ -126,7 +182,7 @@
       transform: translate(-50%, -50%) rotate(45deg);
     }
     &::after {
-      right: 0; // calc(0px - var(--coupon-border-width));
+      right: 0;
       transform: translate(50%, -50%) rotate(225deg);
     }
   }
@@ -136,7 +192,6 @@
 
     height: var(--coupon-border-width);
     display: block;
-    opacity: 0.5;
     // 使用 border
     // border-width: var(--coupon-border-width) 0 0 0;
     // border-color: var(--coupon-color-primary);
@@ -144,8 +199,8 @@
     // 使用背景
     background: repeating-linear-gradient(
       90deg,
-      var(--coupon-color-primary),
-      var(--coupon-color-primary) var(--coupon-line-gap),
+      var(--coupon-dashed-border-color),
+      var(--coupon-dashed-border-color) var(--coupon-line-gap),
       transparent var(--coupon-line-gap),
       transparent calc(var(--coupon-line-gap) * 2)
     );
@@ -155,7 +210,7 @@
     padding-right: var(--coupon-gap-lr);
     padding-bottom: 12px;
     padding-top: 12px;
-    color: #a0a4b3;
+    color: var(--coupon-text-color-4);
   }
 
   &-tag-taday {
@@ -186,20 +241,21 @@
   }
   &-status {
     position: absolute;
-    top: 20px;
+    top: 18px;
     right: 20px;
-    display: flex;
+    // display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 20px;
-    // height: 24px;
-    transform: translate(50%, -50%) rotate(45deg);
-    background: #f0f1f2;
+    width: 120px;
+    height: 18px;
+    transform: translate(50%, -60%) rotate(32deg);
+    background: var(--coupon-status-background);
+    color: var(--coupon-status-color);
   }
   &-status-text {
     font-size: 12px;
-    // transform: scale(0.8);
+    transform: scale(0.833);
   }
 
   &-selector {
@@ -209,10 +265,10 @@
     color: #fff;
     width: 0;
     height: 0;
-    // border-radius: 32px;
     border-style: solid;
     border-width: 0 0 32px 32px;
-    border-color: transparent transparent var(--coupon-border-color) transparent;
+    border-color: transparent transparent var(--coupon-selector-background)
+      transparent;
     border-style: dashed solid solid dashed;
     border-bottom-right-radius: var(--coupon-border-radius);
   }
