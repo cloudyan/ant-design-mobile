@@ -3,6 +3,7 @@
 .@{class-prefix-progress-bar} {
   --track-width: var(--adm-progress-bar-track-width, 8px);
   --track-color: var(--adm-progress-bar-track-color, var(--adm-color-border));
+  --track-color-mask: transparent;
   --fill-color: var(--adm-progress-bar-fill-color, var(--adm-color-primary));
   --text-width: var(--adm-progress-bar-text-width, 40px);
 
@@ -18,6 +19,7 @@
     transition: width 0.3s;
     background: var(--fill-color);
     height: var(--track-width);
+    box-shadow: 0 0 0 300vw var(--track-color-mask);
   }
   &-text {
     flex: none;

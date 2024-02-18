@@ -23,6 +23,12 @@ export function isDate(val: unknown): val is Date {
   )
 }
 
+export function isDateString(val: unknown): val is string {
+  if (typeof val !== 'string') return false
+  const dateRegex = /^\d{4}-\d{2}-\d{2}( \d{2}:\d{2}:\d{2})?$/
+  return dateRegex.test(val)
+}
+
 // https://regexp.deepjs.cn/
 export function isMobile(value: string): boolean {
   value = value.replace(/[^-|\d]/g, '')

@@ -1,9 +1,9 @@
-import React from 'react'
+import classNames from 'classnames'
 import type { FC, ReactNode } from 'react'
+import React from 'react'
+import { isNodeWithContent } from '../../utils/is-node-with-content'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 import { mergeProps } from '../../utils/with-default-props'
-import classNames from 'classnames'
-import { isNodeWithContent } from '../../utils/is-node-with-content'
 
 const classPrefix = `adm-progress-bar`
 
@@ -12,7 +12,15 @@ export type ProgressBarProps = {
   rounded?: boolean
   text?: boolean | ReactNode | ((percent: number) => ReactNode)
 } & NativeProps<
-  '--track-width' | '--track-color' | '--fill-color' | '--text-width'
+  | '--track-width'
+  | '--track-color'
+  | '--track-color-start'
+  | '--track-color-end'
+  | '--track-color-mask'
+  | '--fill-color'
+  | '--fill-color-start'
+  | '--fill-color-end'
+  | '--text-width'
 >
 
 const defaultProps = {

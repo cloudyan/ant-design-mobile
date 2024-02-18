@@ -1,8 +1,20 @@
-import React from 'react'
-import { ProgressBar, Space } from 'antd-mobile'
+import { ProgressBar, Slider, Space } from 'antd-mobile'
 import { DemoBlock } from 'demos'
+import React, { useState } from 'react'
 
 export default () => {
+  const [percent, setPercent] = useState(80)
+
+  const fillColor = (percent: number) => {
+    if (percent < 20) {
+      return 'var(--adm-color-danger)'
+    } else if (percent < 80) {
+      return 'var(--adm-color-warning)'
+    } else {
+      return 'var(--adm-color-success)'
+    }
+  }
+
   return (
     <>
       <DemoBlock title='直角的进度条'>
@@ -46,6 +58,47 @@ export default () => {
             '--track-color': '#CDE2FF',
           }}
         />
+      </DemoBlock>
+
+      <DemoBlock title='渐变填充与轨道渐变'>
+        {/* TODO: 此处渐变看着不够明亮 */}
+        <Space block direction='vertical'>
+          <ProgressBar
+            percent={percent}
+            style={{
+              '--fill-color':
+                'linear-gradient(to right, var(--adm-color-danger), var(--adm-color-warning), var(--adm-color-success))',
+            }}
+          />
+          <ProgressBar
+            percent={percent}
+            style={{
+              '--track-color':
+                'linear-gradient(to right, var(--adm-color-danger), var(--adm-color-warning), var(--adm-color-success))',
+              '--track-color-mask': 'var(--adm-color-border)', // '#eee',
+              '--fill-color': 'transparent',
+            }}
+          />
+          <Slider
+            defaultValue={percent}
+            popover
+            onChange={val => {
+              setPercent(val as number)
+            }}
+          />
+        </Space>
+      </DemoBlock>
+
+      <DemoBlock title='阶段色'>
+        <p>1. 20 以下红色 20~80 黄色 80~100 绿色</p>
+        <Space block direction='vertical'>
+          <ProgressBar
+            percent={percent}
+            style={{
+              '--fill-color': fillColor(percent),
+            }}
+          />
+        </Space>
       </DemoBlock>
     </>
   )
