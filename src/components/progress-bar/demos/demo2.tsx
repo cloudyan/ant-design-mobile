@@ -15,6 +15,14 @@ export default () => {
     }
   }
 
+  // 颜色插值空间，处理渐变 “灰色死亡地带”（gray dead zone）
+  // https://mp.weixin.qq.com/s/_z5kTlAG_OlAISdJnOkwpQ
+  // https://developer.mozilla.org/zh-CN/docs/Web/CSS/color-interpolation-method
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix
+  // 处理兼容性 in hsl
+  // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-gradients-interpolation-method
+  const linearGradient = `linear-gradient(in oklch to right, var(--adm-color-danger), var(--adm-color-warning), var(--adm-color-success))`
+
   return (
     <>
       <DemoBlock title='直角的进度条'>
@@ -45,7 +53,7 @@ export default () => {
             percent={70}
             style={{
               '--fill-color':
-                'linear-gradient(to right, var(--adm-color-primary), var(--adm-color-success))',
+                'linear-gradient(to right, var(--adm-color-primary), var(--adm-color-danger))',
             }}
           />
         </Space>
@@ -61,20 +69,17 @@ export default () => {
       </DemoBlock>
 
       <DemoBlock title='渐变填充与轨道渐变'>
-        {/* TODO: 此处渐变看着不够明亮 */}
         <Space block direction='vertical'>
           <ProgressBar
             percent={percent}
             style={{
-              '--fill-color':
-                'linear-gradient(to right, var(--adm-color-danger), var(--adm-color-warning), var(--adm-color-success))',
+              '--fill-color': linearGradient,
             }}
           />
           <ProgressBar
             percent={percent}
             style={{
-              '--track-color':
-                'linear-gradient(to right, var(--adm-color-danger), var(--adm-color-warning), var(--adm-color-success))',
+              '--track-color': linearGradient,
               '--track-color-mask': 'var(--adm-color-border)', // '#eee',
               '--fill-color': 'transparent',
             }}

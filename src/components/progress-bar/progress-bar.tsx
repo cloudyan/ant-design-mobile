@@ -14,12 +14,8 @@ export type ProgressBarProps = {
 } & NativeProps<
   | '--track-width'
   | '--track-color'
-  | '--track-color-start'
-  | '--track-color-end'
   | '--track-color-mask'
   | '--fill-color'
-  | '--fill-color-start'
-  | '--fill-color-end'
   | '--text-width'
 >
 
