@@ -16,9 +16,8 @@
     "globals": ["$", "_"],
     "formatter": {
       "quoteStyle": "single",
-      "jsxQuoteStyle": "double",
       "trailingComma": "all",
-      "semicolons": "always",
+      "semicolons": "asNeeded",
       "arrowParentheses": "always"
     }
   }

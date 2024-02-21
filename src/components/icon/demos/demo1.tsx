@@ -1,5 +1,5 @@
 import React from 'react'
-import { XComponent } from 'antd-mobile'
+import { Button } from 'antd-mobile'
 import { DemoBlock, lorem } from 'demos'
 
 const shortText = lorem.generateWords(3)
@@ -9,7 +9,7 @@ export default () => {
   return (
     <>
       <DemoBlock title='标题'>
-        <XComponent>{shortText}</XComponent>
+        <Button>{shortText}</Button>
       </DemoBlock>
     </>
   )
