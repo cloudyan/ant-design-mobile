@@ -11,8 +11,8 @@ module.exports = {
   proseWrap: 'never',
   overrides: [
     {
-      'files': ['*.md'],
-      'options': {
+      files: ['*.md'],
+      options: {
         // 是否格式化一些文件中被嵌入的代码片段的风格，如果插件可以识别。
         embeddedLanguageFormatting: 'off',
       },

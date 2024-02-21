@@ -16,9 +16,11 @@
     "globals": ["$", "_"],
     "formatter": {
       "quoteStyle": "single",
-      "trailingComma": "all",
+      "jsxQuoteStyle": "single",
+      "trailingComma": "es5",
+      "quoteProperties": "preserve",
       "semicolons": "asNeeded",
-      "arrowParentheses": "always"
+      "arrowParentheses": "asNeeded"
     }
   }
 }
