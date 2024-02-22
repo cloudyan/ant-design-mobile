@@ -1,5 +1,5 @@
 export const components = {
-  common: ['/components/button', '/components/icon'],
+  common: ['/components/button', '/components/icon', '/components/icon-custom'],
   layout: [
     '/components/auto-center',
     '/components/divider',
