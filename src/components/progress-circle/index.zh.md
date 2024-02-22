@@ -5,6 +5,10 @@
 - [ ] 渐变动画，可参考 SpinLoading
 - [ ] 支持渲染环形的一部分，通过角度控制 `-135deg ~ 135deg`
 
+仪表盘功能，可参考三方库
+
+- https://echarts.apache.org/examples/zh/index.html#chart-type-gauge
+
 ## 何时使用
 
 适用于展示任务当前进度。
@@ -38,3 +42,12 @@
 ProgressCircle 仅支持 `px` 单位，因为在 Safari 下非 `px` 单位会出现样式 bug。
 
 所以如果你的项目中使用了 rem 布局，那么编译时对样式的预处理会导致默认的 `--size` 和 `--track-width` 的单位变为 `rem`，从而很可能在 iOS 设备中会出现 bug。解决方法是在项目中手动将 `--size` 和 `--track-width` 设置回 `px` 单位。
+
+### 控制单位转换
+
+工具方法
+
+- unitToPx
+- convertRem
+- convertVw
+- convertVh
