@@ -145,7 +145,38 @@ svgr ./source -d ./dist
 }
 ```
 
-默认 iconfont 下载的图标，没书写 `fill="currentColor"` 属性，可通过 [template](https://react-svgr.com/docs/custom-templates/) 机制来批量完成。
+默认 iconfont 下载的图标，有可能 `fill="currentColor"` 属性不规范，通过 [template](https://react-svgr.com/docs/custom-templates/) 无法批量完成处理，此问题只能制作图标时注意规范。
+
+- 方案详见 https://www.robinwieruch.de/react-svg-icon-components/
+
+以下为命令行批量将 svg 转为 React 组件模板
+
+```js
+// my-template.js 示例
+// npx @svgr/cli --template my-template.js -- my-icon.svg
+const template = (variables, context) => {
+  const { imports, interfaces, componentName, props, jsx, exports } = variables
+  const { tpl, options } = context
+
+  // console.log(jsx)
+
+  return tpl`
+${imports}
+
+${interfaces}
+
+const ${componentName} = (${props}) => {
+  props = { ...props, fill: 'currentColor' };
+  return ${jsx};
+};
+
+export default ${componentName};
+`
+}
+
+module.exports = template
+
+```
 
 ### 使用 webpack
 
@@ -177,5 +208,3 @@ module.exports = {
   ...
 };
 ```
-
-- 方案详见 https://www.robinwieruch.de/react-svg-icon-components/
