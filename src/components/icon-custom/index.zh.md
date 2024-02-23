@@ -54,12 +54,48 @@ Icon 图标集合，一般分两个库来管理
 讨论： https://github.com/ant-design/antd-mobile-icons/issues/4
 
 1. 可以用 svgr playground 手动转：https://react-svgr.com/playground/
-   1. https://react-svgr.com/docs/webpack/
+   1. webpack 配置文档 https://react-svgr.com/docs/webpack/
 2. 使用 Umi 内置的 svgr 功能把 svg 文件引入为 React 组件
    1. https://umijs.org/docs/api/config#svgr
 
 ```js
 // webpack 配置
+module.exports = {
+  module: {
+    rules: [
+      // 示例 import Svg from './star.svg'
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack'],
+      },
+    ],
+  },
+}
+
+module.exports = {
+  module: {
+    rules: [
+      // 示例 import svg from './star.svg?url'
+      // {
+      //   test: /\.svg$/i,
+      //   type: 'asset',
+      //   resourceQuery: /url/, // *.svg?url
+      // },
+
+      // 示例 import Svg from './star.svg'
+      // {
+      //   test: /\.svg$/i,
+      //   issuer: /\.[jt]sx?$/, // 限定 svgr 适用文件类型的范围
+      //   resourceQuery: { not: [/url/] }, // exclude react component if *.svg?url
+      //   use: ['@svgr/webpack'],
+      // },
+    ],
+  },
+}
+
+// 与 url-loader 一起使用
+// import starUrl, { ReactComponent as Star } from './star.svg'
 module.exports = {
   module: {
     rules: [
@@ -88,23 +124,30 @@ const App = () => (
 
 ### 命令行
 
-解决方案：详见 https://www.robinwieruch.de/react-svg-icon-components/
+通过命令行自定义 antd-mobile-icons 组件
+
+图标在 iconfont 平台做管理，可以选中需要的图标，批量下载到本地，然后通过工具自动转换为 React 组件
 
 ```bash
 npm install @svgr/cli --save-dev
-svgr -d src/Icons/ assets/
+./node_modules/.bin/svgr -h
+./node_modules/.bin/svgr ./source -d ./dist
+
+svgr ./source -d ./dist
 ```
 
 ```json
 {
   "scripts": {
-    "svgr": "svgr -d src/Icons/ assets/",
+    "svgr": "svgr ./source -d ./dist",
     "start": "webpack serve --config ./webpack.config.js --mode development"
   }
 }
 ```
 
-使用 webpack
+默认 iconfont 下载的图标，没书写 `fill="currentColor"` 属性，可通过 [template](https://react-svgr.com/docs/custom-templates/) 机制来批量完成。
+
+### 使用 webpack
 
 ```bash
 npm install @svgr/webpack --save-dev
@@ -134,3 +177,5 @@ module.exports = {
   ...
 };
 ```
+
+- 方案详见 https://www.robinwieruch.de/react-svg-icon-components/

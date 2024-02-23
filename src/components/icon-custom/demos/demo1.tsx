@@ -1,6 +1,7 @@
 import React from 'react'
 import { IconCustom, Space } from 'antd-mobile'
 import { DemoBlock } from 'demos'
+// 已支持 svgr
 import spinUrl, { ReactComponent as Spin } from './spin.svg'
 
 export default () => {
