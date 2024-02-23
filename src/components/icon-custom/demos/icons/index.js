@@ -1,6 +1,6 @@
 export { default as CalendarOutline } from './CalendarOutline'
-export { default as DiscountFill } from './DiscountFill'
 export { default as DiscountOutline } from './DiscountOutline'
+export { default as DiscountFill } from './DiscountFill'
 export { default as FolderOutline } from './FolderOutline'
 export { default as MapFill } from './MapFill'
 export { default as MapOutline } from './MapOutline'
