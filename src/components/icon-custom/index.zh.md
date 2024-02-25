@@ -2,6 +2,8 @@
 
 Icon 自定义
 
+推荐参考：https://ant.design/components/icon-cn
+
 ## iconfont
 
 - https://www.iconfont.cn/

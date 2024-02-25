@@ -110,6 +110,8 @@ export type {
   FloatingPanelProps,
   FloatingPanelRef,
 } from './components/floating-panel'
+export { default as Flex } from './components/flex'
+export type { FlexProps } from './components/flex'
 export { default as Footer } from './components/footer'
 export type { FooterProps } from './components/footer'
 export { default as Form } from './components/form'
