@@ -118,8 +118,13 @@ export { default as Form } from './components/form'
 export type { FormItemProps, FormProps } from './components/form'
 export { default as Grid } from './components/grid'
 export type { GridItemProps, GridProps } from './components/grid'
-export { default as IconCustom } from './components/icon-custom'
-export type { IconCustomProps } from './components/icon-custom'
+export {
+  IconCustom,
+  IconSvg,
+  createIcon,
+  createFromIconfont,
+} from './components/icon-custom'
+export type { IconCustomProps, IconSvgProps } from './components/icon-custom'
 export { default as Image } from './components/image'
 export type { ImageProps } from './components/image'
 export { default as ImageUploader } from './components/image-uploader'

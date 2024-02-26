@@ -1,6 +1,8 @@
 import './icon-custom.less'
-import { IconCustom } from './icon-custom'
+export { IconCustom } from './icon-custom'
+export { IconSvg } from './icon-svg'
+export { createFromIconfont } from './create-from-iconfont'
+export { createIcon } from './create-icon'
 
 export type { IconCustomProps, IconCustomRef } from './icon-custom'
-
-export default IconCustom
+export type { IconSvgProps } from './icon-svg'

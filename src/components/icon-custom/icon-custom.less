@@ -6,4 +6,22 @@
   &-content {
     flex: 0 1 auto;
   }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  &-icon {
+    display: inline-block;
+  }
+
+  &-icon-spin {
+    animation: spin 1s linear infinite;
+  }
 }
