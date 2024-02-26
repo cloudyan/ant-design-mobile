@@ -12,48 +12,47 @@ const classPrefix = 'adm-coupon'
 type stringNode = ReactNode | string | number
 
 export type CouponProps = {
-  // name
-  // name nameBefor nameAfter => faceName
-  // value valueBefor valueAfter => faceValue
-  // condition || valid startDate endDate => faceCondition
-  // reson || description => faceDescription
-  // divider
-  // 辅助 props
-  // tag
-  // chosen disabled used
-
+  // faceName: nameBefore + name + nameAfter
+  nameBefore?: string
+  name?: string | number
   nameAfter?: string
+  // faceValue: valueBefore + value + valueAfter
   valueBefore?: string
   value?: string | number
   valueAfter?: string
 
-  condition?: string
-  startDate?: Date | string
-  endDate?: Date | string
+  // faceCondition: condition || valid startDate endDate
+  condition?: string // 券使用条件
+  startDate?: Date | string // 券开始时间
+  endDate?: Date | string // 券结束时间
+  validDate?: string // 券有效期
+  validRangeDate?: string // 券有效期范围
+  today?: boolean
 
-  reason?: string | ReactNode
-  description?: string | ReactNode
+  // faceDescription: disabled && reason || description
+  description?: string // 券描述
+  reason?: string // 券不可用原因
 
-  tag?: string
-  type?: number | string
-  typeText?: string
-  status?: number | string
-  statusText?: string
+  // 辅助
+  tag?: string // 券标签
+  status?: number | string // 券状态
+  statusText?: string // 券状态文案
+  type?: number | string // 券类型
+  typeText?: string // 券类型文案
+  subType?: number | string // 券子类型
+  subTypeText?: number | string // 券子类型文案
 
-  // select vs choose 参见 https://www.eisland.com.tw/Main.php?stat=a_gyrLoog&mid=54
-  chosen?: boolean
-  disabled?: boolean
-  used?: boolean
+  // 分割线
   divider?: ReactNode | boolean
 
-  [key: string]: any
+  // select vs choose 参见 https://www.eisland.com.tw/Main.php?stat=a_gyrLoog&mid=54
+  disabled?: boolean // 不可用状态
+  chosen?: boolean
+  used?: boolean
+  onClick?: (chosen: boolean) => void
 } & NativeProps
 
-const defaultProps = {
-  // currency: '¥',
-  // disabled: false,
-  // chosen: false,
-}
+const defaultProps = {}
 
 export interface CouponRef {
   // start: () => void
@@ -64,42 +63,38 @@ export interface CouponRef {
 export const Coupon: FC<CouponProps> = p => {
   const props = mergeProps(defaultProps, p)
 
-  const { disabled, reason } = props
-  const faceDescription = (disabled && reason) || props.description
+  const { disabled } = props
+  let faceDescription: any =
+    (props.disabled && props.reason) || props.description || ''
+  faceDescription = faceDescription.split(/\n/).map((it: any) => <p>{it}</p>)
 
-  const faceName = useMemo(() => {
-    const { name = '', nameBefore = '', nameAfter = '' } = props
-    // 根据不同类型的券，返回不同的字段组合
-    return (
-      <>
-        <em>{nameBefore}</em>
-        <strong>{name}</strong>
-        <em>{nameAfter}</em>
-      </>
-    )
-  }, [props.name, props.nameBefore, props.nameAfter])
+  const faceName = (
+    <>
+      <em>{props.nameBefore}</em>
+      <strong>{props.name}</strong>
+      <em>{props.nameAfter}</em>
+    </>
+  )
 
-  const faceValue = useMemo(() => {
-    const { value = '', valueBefore = '', valueAfter = '' } = props
-    // 根据不同类型的券，返回不同的字段组合
-    return (
-      <>
-        <em>{valueBefore}</em>
-        <strong>{value}</strong>
-        <em>{valueAfter}</em>
-      </>
-    )
-  }, [props.value, props.valueBefore, props.valueAfter])
+  const faceValue = (
+    <>
+      <em>{props.valueBefore}</em>
+      <strong>{props.value}</strong>
+      <em>{props.valueAfter}</em>
+    </>
+  )
 
   // condition || valid
-  const faceCondition = useMemo(() => {
+  const faceValidDate = props.validDate || props.validRangeDate || ''
+
+  const faceCondition = (() => {
     // 今日到期
     if (props.today) {
       return <span className={`${classPrefix}-tag-taday`}>今日到期</span>
     }
     // (dayjs(props.startDate).format('YYYY-MM-DD') + ' - ' + dayjs(props.endDate).format('YYYY-MM-DD'))
     return `有效期至` + dayjs(props.endDate).format('YYYY/MM/DD')
-  }, [props.endDate, props.today])
+  })()
 
   const selector = <CheckOutline className={`${classPrefix}-selector-icon`} />
 
