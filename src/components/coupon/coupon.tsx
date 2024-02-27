@@ -85,12 +85,16 @@ export const Coupon: FC<CouponProps> = p => {
   )
 
   // condition || valid
-  const faceValidDate = props.validDate || props.validRangeDate || ''
+  const faceValidDate = props.validDate ? (
+    <span className={`${classPrefix}-relative`}>{props.validDate}</span>
+  ) : (
+    props.validRangeDate
+  )
 
   const faceCondition = (() => {
-    // 今日到期
+    // 相对时间
     if (props.today) {
-      return <span className={`${classPrefix}-tag-taday`}>今日到期</span>
+      return <span className={`${classPrefix}-relative`}>今日到期</span>
     }
     // (dayjs(props.startDate).format('YYYY-MM-DD') + ' - ' + dayjs(props.endDate).format('YYYY-MM-DD'))
     return `有效期至` + dayjs(props.endDate).format('YYYY/MM/DD')
