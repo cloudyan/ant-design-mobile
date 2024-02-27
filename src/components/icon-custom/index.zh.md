@@ -40,12 +40,23 @@ Icon 自定义
 </svg>
 ```
 
+iconfont 最多支持一次下载 100 个图标，可通过工具对下载的内容 iconfont.svg 进行分割导出独立的 svg 图标。
+
 ## 何时使用
 
-Icon 图标集合，一般分两个库来管理
+iconfont 管理平台主要面向 UI 和 FE，提供这样一个工作流：
 
-1. 公共库，跟随基础组件库迭代管理，更标准化
-2. 业务库，跟随业务项目迭代管理，更灵活
+- UI 负责把 icon 上传到平台，通过不同的“大库”区分业务线，形成一个 icon 池；
+- 而 FE 则根据项目需要，从 icon 池中挑选 icon，生成项目，导出外链，下载引入到本地项目中使用。
+
+- 设计师 UI
+  - icon 池（每个业务一个 Icon 素材池）
+- 前端开发 FE（前端项目 Icon 一般分两个库）
+
+  - 公共库，跟随基础组件库迭代管理，更标准化
+  - 业务库，跟随业务项目迭代管理，更灵活
+
+- https://juejin.cn/post/6979874524934176805
 
 ## 示例
 
@@ -210,3 +221,20 @@ module.exports = {
   ...
 };
 ```
+
+## 关于 SVG 图标
+
+使用 SVG 图标替换了原先的 font 图标，有以下优势：
+
+- 完全离线化使用，不需要从 CDN 下载字体文件，图标不会因为网络问题呈现方块，也无需字体文件本地部署。
+- SVG 是矢量的，在低端设备上 SVG 有更好的清晰度。
+- 支持多色图标。
+- 对于内建图标的更换可以提供更多 API，而不需要进行样式覆盖。
+
+更多讨论可参考：[#10353](https://github.com/ant-design/ant-design/issues/10353)。
+
+更多参考：
+
+- [使用 SVG 交付 Octicon](https://github.com/blog/2112-delivering-octicons-with-svg)
+- [内联 SVG 与图标字体](https://css-tricks.com/icon-fonts-vs-svg/)
+- [说真的，不要使用图标字体](https://cloudfour.com/thinks/seriously-dont-use-icon-fonts/)
