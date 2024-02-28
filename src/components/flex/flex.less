@@ -2,8 +2,50 @@
 
 .@{class-prefix-flex} {
   display: flex;
-  justify-content: center;
-  &-content {
-    flex: 0 1 auto;
+
+  &-direction-row {
+    flex-direction: row;
+  }
+  &-direction-column {
+    flex-direction: column;
+  }
+
+  &-wrap {
+    flex-wrap: wrap;
+  }
+  &-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &-justify-start {
+    justify-content: flex-start;
+  }
+  &-justify-end {
+    justify-content: flex-end;
+  }
+  &-justify-center {
+    justify-content: center;
+  }
+  &-justify-between {
+    justify-content: space-between;
+  }
+  &-justify-around {
+    justify-content: space-around;
+  }
+  &-align-stretch {
+    align-items: stretch;
+  }
+
+  &-align-start {
+    align-items: flex-start;
+  }
+  &-align-end {
+    align-items: flex-end;
+  }
+  &-align-center {
+    align-items: center;
+  }
+  &-align-baseline {
+    align-items: baseline;
   }
 }
