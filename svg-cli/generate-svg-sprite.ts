@@ -11,6 +11,11 @@ const svgoConfig: SVGOConfig = {
       name: 'convertColors',
       params: { currentColor: true },
     },
+    // or
+    // {
+    //   name: 'removeAttrs', // 必须指定name！
+    //   params: {attrs: 'fill'}
+    // }
   ],
 }
 const svgFiles = globSync('./source/*.svg')
