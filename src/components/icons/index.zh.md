@@ -64,9 +64,13 @@ svgr 加载
 
 <code src="./demos/demo1.tsx"></code>
 
-IconCustom
+createIcon & createFromIconfont
 
 <code src="./demos/demo2.tsx"></code>
+
+IconSvg
+
+<code src="./demos/demo3.tsx"></code>
 
 ## icon 自定义
 
