@@ -1,6 +1,6 @@
-# Icon 图标
+# Icon 图标集
 
-图标是在一个单独的 npm 包中，如果你想使用图标，需要先安装它：
+图标集是在一个单独的 npm 包中，如果你想使用图标，需要先安装它：
 
 ```bash
 npm install --save antd-mobile-icons

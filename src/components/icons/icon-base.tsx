@@ -1,17 +1,21 @@
 import React, { PropsWithChildren, forwardRef } from 'react'
 import classNames from 'classnames'
+import { mergeProps } from '../../utils/with-default-props'
+
+const defaultClassPrefix = 'adm-icon'
 
 type BaseIconProps = {
+  classPrefix?: string
   className?: string
   style?: React.CSSProperties
   size?: string | string[]
   spin?: boolean
 }
 
-export type IconSvgProps = BaseIconProps &
+export type IconBaseProps = BaseIconProps &
   Omit<React.SVGAttributes<SVGElement>, keyof BaseIconProps>
 
-export const getSize = (size: IconSvgProps['size']) => {
+export const getSize = (size: IconBaseProps['size']) => {
   if (Array.isArray(size) && size.length === 2) {
     return size as string[]
   }
@@ -22,18 +26,33 @@ export const getSize = (size: IconSvgProps['size']) => {
   return [width, height]
 }
 
-export const IconSvg = forwardRef<
+const defaultProps = {
+  classPrefix: '',
+}
+
+export const IconBase = forwardRef<
   SVGSVGElement,
-  PropsWithChildren<IconSvgProps>
->((props, ref) => {
-  const { style, className, spin, size = '1em', children, ...rest } = props
+  PropsWithChildren<IconBaseProps>
+>((p, ref) => {
+  const props = mergeProps(defaultProps, p)
+
+  const {
+    classPrefix,
+    style,
+    className,
+    spin,
+    size = '1em',
+    children,
+    ...rest
+  } = props
 
   const [width, height] = getSize(size)
 
   const classes = classNames(
-    'icon',
+    defaultClassPrefix,
+    classPrefix,
     {
-      'icon-spin': spin,
+      [`${defaultClassPrefix}}-spin`]: spin,
     },
     className
   )

@@ -1,24 +1,12 @@
 import React from 'react'
-import { IconCustom, Space, createIcon, createFromIconfont } from 'antd-mobile'
-import { DemoBlock } from 'demos'
-// 已支持 svgr
-import spinUrl, { ReactComponent as SpinSvg } from './spin.svg'
 import {
-  Spin,
-  FolderOutline,
-  CalendarOutline,
-  SaveOutline,
-  DiscountOutline,
-  MapOutline,
-  ProductOutline,
-  DiscountFill,
-  MapFill,
-  ProductFill,
-} from './icons'
-
-const IconfontSvg = createFromIconfont(
-  '//at.alicdn.com/t/c/font_2586256_4dzo7bif4ec.js'
-)
+  Space,
+  IconBase,
+  IconSvg,
+  createIcon,
+  createFromIconfont,
+} from 'antd-mobile'
+import { DemoBlock } from 'demos'
 
 const IconAdd = createIcon({
   content: (
@@ -36,32 +24,15 @@ const IconEmail = createIcon({
   ),
 })
 
+const IconfontSvg = createFromIconfont(
+  '//at.alicdn.com/t/c/font_2586256_4dzo7bif4ec.js'
+)
+
 export default () => {
   return (
     <div style={{ fontSize: 24 }}>
       <DemoBlock title='IconCustom'>
-        <IconCustom />
-      </DemoBlock>
-      <DemoBlock title='通过 svgr 加载'>
-        <Space wrap align='center' style={{ '--gap': '24px', color: 'red' }}>
-          <img src={spinUrl} alt='spin' width={24} height={24} />
-          <SpinSvg width={24} height={24} fill='red' />
-          <Spin width={24} height={24} color='red' />
-        </Space>
-      </DemoBlock>
-
-      <DemoBlock title='svg 转的 React 组件'>
-        <Space wrap align='center' style={{ '--gap': '24px', color: 'red' }}>
-          <FolderOutline width={24} height={24} />
-          <CalendarOutline width={24} height={24} />
-          <SaveOutline width={24} height={24} />
-          <DiscountOutline width={24} height={24} />
-          <MapOutline width={24} height={24} />
-          <ProductOutline width={24} height={24} />
-          <DiscountFill width={24} height={24} />
-          <MapFill width={24} height={24} />
-          <ProductFill width={24} height={24} />
-        </Space>
+        <IconBase />
       </DemoBlock>
 
       <DemoBlock title='createIcon: 接收 svg 的内容'>
@@ -77,6 +48,15 @@ export default () => {
           <IconfontSvg type='cook-browse' color='green' />
           <IconfontSvg type='cook-discount' color='orange' />
           <IconfontSvg type='cook-folder' color='blue' />
+        </Space>
+      </DemoBlock>
+
+      <DemoBlock title='项目入口引入svg symbol 集合，此处直接使用 type'>
+        <Space wrap align='center' style={{ '--gap': '24px', color: 'red' }}>
+          <IconSvg type='cook-attachent' />
+          <IconSvg type='cook-browse' color='green' />
+          <IconSvg type='cook-discount' color='orange' />
+          <IconSvg type='cook-folder' color='blue' />
         </Space>
       </DemoBlock>
     </div>

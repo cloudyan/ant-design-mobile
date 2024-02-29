@@ -1,6 +1,6 @@
-# IconCustom 自定义
+# Icon 图标
 
-Icon 自定义
+Icon 图标组件，支持自定义
 
 推荐参考：https://ant.design/components/icon-cn
 
@@ -60,7 +60,13 @@ iconfont 管理平台主要面向 UI 和 FE，提供这样一个工作流：
 
 ## 示例
 
+svgr 加载
+
 <code src="./demos/demo1.tsx"></code>
+
+IconCustom
+
+<code src="./demos/demo2.tsx"></code>
 
 ## icon 自定义
 
@@ -221,6 +227,12 @@ module.exports = {
   ...
 };
 ```
+
+## 最终设计
+
+可以借助 iconfont 平台辅助管理项目图标，但考虑到容灾，我们将图标保存在项目中，通过脚本在构建时生成 symbol 临时文件，引入项目，以本地图标文件为准。
+
+项目中通过 IconSvg 组件配置 type 使用对应 Icon。
 
 ## 关于 SVG 图标
 

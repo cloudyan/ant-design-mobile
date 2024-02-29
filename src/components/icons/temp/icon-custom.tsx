@@ -1,6 +1,6 @@
 import React from 'react'
 import type { FC, ReactNode } from 'react'
-import { NativeProps, withNativeProps } from '../../utils/native-props'
+import { NativeProps, withNativeProps } from '../../../utils/native-props'
 
 const classPrefix = 'adm-icon-custom'
 

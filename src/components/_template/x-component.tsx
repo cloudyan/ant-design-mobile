@@ -1,6 +1,7 @@
 import React from 'react'
 import type { FC, ReactNode } from 'react'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
+import { mergeProps } from '../../utils/with-default-props'
 
 const classPrefix = 'adm-x-component'
 
@@ -14,10 +15,13 @@ export interface XComponentRef {
   // reset: () => void
 }
 
-export const XComponent: FC<XComponentProps> = props =>
-  withNativeProps(
+export const XComponent: FC<XComponentProps> = p => {
+  const props = mergeProps(defaultProps, p)
+
+  return withNativeProps(
     props,
     <div className={classPrefix}>
       <div className={`${classPrefix}-content`}>{props.children}</div>
     </div>
   )
+}

@@ -1,4 +1,4 @@
-# ComponentName
+# Icon
 
 Introduction
 

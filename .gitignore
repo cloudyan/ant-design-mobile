@@ -22,7 +22,7 @@ node_modules/
 # dumi assets meta data
 /assets.json
 
-# /.vscode/
+/.vscode/
 /.idea/
 
 # yarn https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored

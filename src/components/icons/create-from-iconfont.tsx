@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconSvg, IconSvgProps } from './icon-svg'
+import { IconBase, IconBaseProps } from './icon-base'
 
 const loaded = new Set<string>()
 
@@ -17,14 +17,14 @@ export function createFromIconfont(scriptUrl: string) {
     loaded.add(scriptUrl)
   }
 
-  const IconfontSvg = React.forwardRef<SVGSVGElement, IconSvgProps>(
+  const IconfontSvg = React.forwardRef<SVGSVGElement, IconBaseProps>(
     (props, ref) => {
       const { type, ...rest } = props
 
       return (
-        <IconSvg {...rest} ref={ref}>
+        <IconBase {...rest} ref={ref}>
           {type ? <use xlinkHref={`#${type}`} /> : null}
-        </IconSvg>
+        </IconBase>
       )
     }
   )
