@@ -144,7 +144,9 @@ export const Coupon: FC<CouponProps> = p => {
         )}
       </div>
 
-      <div className={`${classPrefix}-selector`}>{selector}</div>
+      <div className={`${classPrefix}-selector`}>
+        <div className={`${classPrefix}-corner`}>{selector}</div>
+      </div>
     </div>
   )
 }

@@ -269,10 +269,17 @@
   }
 
   &-selector {
+    overflow: hidden;
     position: absolute;
     right: 0;
     bottom: 0;
     color: #fff;
+    border-bottom-right-radius: var(--coupon-border-radius);
+  }
+
+  // fix: 华为鸿蒙 css 画三角形，与圆角使用时存在 bug
+  &-corner {
+    position: relative;
     width: 0;
     height: 0;
     border-style: solid;
@@ -280,7 +287,6 @@
     border-color: transparent transparent var(--coupon-selector-background)
       transparent;
     border-style: dashed solid solid dashed;
-    border-bottom-right-radius: var(--coupon-border-radius);
   }
 
   &-selector-icon {
