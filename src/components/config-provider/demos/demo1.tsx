@@ -10,6 +10,9 @@ import faIR from 'antd-mobile/es/locales/fa-IR'
 export default () => {
   return (
     <>
+      <DemoBlock title=''>
+        <p>多语言支持</p>
+      </DemoBlock>
       <DemoBlock title='中文'>
         <ConfigProvider locale={zhCN}>
           <ErrorBlock status='disconnected' />

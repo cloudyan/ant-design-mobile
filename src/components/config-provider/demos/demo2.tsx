@@ -23,6 +23,7 @@ export default () => {
   }
   return (
     <DemoBlock title='设置全局默认值'>
+      <p>切换语言</p>
       <Space>
         <Button onClick={toChinese}>切换到中文</Button>
         <Button onClick={toEnglish}>Switch to English</Button>

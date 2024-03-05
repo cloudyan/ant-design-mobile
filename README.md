@@ -67,3 +67,4 @@ Thanks to all the contributors of antd-mobile:
 - [ ] Highlight 高亮文本
 - [ ] RollingText 翻滚文本动效
 - [ ] BackTop 回到顶部
+- [ ] Signature 签名

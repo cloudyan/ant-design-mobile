@@ -2,6 +2,7 @@ import React from 'react'
 import type { FC, ReactNode } from 'react'
 import styles from './index.less'
 import { NativeProps } from '../../utils/native-props'
+import classNames from 'classnames'
 
 type Props = {
   title: string
@@ -13,7 +14,7 @@ type Props = {
 
 export const DemoBlock: FC<Props> = props => {
   return (
-    <div className={styles.demoBlock}>
+    <div className={classNames(styles.demoBlock, props.className)}>
       <div className={styles.title}>{props.title}</div>
       <div
         className={styles.main}

@@ -7,11 +7,17 @@
 - 您想使用除英文之外的语言。
 - 您想使用自己的图标集，而不是内置的 `antd-mobile-icons`。
 
+用于全局配置组件，提供深色模式、主题定制、多语言支持等能力。
+
+- [zh-CN]: https://github.com/ant-design/ant-design-mobile/blob/master/src/locales/zh-CN.ts
+
 ## 示例
 
 <code src="./demos/demo1.tsx" ></code>
 
 <code src="./demos/demo2.tsx" ></code>
+
+<code src="./demos/demo3.tsx" ></code>
 
 ## ConfigProvider
 
@@ -32,5 +38,3 @@
 | result | Result 配置 | `{ successIcon?: ReactNode, errorIcon?: ReactNode, infoIcon?: ReactNode, waitingIcon?: ReactNode, warningIcon?: ReactNode }` | - |
 | searchBar | SearchBar 配置 | `{ icon?: ReactNode }` | - |
 | toast | Toast 配置 | `{ successIcon?: ReactNode, failIcon?: ReactNode, loadingIcon?: ReactNode }` | - |
-
-[zh-CN]: https://github.com/ant-design/ant-design-mobile/blob/master/src/locales/zh-CN.ts
