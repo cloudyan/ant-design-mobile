@@ -10,6 +10,8 @@
 
 NOTE: 应该提供一个容器，内部可以是任意的实现，支持自定义
 
+可参考 ahooks 的 useSelections 的逻辑封装（常见联动 Checkbox 逻辑封装，支持多选，单选，全选逻辑，还提供了是否选择，是否全选，是否半选的状态。）
+
 ## 示例
 
 <code src="./demos/demo1.tsx"></code>
