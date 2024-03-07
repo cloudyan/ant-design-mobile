@@ -49,7 +49,6 @@ export const defaultConfigRef: {
 } = {
   current: {
     locale: zhCN,
-    theme: 'light',
   },
 }
 
