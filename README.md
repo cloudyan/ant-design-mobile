@@ -48,23 +48,3 @@ Thanks to all the contributors of antd-mobile:
 <a href="https://github.com/ant-design/ant-design-mobile/graphs/contributors">
   <img src="https://opencollective.com/ant-design-mobile/contributors.svg?width=960&button=false" alt="contributors" />
 </a>
-
-## TODO
-
-- [x] Overflow 展开更多
-- [x] CountDown 倒计时
-- [ ] Sticky 粘性布局
-- [ ] Coupon 优惠券
-- [ ] CouponList 优惠券列表
-- [x] IconCustom 自定义 Icon
-- [ ] Flex 弹性布局
-- [ ] Statistic 统计数值
-- [ ] Timeline 时间轴
-- [ ] Segmented 分段控制器
-- [ ] QRCode 二维码
-- [ ] Barrage 弹幕
-- [ ] ShareSheet 分享面板
-- [ ] Highlight 高亮文本
-- [ ] RollingText 翻滚文本动效
-- [ ] BackTop 回到顶部
-- [ ] Signature 签名

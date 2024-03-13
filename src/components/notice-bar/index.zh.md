@@ -10,6 +10,8 @@
 
 <code src="./demos/demo1.tsx"></code>
 
+<code src="./demos/demo2.tsx"></code>
+
 ## NoticeBar
 
 ### 属性
@@ -38,3 +40,7 @@
 | --height           | 整体高度       | `40px`                  |
 | --icon-font-size   | 左侧图标的字号 | `18px`                  |
 | --text-color       | 文字颜色       | `#ffffff`               |
+
+## 扩展使用
+
+多条公告，轮播显示
