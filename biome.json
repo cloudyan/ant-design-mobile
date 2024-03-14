@@ -13,7 +13,10 @@
     "lineWidth": 80
   },
   "javascript": {
-    "globals": ["$", "_"],
+    "globals": [
+      "$",
+      "_"
+    ],
     "formatter": {
       "quoteStyle": "single",
       "jsxQuoteStyle": "single",

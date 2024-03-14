@@ -2,3 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 PATH=$(pwd)/.node/bin:$(pwd)/node_modules/.bin:$PATH lint-staged
+# pnpm pretty-quick --staged
+pnpm run biome:format

@@ -57,8 +57,8 @@ const Thumb: FC<ThumbProps> = props => {
     typeof props.popover === 'function'
       ? props.popover
       : props.popover
-      ? (value: number) => value.toString()
-      : null
+        ? (value: number) => value.toString()
+        : null
 
   const thumbElement = (
     <div className={`${classPrefix}-thumb`}>

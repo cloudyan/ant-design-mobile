@@ -191,7 +191,7 @@ export const ImageUploader = forwardRef<ImageUploaderRef, ImageUploaderProps>(
             id: idCountRef.current++,
             status: 'pending',
             file,
-          } as Task)
+          }) as Task
       )
 
       setTasks(prev => [...getFinalTasks(prev), ...newTasks])

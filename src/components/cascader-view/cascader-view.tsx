@@ -143,8 +143,8 @@ export const CascaderView: FC<CascaderViewProps> = p => {
                   {selected
                     ? selected[labelName]
                     : typeof placeholder === 'function'
-                    ? placeholder(index)
-                    : placeholder}
+                      ? placeholder(index)
+                      : placeholder}
                 </div>
               }
               forceRender

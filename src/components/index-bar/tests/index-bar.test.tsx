@@ -22,7 +22,7 @@ function mockPxTester(px: number) {
         () =>
           ({
             height: px,
-          } as DOMRect)
+          }) as DOMRect
       ))
   )
 }

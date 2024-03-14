@@ -199,7 +199,7 @@ export function convertDateToStringArray(
 }
 
 export function convertStringArrayToDate<
-  T extends string | number | null | undefined
+  T extends string | number | null | undefined,
 >(value: T[]): Date {
   const yearString = value[0] ?? '1900'
   const monthString = value[1] ?? '1'
