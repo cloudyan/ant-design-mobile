@@ -7,6 +7,9 @@
     "enabled": false
   },
   "formatter": {
+    "ignore": [
+      "**/.umi/**/*.ts"
+    ],
     "enabled": true,
     "indentWidth": 2,
     "indentStyle": "space",
@@ -21,7 +24,7 @@
       "quoteStyle": "single",
       "jsxQuoteStyle": "single",
       "trailingComma": "es5",
-      "quoteProperties": "preserve",
+      "quoteProperties": "asNeeded",
       "semicolons": "asNeeded",
       "arrowParentheses": "asNeeded"
     }

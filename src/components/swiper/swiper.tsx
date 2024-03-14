@@ -24,9 +24,9 @@ import { mergeFuncProps } from '../../utils/with-func-props'
 const classPrefix = `adm-swiper`
 
 const eventToPropRecord = {
-  'mousedown': 'onMouseDown',
-  'mousemove': 'onMouseMove',
-  'mouseup': 'onMouseUp',
+  mousedown: 'onMouseDown',
+  mousemove: 'onMouseMove',
+  mouseup: 'onMouseUp',
 } as const
 
 type ValuesToUnion<T, K extends keyof T = keyof T> = K extends keyof T

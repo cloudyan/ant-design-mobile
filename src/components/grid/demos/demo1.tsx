@@ -58,7 +58,7 @@ export default () => {
                 style={{
                   height: 40,
                   display: 'flex',
-                  'alignItems': 'center',
+                  alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
