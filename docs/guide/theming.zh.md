@@ -1,5 +1,9 @@
 # 主题
 
+- 支持动态切换主题；
+- 支持同时存在多个主题；
+- 支持针对某个/某些组件修改主题变量；
+
 得益于 CSS 变量强大而灵活的能力，自定义一套 antd-mobile 的主题是非常简单的，你不需要配置任何编译工具，也不需要安装额外的插件，直接修在 `:root` 覆盖 CSS 变量就可以了：
 
 ```css
@@ -78,3 +82,34 @@ export default () => {
 </Alert>
 
 此外，每个组件也有自己对应的 CSS 全局变量，你可以在它们的文档页面中找到，具体请参阅 [CSS 变量](/zh/guide/css-variables) 章节。
+
+## 内置主题
+
+自行按需扩展
+
+```css
+/* 红 橙 黄 绿 青 蓝 紫 彩 */
+.adm-theme-m1 {
+  --adm-color-primary: #17B271;
+}
+
+.adm-theme-m2 {
+  --adm-color-primary: #3E5DD8;
+}
+
+.adm-theme-m3 {
+  --adm-color-primary: #3E5DD8;
+}
+
+.adm-theme-m9 {
+  --adm-color-primary: #3E5DD8;
+}
+```
+
+明暗或者说浅色深色模式，不是主题
+
+更强大功能，还需要参考 ant-design 的 Design Token 设计，[样式定制](https://ant.design/docs/react/customize-theme-cn)更灵活
+
+### 主题换肤方案探索
+
+可以参考 https://mp.weixin.qq.com/s/a-qqUzyClY9Binwsk2-Ltw
