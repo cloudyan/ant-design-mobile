@@ -31,6 +31,9 @@
   "scripts": {
     "build": "gulp",
     "build-doc": "dumi build && echo '!.*' > dist/.surgeignore",
+    "biome": "biome format --write ./src",
+    "biome:check": "biome check --apply ./src",
+    "biome:ci": "biome ci ./src",
     "postinstall": "husky install",
     "lint": "eslint . && stylelint \"**/*.{css,less,scss}\"",
     "lint:fix": "prettier --write . && eslint --fix . && stylelint --fix \"**/*.{css,less,scss}\"",
@@ -84,7 +87,14 @@
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.4",
+<<<<<<< HEAD
     "@commitlint/cli": "^19.2.1",
+||||||| parent of 751949cad (feat: enable biome prettier)
+    "@commitlint/cli": "^17.6.1",
+=======
+    "@biomejs/biome": "^1.6.1",
+    "@commitlint/cli": "^17.6.1",
+>>>>>>> 751949cad (feat: enable biome prettier)
     "@commitlint/config-conventional": "^17.6.1",
     "@docsearch/react": "^3.3.3",
     "@jest/types": "^28.1.3",

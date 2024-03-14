@@ -1,6 +1,10 @@
 {
   // 公司内代码自动格式化配置未准备好时，需要关闭下列配置项
   // todo:
+  // 开启 biome 时，关闭 prettier
+  "biome.enabled": true,
+  "biome.requireConfiguration": true,
+  "biome_lsp.trace.server": "messages",
   "editor.rulers": [80, 100, 120],
   "editor.formatOnSave": true, // 保存时自动格式化
   "editor.formatOnType": false, // 按键时自动格式化
@@ -16,8 +20,6 @@
     "source.organizeImports.biome": "true",
     "quickfix.biome": "true"
   },
-  // 开启 biome 时，关闭 prettier
-  "biome.requireConfiguration": true,
   "prettier.enable": false,
   "prettier.useEditorConfig": false,
   // 最新格式化 prettier/biome eslint/oxlint
@@ -121,6 +123,5 @@
   },
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "biome_lsp.trace.server": "messages"
+  }
 }
