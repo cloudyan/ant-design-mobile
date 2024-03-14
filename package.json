@@ -31,9 +31,9 @@
   "scripts": {
     "build": "gulp",
     "build-doc": "dumi build && echo '!.*' > dist/.surgeignore",
-    "biome": "biome format --write ./src",
-    "biome:check": "biome check --apply ./src",
     "biome:ci": "biome ci ./src",
+    "biome:check": "biome format ./src",
+    "biome:format": "biome format --write ./src",
     "postinstall": "husky install",
     "lint": "eslint . && stylelint \"**/*.{css,less,scss}\"",
     "lint:fix": "prettier --write . && eslint --fix . && stylelint --fix \"**/*.{css,less,scss}\"",
