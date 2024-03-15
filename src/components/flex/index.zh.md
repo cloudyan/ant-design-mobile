@@ -15,3 +15,17 @@
 ## 示例
 
 <code src="./demos/demo1.tsx"></code>
+
+## Flex
+
+### 属性
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| direction | 对应 `flex-direction` | `row \| row-reverse \| column \| column-reverse` | `row` |
+| wrap | 设置元素单行显示还是多行显示 | 参考 `flex-wrap` | |
+| justify | 设置元素在主轴方向上的对齐方式 | 参考 `justify-content` | `normal` |
+| align | 设置元素在交叉轴方向上的对齐方式 | 参考 `align-items` | `normal` |
+| flex | flex CSS 简写属性 | 参考 `flex` | `normal` |
+| gap | 设置网格之间的间隙 | `string \| number` | - |
+| component | 自定义元素类型 | `React.ComponentType` | `div` |

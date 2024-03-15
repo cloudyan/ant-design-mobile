@@ -23,7 +23,15 @@ export type FlexProps<P = AnyObject> = {
   children?: ReactNode
 } & NativeProps
 
-const defaultProps = {}
+const defaultProps = {
+  direction: 'row',
+  wrap: 'nowrap',
+  justify: 'normal',
+  align: 'normal',
+  flex: 'normal',
+  gap: '0',
+  component: 'div',
+}
 
 export const Flex = forwardRef<HTMLDivElement, FlexProps>((p, ref) => {
   const props = mergeProps(defaultProps, p)

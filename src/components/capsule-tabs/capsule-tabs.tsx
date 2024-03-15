@@ -2,13 +2,14 @@ import React, { isValidElement, useRef } from 'react'
 import type { FC, ReactNode, ReactElement } from 'react'
 import classNames from 'classnames'
 import { animated } from '@react-spring/web'
+import ScrollMask from '../scroll-mask'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 import { usePropsValue } from '../../utils/use-props-value'
 import { useResizeEffect } from '../../utils/use-resize-effect'
 import { useTabListScroll } from '../../utils/use-tab-list-scroll'
-import ScrollMask from '../scroll-mask'
 import { ShouldRender } from '../../utils/should-render'
 import { traverseReactNode } from '../../utils/traverse-react-node'
+import { mergeProps } from '../../utils/with-default-props'
 
 const classPrefix = `adm-capsule-tabs`
 
@@ -23,13 +24,19 @@ export type CapsuleTabProps = {
 export const CapsuleTab: FC<CapsuleTabProps> = () => null
 
 export type CapsuleTabsProps = {
+  wrap?: boolean
   activeKey?: string | null
   defaultActiveKey?: string | null
   onChange?: (key: string) => void
   children?: ReactNode
 } & NativeProps
 
-export const CapsuleTabs: FC<CapsuleTabsProps> = props => {
+const defaultProps = {
+  wrap: false,
+}
+
+export const CapsuleTabs: FC<CapsuleTabsProps> = p => {
+  const props = mergeProps(defaultProps, p)
   const tabListContainerRef = useRef<HTMLDivElement>(null)
   const rootRef = useRef<HTMLDivElement>(null)
   const keyToIndexRecord: Record<string, number> = {}
@@ -66,13 +73,17 @@ export const CapsuleTabs: FC<CapsuleTabsProps> = props => {
     animate(true)
   }, rootRef)
 
+  const classes = classNames(`${classPrefix}-tab-list`, {
+    [`${classPrefix}-tab-list-wrap`]: props.wrap,
+  })
+
   return withNativeProps(
     props,
     <div className={classPrefix} ref={rootRef}>
       <div className={`${classPrefix}-header`}>
         <ScrollMask scrollTrackRef={tabListContainerRef} />
         <animated.div
-          className={`${classPrefix}-tab-list`}
+          className={classes}
           ref={tabListContainerRef}
           scrollLeft={scrollLeft}
         >

@@ -34,7 +34,7 @@
 - 扩展组件
   - [x] 展开更多 overflow
   - [x] 自定义 Icon IconCustom
-  - [ ] 弹性布局 Flex
+  - [x] 弹性布局 Flex
   - [ ] 统计数值 Statistic
   - [ ] 时间轴 Timeline
   - [ ] 分段控制器 Segmented

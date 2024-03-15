@@ -17,12 +17,21 @@
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    overflow-x: scroll;
+    overflow-x: auto;
     &::-webkit-scrollbar {
       display: none;
     }
     scrollbar-width: none;
   }
+
+  &-tab-list-wrap {
+    flex-wrap: wrap;
+  }
+  &-tab-list-wrap &-tab-wrapper {
+    flex: none;
+    margin-bottom: 8px;
+  }
+
   &-tab-wrapper {
     flex: auto;
     padding: 0 6px;

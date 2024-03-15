@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Flex, Button } from 'antd-mobile'
+import { Flex, Button, CapsuleTabs } from 'antd-mobile'
 import { DemoBlock } from 'demos'
 import type { CSSProperties } from 'react'
 import type { FlexProps } from 'antd-mobile'
@@ -20,6 +20,7 @@ const boxStyle: CSSProperties = {
   border: '1px solid #40a9ff',
 }
 const justifyOptions = [
+  'normal',
   'flex-start',
   'center',
   'flex-end',
@@ -28,32 +29,33 @@ const justifyOptions = [
   'space-evenly',
 ]
 
-const alignOptions = ['flex-start', 'center', 'flex-end']
+const alignOptions = ['normal', 'flex-start', 'center', 'flex-end', 'stretch']
 
 const directionOptions = ['row', 'row-reverse', 'column', 'column-reverse']
 
 const ButtonOption = (props: any) => {
-  const [num, setNum] = useState(0)
-  const optionRef = useRef(0)
+  const { options, onChange } = props
+  const content = options.map((option: any) => {
+    return (
+      <>
+        <CapsuleTabs.Tab title={option} key={option} />
+      </>
+    )
+  })
 
-  const options = props.options
-  const onClick = () => {
-    optionRef.current = (optionRef.current + 1) % options.length
-    setNum(num + 1)
-    props.onChange(options[optionRef.current])
-  }
-
-  return <Button onClick={onClick}>{options[optionRef.current]}</Button>
+  return (
+    <>
+      <CapsuleTabs wrap onChange={onChange}>
+        {content}
+      </CapsuleTabs>
+    </>
+  )
 }
 
 export default () => {
-  const [direction, setDirection] = useState<FlexProps['direction']>('row')
-  const [justify, setJustify] = useState<FlexProps['justify']>(
-    justifyOptions[0]
-  )
-  const [alignItems, setAlignItems] = useState<FlexProps['align']>(
-    alignOptions[0]
-  )
+  const [direction, setDirection] = useState<FlexProps['direction']>()
+  const [justify, setJustify] = useState<FlexProps['justify']>()
+  const [alignItems, setAlignItems] = useState<FlexProps['align']>()
 
   return (
     <>
