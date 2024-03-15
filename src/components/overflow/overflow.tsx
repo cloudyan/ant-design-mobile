@@ -19,6 +19,7 @@ export type OverflowProps = {
   collapseText?: ReactNode
   stopPropagationForActionButtons?: PropagationEvent[]
   onContentClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  onExpandClick?: (bool: boolean) => void
   defaultExpanded?: boolean
 } & NativeProps<
   '--overflow-background' | '--more-background' | '--less-background'
@@ -33,6 +34,7 @@ const defaultProps = {
   collapseText: '', // 收起
   stopPropagationForActionButtons: [],
   onContentClick: () => {},
+  onExpandClick: () => {},
   defaultExpanded: false,
 }
 

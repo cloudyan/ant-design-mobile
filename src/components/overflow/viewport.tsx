@@ -20,6 +20,7 @@ export type OverflowViewportProps = {
   collapseText?: ReactNode
   stopPropagationForActionButtons?: PropagationEvent[]
   onContentClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  onExpandClick?: (bool: boolean) => void
   defaultExpanded?: boolean
 } & NativeProps<
   '--overflow-background' | '--more-background' | '--less-background'
@@ -33,6 +34,7 @@ const defaultProps = {
   collapseText: '', // 收起
   stopPropagationForActionButtons: [],
   onContentClick: () => {},
+  onExpandClick: () => {},
   defaultExpanded: false,
 }
 
@@ -95,6 +97,7 @@ export const OverflowViewport: FC<OverflowViewportProps> = p => {
         ref={expandElRef}
         onClick={() => {
           setExpanded(true)
+          props.onExpandClick(true)
         }}
       >
         {props.expandText}
@@ -111,6 +114,7 @@ export const OverflowViewport: FC<OverflowViewportProps> = p => {
         ref={collapseElRef}
         onClick={() => {
           setExpanded(false)
+          props.onExpandClick(false)
         }}
       >
         {props.collapseText}

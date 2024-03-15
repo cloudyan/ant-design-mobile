@@ -21,6 +21,7 @@ export type OverflowFloatProps = {
   collapseText?: ReactNode
   stopPropagationForActionButtons?: PropagationEvent[]
   onContentClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  onExpandClick?: (bool: boolean) => void
   defaultExpanded?: boolean
 } & NativeProps<
   '--overflow-background' | '--more-background' | '--less-background'
@@ -34,6 +35,7 @@ const defaultProps = {
   collapseText: '', // 收起
   stopPropagationForActionButtons: [],
   onContentClick: () => {},
+  onExpandClick: () => {},
   defaultExpanded: false,
 }
 
@@ -120,6 +122,7 @@ export const OverflowFloat: FC<OverflowFloatProps> = p => {
         ref={expandElRef}
         onClick={() => {
           setExpanded(true)
+          props.onExpandClick(true)
         }}
       >
         {props.expandText}
@@ -136,6 +139,7 @@ export const OverflowFloat: FC<OverflowFloatProps> = p => {
         ref={collapseElRef}
         onClick={() => {
           setExpanded(false)
+          props.onExpandClick(false)
         }}
       >
         {props.collapseText}

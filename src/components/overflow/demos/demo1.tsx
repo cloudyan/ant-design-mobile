@@ -109,6 +109,7 @@ export default () => {
           mode={mode}
           content='为享受更好的服务体验，请阅读并同意《用户协议》，《用户隐私政策》To enjoy a better service experience, please read and agree to the User Agreement, User Privacy Policy.'
           rows={rows}
+          onExpandClick={v => console.log('当前展开状态', v)}
           expandText={
             <>
               展开
@@ -130,6 +131,7 @@ export default () => {
           mode={mode}
           content={<RichContent />}
           rows={rows}
+          onExpandClick={v => console.log('当前展开状态', v)}
           expandText={
             <>
               ...展开

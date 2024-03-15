@@ -49,7 +49,7 @@ export default () => {
       </DemoBlock>
 
       {/* 支持横向滚动? */}
-      <DemoBlock title='宫格布局'>
+      <DemoBlock title='宫格布局-金刚位'>
         <Grid columns={5} gap={8}>
           {arr.map((item, index) => (
             <Grid.Item key={index}>

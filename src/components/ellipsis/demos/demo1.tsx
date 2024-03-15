@@ -94,6 +94,9 @@ export default () => {
         <Ellipsis
           direction='end'
           content={content}
+          onExpandClick={bool => {
+            console.log('当前展开状态', bool)
+          }}
           expandText={
             <>
               展开
