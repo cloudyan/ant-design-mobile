@@ -8,7 +8,7 @@
   },
   "formatter": {
     "ignore": [
-      "**/.umi/**/*.ts"
+      "**/.umi/*"
     ],
     "enabled": true,
     "indentWidth": 2,
@@ -16,6 +16,9 @@
     "lineWidth": 80
   },
   "javascript": {
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    },
     "globals": [
       "$",
       "_"
