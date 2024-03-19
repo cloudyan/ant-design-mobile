@@ -36,11 +36,7 @@ const directionOptions = ['row', 'row-reverse', 'column', 'column-reverse']
 const ButtonOption = (props: any) => {
   const { options, onChange } = props
   const content = options.map((option: any) => {
-    return (
-      <>
-        <CapsuleTabs.Tab title={option} key={option} />
-      </>
-    )
+    return <CapsuleTabs.Tab title={option} key={option} />
   })
 
   return (

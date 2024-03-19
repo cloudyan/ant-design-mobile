@@ -35,6 +35,7 @@ export type MaskProps = {
   destroyOnClose?: boolean
   forceRender?: boolean
   disableBodyScroll?: boolean
+  // eslint-disable-next-line ban-types
   color?: 'white' | 'black' | (string & {})
   opacity?: 'default' | 'thin' | 'thick' | number
   getContainer?: GetContainer

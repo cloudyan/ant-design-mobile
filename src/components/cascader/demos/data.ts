@@ -147,13 +147,13 @@ export const options = [
   },
 ]
 
-export const longOptions = new Array(20).fill('').map((value, index) => ({
+export const longOptions = Array.from({ length: 20 }).map((value, index) => ({
   label: '标题 ' + (index + 1),
   value: '' + (index + 1),
-  children: new Array(20).fill('').map((value_, index_) => ({
+  children: Array.from({ length: 20 }).map((value_, index_) => ({
     label: `标题 ${index + 1}/${index_ + 1}`,
     value: `${index + 1}/${index_ + 1}`,
-    children: new Array(20).fill('').map((value__, index__) => ({
+    children: Array.from({ length: 20 }).map((value__, index__) => ({
       label: `标题 ${index + 1}/${index_ + 1}/${index__ + 1}`,
       value: `${index + 1}/${index_ + 1}/${index__ + 1}`,
     })),

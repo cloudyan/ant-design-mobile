@@ -314,8 +314,8 @@ const Image = forwardRef<HTMLImageElement, ImageProps>((props, ref) => {
 
   return (
     <img
-      {...rest}
       key={fallback}
+      {...rest}
       ref={mergedRef}
       style={{ visibility, ...style }}
       alt={alt}

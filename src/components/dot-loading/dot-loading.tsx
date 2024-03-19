@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
+import classNames from 'classnames'
 import { mergeProps } from '../../utils/with-default-props'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
-import classNames from 'classnames'
 
 const classPrefix = `adm-dot-loading`
 
@@ -12,6 +12,12 @@ const colorRecord: Record<string, string> = {
 }
 
 export type DotLoadingProps = {
+  // 为啥要加上 `& {}`
+  // https://github.com/ant-design/ant-design-mobile/pull/4227
+  // string & {} 是个比较 [hack](https://stackoverflow.com/questions/61047551/typescript-union-of-string-and-string-literals) 的方式，
+  // 能真正推导出 literal 和 string 的联合类型，使用时会有 literal 枚举值的提示（如下图），一石二鸟。
+  // 不加 & {} 的话，color 推导出来的类型会丢失字符串枚举值，和直接声明为 string 类型没啥区别。
+  // eslint-disable-next-line ban-types
   color?: 'default' | 'primary' | 'white' | (string & {})
 } & NativeProps
 

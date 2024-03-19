@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 import { mergeProps } from '../../utils/with-default-props'
 
-type numericProp = [Number, String]
+type numericProp = [number, string]
 // type makeNumericProp = <T>(defaultVal: T) => ({
 //   type: numericProp,
 //   default: typeof defaultVal,

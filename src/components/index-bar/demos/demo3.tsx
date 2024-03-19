@@ -15,7 +15,7 @@ const lorem = new LoremIpsum({
 })
 
 const getRandomList = (min: number, max: number): string[] => {
-  return new Array(Math.floor(Math.random() * (max - min) + min)).fill('')
+  return Array.from({ length: Math.floor(Math.random() * (max - min) + min) })
 }
 
 const charCodeOfA = 'A'.charCodeAt(0)

@@ -22,6 +22,7 @@ export type TagProps = {
     | 'success'
     | 'warning'
     | 'danger'
+    // eslint-disable-next-line ban-types
     | (string & {})
   fill?: 'solid' | 'outline'
   round?: boolean

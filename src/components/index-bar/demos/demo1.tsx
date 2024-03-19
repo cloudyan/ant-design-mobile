@@ -3,7 +3,10 @@ import { IndexBar, List } from 'antd-mobile'
 import { lorem } from 'demos'
 
 const getRandomList = (min: number, max: number): string[] => {
-  return new Array(Math.floor(Math.random() * (max - min) + min)).fill('')
+  // unicorn/no-new-array: Do not use `new Array(singleArgument)`
+  // return new Array(Math.floor(Math.random() * (max - min) + min)).fill('')
+  const n = Math.floor(Math.random() * (max - min) + min)
+  return Array.from({ length: n })
 }
 
 const charCodeOfA = 'A'.charCodeAt(0)

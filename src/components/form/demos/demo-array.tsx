@@ -44,7 +44,7 @@ export default () => {
         >
           {fields =>
             fields.map(({ index }) => (
-              <>
+              <div key={index}>
                 <Form.Item
                   name={[index, 'name']}
                   label='姓名'
@@ -55,7 +55,7 @@ export default () => {
                 <Form.Item name={[index, 'address']} label='地址'>
                   <Input placeholder='请输入地址' />
                 </Form.Item>
-              </>
+              </div>
             ))
           }
         </Form.Array>

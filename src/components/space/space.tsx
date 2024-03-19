@@ -43,11 +43,15 @@ export const Space: FC<SpaceProps> = p => {
       })}
       onClick={onClick}
     >
-      {React.Children.map(props.children, child => {
+      {React.Children.map(props.children, (child, index) => {
         return (
           child !== null &&
           child !== undefined && (
-            <div className={`${classPrefix}-item`} style={itemStyle}>
+            <div
+              key={index}
+              className={`${classPrefix}-item`}
+              style={itemStyle}
+            >
               {child}
             </div>
           )

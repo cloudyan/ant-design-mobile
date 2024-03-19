@@ -66,7 +66,9 @@ export const Coupon: FC<CouponProps> = p => {
   const { disabled } = props
   let faceDescription: any =
     (props.disabled && props.reason) || props.description || ''
-  faceDescription = faceDescription.split(/\n/).map((it: any) => <p>{it}</p>)
+  faceDescription = faceDescription
+    .split(/\n/)
+    .map((it: any, index: number) => <p key={index}>{it}</p>)
 
   const faceName = (
     <>

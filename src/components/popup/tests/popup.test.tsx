@@ -18,7 +18,7 @@ describe('Popup', () => {
 
     await mockDrag(
       document.querySelector('.adm-popup') as Element,
-      new Array(4).fill(0).map((_, i) => {
+      Array({ length: 4 }).map((_, i) => {
         return {
           clientY: 400 - 50 * i,
         }
@@ -38,7 +38,7 @@ describe('Popup', () => {
 
     await mockDrag(
       document.querySelector('.adm-popup') as Element,
-      new Array(6).fill(0).map((_, i) => {
+      Array({ length: 6 }).map((_, i) => {
         return {
           clientY: 50 * i,
         }
