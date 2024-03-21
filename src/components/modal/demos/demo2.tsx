@@ -64,6 +64,7 @@ export default () => {
         <Space direction='vertical' block>
           <Button
             block
+            color='primary'
             onClick={async () => {
               await Modal.alert({
                 content: '人在天边月上明',
@@ -77,6 +78,7 @@ export default () => {
           <Divider />
           <Button
             block
+            color='danger'
             onClick={async () => {
               const result = await Modal.confirm({
                 content: '人在天边月上明',
