@@ -123,6 +123,7 @@ const Declarative = () => {
         visible={visible}
         content='人在天边月上明'
         closeOnAction
+        maskStyle={{ opacity: 0.4, backgroundColor: 'red' }}
         onClose={() => {
           setVisible(false)
         }}

@@ -111,8 +111,8 @@ export const Mask: FC<MaskProps> = p => {
         ref={ref}
         aria-hidden
         style={{
-          ...props.style,
           background,
+          ...props.style, // Fix: Modal(使用 maskStyle) -> CenterPopup -> Mask, 无法改变背景色
           opacity,
           display: active ? undefined : 'none',
         }}

@@ -67,7 +67,7 @@ const CustomOpacity: FC = () => {
       <Mask
         visible={visible}
         onMaskClick={() => setVisible(false)}
-        opacity={1}
+        opacity={0.8}
       />
       <Button onClick={() => setVisible(true)}>
         显示自定义透明度的背景蒙层
