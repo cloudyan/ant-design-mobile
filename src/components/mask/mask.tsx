@@ -103,10 +103,10 @@ export const Mask: FC<MaskProps> = p => {
         ref={ref}
         aria-hidden
         style={{
-          ...props.style,
           background,
           opacity,
           display: active ? undefined : 'none',
+          ...props.style,
         }}
         onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
           if (e.target === e.currentTarget) {
