@@ -87,22 +87,70 @@ export default () => {
 
 自行按需扩展
 
-```css
-/* 红 橙 黄 绿 青 蓝 紫 彩 */
-.adm-theme-m1 {
-  --adm-color-primary: #17B271;
+```less
+
+.css-var {
+  /* 红 橙 黄 绿 青 蓝 紫 */
+  --ant-red: #F5222D;
+  --ant-volcano: #FA541C;
+  --ant-orange: #FA8C16;
+  --ant-gold: #FAAD14;
+  --ant-yellow: #FADB14;
+  --ant-lime: #A0D911;
+  --ant-green: #52C41A;
+  --ant-green2: #17B271;
+  --ant-cyan: #13C2C2;
+  --ant-blue: #1677ff;
+  --ant-geekblue: #2F54EB;
+  --ant-purple: #722ED1;
+  --ant-magenta: #EB2F96;
+  --ant-pink: #eb2f96;
+
+  // Dust Red / 薄暮 斗志、奔放
+  --ant-red-6: #f5222d;
+  // Volcano / 火山 醒目、澎湃
+  --ant-volcano-6: #fa541c;
+  // Sunset Orange / 日暮 温暖、欢快
+  --ant-orange-6: #fa8c16;
+  // Calendula Gold / 金盏花 活力、积极
+  --ant-gold-6: #faad14;
+  // Sunrise Yellow / 日出 出生、阳光
+  --ant-yellow-6: #fadb14;
+  // Lime / 青柠 自然、生机
+  --ant-lime-6: #a0d911;
+  // Polar Green / 极光绿 健康、创新
+  --ant-green-6: #52c41a;
+  // Cyan / 明青 希望、坚强
+  --ant-cyan-6: #13c2c2;
+  // Daybreak Blue / 拂晓蓝 包容、科技、普惠
+  --ant-blue-6: #1677ff;
+  // Geek Blue / 极客蓝 探索、钻研
+  --ant-geekblue-6: #2f54eb;
+  // Golden Purple / 酱紫 优雅、浪漫
+  --ant-purple-6: #722ed1;
+  // Magenta / 法式洋红 明快、感性
+  --ant-magenta-6: #eb2f96;
+  --ant-pink-6: #eb2f96;
 }
 
-.adm-theme-m2 {
-  --adm-color-primary: #3E5DD8;
+.adm-theme-red {
+  --adm-color-primary: var(--ant-red);
 }
 
-.adm-theme-m3 {
-  --adm-color-primary: #3E5DD8;
+.adm-theme-volcano {
+  --adm-color-primary: var(--ant-volcano);
 }
 
-.adm-theme-m9 {
-  --adm-color-primary: #3E5DD8;
+.adm-theme-green {
+  --adm-color-primary: var(--ant-green);
+}
+
+.adm-theme-blue {
+  --adm-color-primary: var(--ant-blue);
+}
+
+.adm-theme-purple {
+  --adm-color-primary: var(--ant-purple);
 }
 ```
 
@@ -113,3 +161,13 @@ export default () => {
 ### 主题换肤方案探索
 
 可以参考 https://mp.weixin.qq.com/s/a-qqUzyClY9Binwsk2-Ltw
+
+## 扩展知识
+
+### 色板
+
+- Ant Design [色彩体系](https://ant.design/docs/spec/colors-cn)
+  - [色板生成工具](https://ant.design/docs/spec/colors-cn#%E8%89%B2%E6%9D%BF%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7)
+- Ant Design [暗黑模式](https://ant.design/docs/spec/dark-cn)
+- AntV 色板是基于 Ant Design 色彩体系
+  - https://antv.antgroup.com/specification/language/palette

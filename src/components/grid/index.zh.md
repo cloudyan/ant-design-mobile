@@ -1,10 +1,10 @@
-# Grid 栅格
+# Grid 网格
 
 用于业务中多个子功能的导航。
 
 - Grid
   - PC 端使用 24 栅格系统（基于 Flex 布局）
-  - Mobile 端的栅格系统（基于 Grid 布局）
+  - Mobile 端使用 grid 网格系统（基于 Grid 布局）
 - Flex 弹性布局，基于 flex 布局
 - Space 设置组件水平或垂直统一间距
 

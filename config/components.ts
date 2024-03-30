@@ -30,6 +30,7 @@ export const components = {
     '/components/infinite-scroll',
     '/components/list',
     '/components/page-indicator',
+    '/components/statistic',
     '/components/steps',
     '/components/swiper',
     '/components/tag',

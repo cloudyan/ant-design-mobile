@@ -9,6 +9,7 @@ const classPrefix = 'adm-skeleton'
 
 export type SkeletonProps = {
   animated?: boolean
+  children?: React.ReactNode
 } & NativeProps<'--width' | '--height' | '--border-radius'>
 
 export const Skeleton: FC<SkeletonProps> = props => {
@@ -18,7 +19,9 @@ export const Skeleton: FC<SkeletonProps> = props => {
       className={classNames(classPrefix, {
         [`${classPrefix}-animated`]: props.animated,
       })}
-    />
+    >
+      {props.children}
+    </div>
   )
 }
 
