@@ -100,7 +100,7 @@ div.adm-px-tester {
 
 // 推荐以采用 antd-mobile 的高清方案
 // 0.5px 细线
-[class*='cc-hairline']::after {
+[class*='adm-hairline']::after {
   content: ' ';
   width: 200%;
   height: 200%;
@@ -115,7 +115,7 @@ div.adm-px-tester {
   /* border: 1px solid rgba(0,0,0,.2); */
 }
 
-.cc-hairline {
+.adm-hairline {
   &,
   &--top,
   &--left,
@@ -148,4 +148,70 @@ div.adm-px-tester {
   }
 }
 
-// 布局辅助样式
+// 字体辅助
+.f10 {
+  font-size: 12px;
+  transform: scale(0.8333);
+}
+
+// Flex 布局辅助样式
+.adm-flex {
+  display: flex;
+
+  &--inline {
+    display: inline-flex;
+  }
+  &--block,
+  &--fill {
+    display: flex;
+  }
+  &--wrap {
+    flex-wrap: wrap;
+  }
+
+  &--vertical {
+    flex-direction: column;
+  }
+  &--horizontal {
+    flex-direction: row;
+  }
+
+  &--align {
+    &-center {
+      align-items: center;
+    }
+    &-start {
+      align-items: flex-start;
+    }
+    &-end {
+      align-items: flex-end;
+    }
+    &-baseline {
+      align-items: baseline;
+    }
+  }
+
+  &--justify {
+    &-center {
+      justify-content: center;
+    }
+    &-start {
+      justify-content: flex-start;
+    }
+    &-end {
+      justify-content: flex-end;
+    }
+    &-between {
+      justify-content: space-between;
+    }
+    &-around {
+      justify-content: space-around;
+    }
+    &-evenly {
+      justify-content: space-evenly;
+    }
+    &-stretch {
+      justify-content: stretch;
+    }
+  }
+}

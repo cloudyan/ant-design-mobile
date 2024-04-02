@@ -6,9 +6,11 @@
 
 .@{class-prefix-space} {
   display: inline-flex;
+
   --gap: 8px;
   --gap-vertical: var(--gap);
   --gap-horizontal: var(--gap);
+
   &-vertical {
     flex-direction: column;
     > .@{class-prefix-space}-item {
@@ -18,6 +20,7 @@
       }
     }
   }
+
   &-horizontal {
     flex-direction: row;
     > .@{class-prefix-space}-item {
@@ -34,9 +37,11 @@
       }
     }
   }
+
   &.@{class-prefix-space}-block {
     display: flex;
   }
+
   &-align {
     &-center {
       align-items: center;

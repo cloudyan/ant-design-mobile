@@ -85,22 +85,22 @@
     // "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json,jsonc,json5]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[css,less,scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
     // "editor.defaultFormatter": "stylelint.vscode-stylelint"
   },
   "[pug,html]": {
     // "editor.defaultFormatter": "HookyQR.beautify"
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[markdown]": {
     // "editor.defaultFormatter": "darkriszty.markdown-table-prettify"
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
-  "[yaml,yml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[yaml,yml,puml]": {
+    "editor.defaultFormatter": "biomejs.biome"
   },
   // vetur
   "[vue]": {
