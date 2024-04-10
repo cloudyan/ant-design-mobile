@@ -171,7 +171,9 @@ export default () => {
     ```
 
 2. 扩大点击区域，增加 `human` 类名
-3. 关于生成的 unit，使用 px，不支持响应式，也需要处理，可改为 em
+3. 关于生成 React 组件，使用 size 属性控制 svg 的宽高
+   1. 此处也使用 svgicon 类名覆写为 1em
+   2. 如要控制 icon 图标大小，可使用 style 设置 fontSize 来实现
 
 ## icon 工程化支持
 
