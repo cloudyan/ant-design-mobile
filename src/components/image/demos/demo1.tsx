@@ -4,6 +4,7 @@ import React from 'react'
 
 import './demo1.less'
 import fitImg from './placeholder.png'
+import fitImgSvg from './placeholder.svg'
 
 const demoSrc =
   'https://images.unsplash.com/photo-1567945716310-4745a6b7844b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60'
@@ -32,15 +33,53 @@ export default () => {
         <div className='shadow'>
           <Space wrap>
             {/* 拉伸图片，填满元素 */}
-            <Image src={fitImg} width={100} height={100} fit='fill' />
+            <Image
+              src={fitImg}
+              width={100}
+              height={100}
+              fit='fill'
+              alt='拉伸图片，填满元素'
+            />
             {/* 等比，长边完全显示 */}
-            <Image src={fitImg} width={100} height={100} fit='contain' />
+            <Image
+              src={fitImg}
+              width={100}
+              height={100}
+              fit='contain'
+              alt='等比，长边完全显示'
+            />
             {/* 等比，短边完全显示，裁剪长边 */}
-            <Image src={fitImg} width={100} height={100} fit='cover' />
+            <Image
+              src={fitImg}
+              width={100}
+              height={100}
+              fit='cover'
+              alt='等比，短边完全显示，裁剪长边'
+            />
             {/* 取 none 或 contain 的较小值 */}
-            <Image src={fitImg} width={100} height={100} fit='scale-down' />
+            <Image
+              src={fitImg}
+              width={100}
+              height={100}
+              fit='scale-down'
+              alt='取 none 或 contain 的较小值'
+            />
             {/* 显示原有尺寸 */}
-            <Image src={fitImg} width={100} height={100} fit='none' />
+            <Image
+              src={fitImg}
+              width={100}
+              height={100}
+              fit='none'
+              alt='显示原有尺寸'
+            />
+          </Space>
+          <Space style={{ width: '80%', marginTop: '20px' }}>
+            <Image
+              src={fitImg}
+              fit='contain'
+              // imgStyle={{ maxWidth: '100%', maxHeight: '100%' }}
+              alt='不超过容器宽高'
+            />
           </Space>
         </div>
       </DemoBlock>

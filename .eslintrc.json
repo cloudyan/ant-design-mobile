@@ -19,7 +19,7 @@
   "overrides": [
     {
       "files": [
-        "**/demos /**/*"
+        "**/demos/**/*"
       ],
       "rules": {
         "react/display-name": "off",
@@ -28,7 +28,7 @@
     },
     {
       "files": [
-        "**/tests /**/*"
+        "**/tests/**/*"
       ],
       "rules": {
         "@typescript-eslint/no-unused-vars": "off",

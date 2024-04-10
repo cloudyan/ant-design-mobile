@@ -24,6 +24,7 @@ const IconEmail = createIcon({
   ),
 })
 
+// cook
 const IconfontSvg = createFromIconfont(
   '//at.alicdn.com/t/c/font_2586256_4dzo7bif4ec.js'
 )
@@ -31,7 +32,7 @@ const IconfontSvg = createFromIconfont(
 export default () => {
   return (
     <div style={{ fontSize: 24 }}>
-      <DemoBlock title='IconCustom'>
+      <DemoBlock title='IconBase'>
         <IconBase />
       </DemoBlock>
 

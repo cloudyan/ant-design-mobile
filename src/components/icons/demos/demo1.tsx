@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconCustom, Space, createIcon, createFromIconfont } from 'antd-mobile'
+import { Space, createIcon, createFromIconfont } from 'antd-mobile'
 import { DemoBlock } from 'demos'
 // 使用 @svgr/webpack 支持直接引入 svg 文件
 import spinUrl, { ReactComponent as SpinSvg } from './spin.svg'

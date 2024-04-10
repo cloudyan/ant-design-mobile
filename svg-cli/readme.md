@@ -35,3 +35,35 @@ document.body.insertAdjacentHTML("afterBegin", '' + SVG + '');
 ```
 
 <script src="sprite.js"></script>
+
+
+## 基于 iconfont 生成本地 React 组件
+
+发现已经有网友开放了 cli 工具: [react-iconfont-cli](https://www.npmjs.com/package/react-iconfont-cli)
+
+推荐使用
+
+```bash
+# 初始化
+npx iconfont-init
+
+# 之后配置好配置，iconfont.json
+
+# 开始生成React标准组件
+npx iconfont-h5
+```
+
+生成配置文件如下
+
+```js
+// iconfont.json
+// 请务必看清是.js后缀而不是.css后缀"
+{
+  "symbol_url": "请参考README.md，复制官网提供的JS链接",
+  "use_typescript": false,
+  "save_dir": "./src/components/iconfont",
+  "trim_icon_prefix": "icon",
+  "unit": "px",
+  "default_icon_size": 16
+}
+```

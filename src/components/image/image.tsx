@@ -16,6 +16,7 @@ export type ImageProps = {
   alt?: string
   width?: number | string
   height?: number | string
+  imgStyle?: NativeProps['style']
   fit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
   placeholder?: ReactNode
   fallback?: ReactNode
@@ -108,6 +109,7 @@ export const Image = staged<ImageProps>(p => {
         style={{
           objectFit: props.fit,
           display: loaded ? 'block' : 'none',
+          ...props.imgStyle,
         }}
         crossOrigin={props.crossOrigin}
         decoding={props.decoding}

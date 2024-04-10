@@ -34,7 +34,7 @@
     "biome:ci": "biome ci ./src",
     "biome:check": "biome format ./src",
     "biome:format": "biome format --write ./src",
-    "oxlint": "oxlint -c ./eslintrc.json ./src",
+    "oxlint": "oxlint -c ./.eslintrc.json ./src",
     "postinstall": "husky install",
     "lint": "eslint . && stylelint \"**/*.{css,less,scss}\"",
     "lint:fix": "prettier --write . && eslint --fix . && stylelint --fix \"**/*.{css,less,scss}\"",
@@ -88,14 +88,8 @@
     "@babel/preset-env": "^7.22.20",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.22.15",
-<<<<<<< HEAD
     "@commitlint/cli": "^19.2.1",
-||||||| parent of 751949cad (feat: enable biome prettier)
-    "@commitlint/cli": "^17.6.1",
-=======
     "@biomejs/biome": "^1.6.1",
-    "@commitlint/cli": "^17.7.1",
->>>>>>> 751949cad (feat: enable biome prettier)
     "@commitlint/config-conventional": "^17.7.0",
     "@docsearch/react": "^3.5.2",
     "@jest/types": "^28.1.3",
