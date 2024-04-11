@@ -57,7 +57,7 @@ const svgSprite = `<svg xmlns='http://www.w3.org/2000/svg' ${arrts}>${symbols.jo
 
 // 如何安全的插入 svgSprite
 // 需要使用 insertAdjacentHTML 在 html 中头部插入
-const svgSpriteJs = `// biome-ignore format: the code should not be formatted\n\nconst SVG = \`${svgSprite}\`;\ndocument.body.insertAdjacentHTML('afterBegin', '' + SVG + '');\n`
+const svgSpriteJs = `// biome-ignore format: the code should not be formatted\n// eslint-disable\n\nconst SVG = \`${svgSprite}\`;\ndocument.body.insertAdjacentHTML('afterBegin', '' + SVG + '');\n`
 fs.writeFileSync('./svg-sprite.js', svgSpriteJs)
 
 // .svgfont {display: inline-block;width: 1em;height: 1em;fill: currentColor;vertical-align: -0.1em;font-size:16px;}
