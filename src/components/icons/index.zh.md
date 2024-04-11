@@ -165,7 +165,7 @@ export default () => {
       width: 1em;
       height: 1em;
       fill: currentColor;
-      vertical-align: -0.1em;
+      vertical-align: -0.125em;
       font-size: 16px;
     }
     ```
