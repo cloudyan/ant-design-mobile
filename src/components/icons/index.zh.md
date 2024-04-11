@@ -4,16 +4,6 @@ Icon 图标组件，支持自定义
 
 推荐参考：https://ant.design/components/icon-cn
 
-## iconfont
-
-- https://www.iconfont.cn/
-
-1. 使用 [iconfont.cn](https://www.iconfont.cn/) 平台做 icon 图标的管理，所有 icon 一目了然
-   1. [图标绘制](https://www.iconfont.cn/help/detail)
-   2. 存储为 svg 格式（建议使用存储为 svg，不要使用导出为 svg）
-2. 解决 iconfont.cn 的产物做图标的使用
-   1. [代码使用](https://www.iconfont.cn/help/detail?helptype=code)
-
 ## 示例
 
 svgr 加载
@@ -32,7 +22,15 @@ IconFont （本地引入 symbol 的方案）
 
 <code src="./demos/demo4.tsx"></code>
 
-## ICON 图标
+antd-mobile-icons 不提供源码，想定制 icon 组件，怎么办？
+
+## 自定义 icon 图标组件库
+
+antd-mobile-icons 不满足业务需求，也没提供源码（[相关 ISSUE 讨论](https://github.com/ant-design/antd-mobile-icons/issues/4)），我们想定制自己的 icon 图标组件库，怎么办？
+
+下面介绍一种方法，能快速实现自定义实现满足业务诉求的 icon 图标组件库
+
+## 关于 ICON 图标
 
 因为图片图标或 font 图标，都存在一些问题
 
@@ -49,6 +47,17 @@ IconFont （本地引入 symbol 的方案）
 
 更多讨论可参考：[#10353](https://github.com/ant-design/ant-design/issues/10353)。
 
+## 关于 iconfont
+
+- https://www.iconfont.cn/
+
+1. 使用 [iconfont.cn](https://www.iconfont.cn/) 平台做 icon 图标的管理，所有 icon 一目了然，方便管理使用
+   1. [图标绘制](https://www.iconfont.cn/help/detail)
+   2. 存储为 svg 格式（建议使用存储为 svg，不要使用导出为 svg）
+2. 如何使用 iconfont.cn 的产物做图标
+   1. [代码使用](https://www.iconfont.cn/help/detail?helptype=code)
+3. 这里我们推荐使用 svg 图标
+
 ### 规范
 
 为了方便管理及使用 svg 图标，做以下规范约定
@@ -60,8 +69,8 @@ IconFont （本地引入 symbol 的方案）
       2. 画布统一正方形
       3. 如需单独使用 svg 格式，建议使用存储为 svg（不要使用导出为 svg）
 2. iconfont 图标库，统一前缀命名规范(需图标库修改设置)
-   1. 设置 `FontClass/Symbol 前缀` 为 `${FontFamily}-` 格式，如 `cook-`
-   2. 设置 `Font Family` 为 `xxfont` 格式，如 `cook`
+   1. 设置 `Font Family` 为 `xxfont` 格式，如 `admfont`
+   2. 设置 `FontClass/Symbol 前缀` 为 `${Font Family}-` 格式，如 `admfont-`
 3. 代码使用，参见以下示例
    1. font-class 方式
    2. symbol 方式（我们使用该模式）
@@ -79,32 +88,44 @@ IconFont （本地引入 symbol 的方案）
 
 iconfont 最多支持一次下载 100 个图标，可通过工具对下载的内容 iconfont.svg 进行分割导出独立的 svg 图标。
 
+下面有可用的 cli 工具
+
 ### Icon 图标工作流
 
-iconfont 管理平台主要面向 UI 和 FE，提供这样一个工作流：
+我们是如下使用的，这里有篇文章页做了总结，可[参考](https://juejin.cn/post/6979874524934176805)
 
-- UI 负责把 icon 上传到平台，通过不同的“大库”区分业务线，形成一个 icon 池；
-- 而 FE 则根据项目需要，从 icon 池中挑选 icon，生成项目，导出外链，下载引入到本地项目中使用。
+iconfont 管理平台主要面向设计师 UI 和 前端开发 FE，主要为下面的工作流以及职责：
 
-职责
+- 设计师 UI 负责把 icon 上传到平台，通过不同的“大库”区分业务线，形成一个 icon 池；
+  - 制作标准 icon，遵守 [图标绘制](https://www.iconfont.cn/help/detail) 规范
+  - 管理 icon 资源池（每个业务一个 Icon 素材池或共用一个池子）
+- 前端开发 FE 则根据项目需要，从 icon 池中挑选 icon，添加到业务项目，导出外链
+  - 规范 icon 命名及使用
+  - 管理 icon 项目库（一般分两个）
+    - 公共库，跟随基础组件库迭代管理，标准化，更稳定
+    - 业务项目库，跟随业务项目迭代管理，更新快，更灵活
 
-- 设计师 UI
-  - 制作标准 icon
-  - 管理 icon 资源池（每个业务一个 Icon 素材池）
-- 前端开发 FE（前端项目 Icon 一般分两个库）
-  - 管理 icon 项目库，管理 icon 命名
-  - 统一去除底色——批量操作-批量去色（暂时我们不需要多色，需要时再考虑）
-  - 公共库，跟随基础组件库迭代管理，标准化，更稳定
-  - 业务项目库，跟随业务项目迭代管理，更新快，更灵活
-    - 每个项目一个 icon 库
-
-- https://juejin.cn/post/6979874524934176805
+> 为避免 iconfont 站点服务异常影响使用，推荐下载引入到本地项目中使用。
 
 ### 更新 Icon 流程
 
-我们使用 cli 脚本 [react-iconfont-cli](https://www.npmjs.com/package/react-iconfont-cli) 将 iconfont 上的 icon 自动转为业务库 svg 的 React组件
+使用 cli 脚本更方便，可以将 iconfont 上的 icon 自动转为业务库 svg 的 React组件。
 
-具体配置参看 `./iconfont.json`
+npm 已经有相应的 cli 工具来处理了——[react-iconfont-cli](https://www.npmjs.com/package/react-iconfont-cli)
+
+```bash
+pnpm i react-iconfont-cli -D
+# 初始化
+npx iconfont-init
+
+# 生成配置文件 iconfont.json，示例如下
+# 配置配置 symbol_url
+
+# 开始生成React标准组件
+npx iconfont-h5
+```
+
+`./iconfont.json` 配置示例：
 
 ```json
 {
@@ -117,31 +138,17 @@ iconfont 管理平台主要面向 UI 和 FE，提供这样一个工作流：
 }
 ```
 
-> symbol_url 为 iconfont.cn 上的 js 地址（对应 Symbol 模式）
-
-更新图标后，重新生成 Symbol 链接，并更新 symbol_url 配置
-
-请务必看清 symbol_url 配置是.js后缀而不是.css后缀。
+注意：`symbol_url` 为 iconfont.cn 上的 js 地址（对应 Symbol 模式），请务必看清 `symbol_url` 配置是.js后缀而不是.css后缀。
 
 ![iconfont-symbol_url](./iconfont-symbol_url.png)
 
-更新配置后，执行脚本即可更新 iconfont 组件
+每次更新 icon 图标后，重新生成 Symbol 链接，更新 symbol_url 配置后，执行脚本 `npx iconfont-h5` 更新项目的 iconfont 组件即可（每次都是重新生成），无需项目工程配合。
 
-```bash
-pnpm i react-iconfont-cli -D
-# 初始化
-npx iconfont-init
-
-# 生成配置文件 iconfont.json
-# 配置配置 symbol_url
-
-# 开始生成React标准组件
-npx iconfont-h5
-```
+如果是 vue 项目，也有对应的 cli，可自行探索下。
 
 ### 使用 icon
 
-如下方式使用 icon
+iconfont 组件，使用方式如下
 
 ```jsx
 import IconFont from '@/components/iconfont';
@@ -155,25 +162,40 @@ export default () => {
 }
 ```
 
-注意：因为 react-iconfont-cli 生成的 React 图标组件有些问题，我们需要做一些改造
+注意: 这个 `react-iconfont-cli` 工具生成的 React 图标组件有些缺陷，下面有列出问题及解决方案
 
-1. svg 图标不应该使用 block 样式，使用下面类名 `svgicon` 进行覆盖
+等有空了，可以提个 PR 优化或 fork 修复。
 
-    ```css
-    .svgicon {
-      display: inline-block !important;
-      width: 1em;
-      height: 1em;
-      fill: currentColor;
-      vertical-align: -0.125em;
-      font-size: 16px;
-    }
-    ```
-
+1. svg 图标不应该使用 `block` 内联样式，使用下面类名 `svgicon` 进行覆盖
 2. 扩大点击区域，增加 `human` 类名
 3. 关于生成 React 组件，使用 size 属性控制 svg 的宽高
-   1. 此处也使用 svgicon 类名覆写为 1em
-   2. 如要控制 icon 图标大小，可使用 style 设置 fontSize 来实现
+   1. 此处也使用 `svgicon` 类名覆写为 `1em`
+   2. 如要控制 icon 图标大小，可使用 style 熟悉设置 `fontSize` 来实现
+
+```css
+.svgicon {
+  display: inline-block !important;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: -0.125em;
+  font-size: 16px;
+}
+/* 优化点击区域 */
+.human {
+  position: relative;
+}
+.human:before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+}
+```
+
+另一个方案，也比较推荐，但如果项目较老，可能出现构建报错，不如上面的方案独立性好。
 
 ## icon 工程化支持
 
