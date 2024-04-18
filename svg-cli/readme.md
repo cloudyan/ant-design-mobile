@@ -60,10 +60,14 @@ npx iconfont-h5
 // 请务必看清是.js后缀而不是.css后缀"
 {
   "symbol_url": "请参考README.md，复制官网提供的JS链接",
-  "use_typescript": false,
+  // "symbol_url": "//at.alicdn.com/t/c/font_4509746_fvvx6l350yb.js",
+  "use_typescript": true,
   "save_dir": "./src/components/iconfont",
-  "trim_icon_prefix": "icon",
-  "unit": "px",
-  "default_icon_size": 16
+  "trim_icon_prefix": "",
+  "default_class_name": "svgicon",
+  "default_style": {
+  },
+  "unit": "em",
+  "default_icon_size": 1
 }
 ```

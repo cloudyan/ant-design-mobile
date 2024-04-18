@@ -92,7 +92,7 @@ iconfont 最多支持一次下载 100 个图标，可通过工具对下载的内
 
 ### Icon 图标工作流
 
-我们是如下使用的，这里有篇文章页做了总结，可[参考](https://juejin.cn/post/6979874524934176805)
+我们是如下使用的
 
 iconfont 管理平台主要面向设计师 UI 和 前端开发 FE，主要为下面的工作流以及职责：
 
@@ -104,6 +104,8 @@ iconfont 管理平台主要面向设计师 UI 和 前端开发 FE，主要为下
   - 管理 icon 项目库（一般分两个）
     - 公共库，跟随基础组件库迭代管理，标准化，更稳定
     - 业务项目库，跟随业务项目迭代管理，更新快，更灵活
+
+![iconfont-flow](./iconfont-flow.jpeg)
 
 > 为避免 iconfont 站点服务异常影响使用，推荐下载引入到本地项目中使用。
 
@@ -370,3 +372,5 @@ module.exports = {
 - [使用 SVG 交付 Octicon](https://github.com/blog/2112-delivering-octicons-with-svg)
 - [内联 SVG 与图标字体](https://css-tricks.com/icon-fonts-vs-svg/)
 - [说真的，不要使用图标字体](https://cloudfour.com/thinks/seriously-dont-use-icon-fonts/)
+- https://github.com/YMFE/yicon
+- https://juejin.cn/post/6979874524934176805
