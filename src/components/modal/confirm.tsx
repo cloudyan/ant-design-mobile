@@ -29,6 +29,7 @@ export function confirm(p: ModalConfirmProps) {
     },
     p
   )
+
   return new Promise<boolean>(resolve => {
     show({
       ...props,

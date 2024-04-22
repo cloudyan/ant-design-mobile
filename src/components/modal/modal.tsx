@@ -1,13 +1,13 @@
 import React from 'react'
 import type { FC, ReactNode } from 'react'
-import { mergeProps } from '../../utils/with-default-props'
 import classNames from 'classnames'
-import { Action, ModalActionButton } from './modal-action-button'
+import { NativeProps } from '../../utils/native-props'
+import { mergeProps } from '../../utils/with-default-props'
 import Image from '../image'
 import Space from '../space'
 import AutoCenter from '../auto-center'
-import { NativeProps } from '../../utils/native-props'
 import CenterPopup, { CenterPopupProps } from '../center-popup'
+import { Action, ModalActionButton } from './modal-action-button'
 
 export type ModalProps = Pick<
   CenterPopupProps,
@@ -45,6 +45,7 @@ const defaultProps = {
 
 export const Modal: FC<ModalProps> = p => {
   const props = mergeProps(defaultProps, p)
+
   const element = (
     <>
       {!!props.image && (
