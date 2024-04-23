@@ -2,12 +2,14 @@ import React from 'react'
 import type { FC, ReactNode, CSSProperties } from 'react'
 import classNames from 'classnames'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
+import { mergeProps } from 'antd-mobile/src/utils/with-default-props'
 
 const classPrefix = `adm-card`
 
 export type CardProps = {
   title?: ReactNode
   extra?: ReactNode
+  bordered?: boolean
   headerStyle?: CSSProperties
   headerClassName?: string
   bodyStyle?: CSSProperties
@@ -18,7 +20,13 @@ export type CardProps = {
   children?: ReactNode
 } & NativeProps
 
-export const Card: FC<CardProps> = props => {
+const defaultProps = {
+  bordered: true,
+}
+
+export const Card: FC<CardProps> = p => {
+  const props = mergeProps(defaultProps, p)
+
   const renderHeader = () => {
     if (!(props.title || props.extra)) {
       return null

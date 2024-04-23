@@ -16,6 +16,10 @@
 
 <code src="./demos/demo1.tsx"></code>
 
+组合使用
+
+<code src="./demos/demo2.tsx"></code>
+
 ## Flex
 
 ### 属性

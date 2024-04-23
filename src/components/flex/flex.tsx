@@ -53,6 +53,8 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>((p, ref) => {
   const mergedCls = classNames(className, classPrefix, {
     // [`${classPrefix}-vertical`]: mergedVertical,
   })
+
+  // 通过样式控制
   const mergedStyle: CSSProperties = {
     ...style,
     flex,

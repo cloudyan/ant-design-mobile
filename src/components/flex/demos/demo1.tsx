@@ -15,7 +15,7 @@ const baseStyle: CSSProperties = {
 
 const boxStyle: CSSProperties = {
   width: '100%',
-  height: 120,
+  height: 200,
   borderRadius: 6,
   border: '1px solid #40a9ff',
 }
@@ -51,7 +51,7 @@ const ButtonOption = (props: any) => {
 export default () => {
   const [direction, setDirection] = useState<FlexProps['direction']>()
   const [justify, setJustify] = useState<FlexProps['justify']>()
-  const [alignItems, setAlignItems] = useState<FlexProps['align']>()
+  const [align, setAlign] = useState<FlexProps['align']>()
 
   return (
     <>
@@ -76,14 +76,23 @@ export default () => {
       <DemoBlock title='对齐方式'>
         {/* <Segmented options={justifyOptions} onChange={setJustify as SegmentedProps['onChange']} /> */}
         <div>
+          Select direction :
+          <ButtonOption options={directionOptions} onChange={setDirection} />
+        </div>
+        <div>
           Select justify :
           <ButtonOption options={justifyOptions} onChange={setJustify} />
         </div>
         <div>
           Select align :
-          <ButtonOption options={alignOptions} onChange={setAlignItems} />
+          <ButtonOption options={alignOptions} onChange={setAlign} />
         </div>
-        <Flex style={boxStyle} justify={justify} align={alignItems}>
+        <Flex
+          style={boxStyle}
+          direction={direction}
+          justify={justify}
+          align={align}
+        >
           <Button color='primary'>a</Button>
           <Button color='primary'>b</Button>
           <Button color='primary'>c</Button>
