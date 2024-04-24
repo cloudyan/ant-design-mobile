@@ -15,7 +15,7 @@ const baseStyle: CSSProperties = {
 
 const boxStyle: CSSProperties = {
   width: '100%',
-  height: 200,
+  height: 240,
   borderRadius: 6,
   border: '1px solid #40a9ff',
 }
@@ -28,10 +28,10 @@ const justifyOptions = [
   'space-around',
   'space-evenly',
 ]
-
+// 默认值放第一个
 const alignOptions = ['normal', 'flex-start', 'center', 'flex-end', 'stretch']
-
 const directionOptions = ['row', 'row-reverse', 'column', 'column-reverse']
+const wrapOptions = ['nowrap', 'wrap', 'wrap-reverse']
 
 const ButtonOption = (props: any) => {
   const { options, onChange } = props
@@ -50,8 +50,23 @@ const ButtonOption = (props: any) => {
 
 export default () => {
   const [direction, setDirection] = useState<FlexProps['direction']>()
-  const [justify, setJustify] = useState<FlexProps['justify']>()
+  const [wrap, setWrap] = useState<FlexProps['wrap']>()
   const [align, setAlign] = useState<FlexProps['align']>()
+  const [justify, setJustify] = useState<FlexProps['justify']>()
+
+  const btnStyle = {
+    width: 80,
+    height: 40,
+    margin: 8,
+  }
+
+  const btns = ['a', 'b', 'c', 'd', 'e', 'f', 'g'].map(text => {
+    return (
+      <Button color='primary' style={btnStyle}>
+        {text}
+      </Button>
+    )
+  })
 
   return (
     <>
@@ -87,16 +102,18 @@ export default () => {
           Select align :
           <ButtonOption options={alignOptions} onChange={setAlign} />
         </div>
+        <div>
+          Select wrap :
+          <ButtonOption options={wrapOptions} onChange={setWrap} />
+        </div>
         <Flex
           style={boxStyle}
           direction={direction}
-          justify={justify}
+          wrap={wrap}
           align={align}
+          justify={justify}
         >
-          <Button color='primary'>a</Button>
-          <Button color='primary'>b</Button>
-          <Button color='primary'>c</Button>
-          <Button color='primary'>d</Button>
+          {btns}
         </Flex>
       </DemoBlock>
     </>

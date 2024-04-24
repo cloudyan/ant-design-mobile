@@ -18,6 +18,7 @@ const imgStyle: CSSProperties = {
   height: 130,
 }
 
+// 常见布局模块
 export default () => {
   const button = (
     <Button
@@ -33,11 +34,8 @@ export default () => {
 
   return (
     <>
-      <DemoBlock title='组合使用'>
-        <Card
-          style={cardStyle}
-          // styles={{ body: { padding: 0, overflow: 'hidden' } }}
-        >
+      <DemoBlock title='两列弹性布局'>
+        <Card style={cardStyle}>
           <Flex justify='space-between'>
             <img
               alt='avatar'
@@ -60,10 +58,7 @@ export default () => {
             </Flex>
           </Flex>
         </Card>
-        <Card
-          style={cardStyle}
-          // styles={{ body: { padding: 0, overflow: 'hidden' } }}
-        >
+        <Card style={cardStyle}>
           <Flex justify='space-between'>
             <img
               alt='avatar'
@@ -85,10 +80,7 @@ export default () => {
             </Flex>
           </Flex>
         </Card>
-        <Card
-          style={cardStyle}
-          // styles={{ body: { padding: 0, overflow: 'hidden' } }}
-        >
+        <Card style={cardStyle}>
           <Flex justify='space-between'>
             <img
               alt='avatar'
@@ -107,6 +99,32 @@ export default () => {
               </Flex>
               {button}
             </Flex>
+          </Flex>
+        </Card>
+      </DemoBlock>
+
+      <DemoBlock title='三列弹性布局'>
+        <Card style={cardStyle}>
+          <Flex justify='space-between'>
+            <img
+              alt='avatar'
+              src='https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+              style={imgStyle}
+            />
+            <Flex
+              direction='column'
+              justify='space-between'
+              flex={1}
+              style={{ overflow: 'hidden' }}
+            >
+              <Flex direction='column' align='flex-start'>
+                <div>Ant Design Mobile</div>
+                <p className='max-line-2'>
+                  这个是描述，有可能很长，有可能有一行或两行的样子
+                </p>
+              </Flex>
+            </Flex>
+            <Flex>xxx</Flex>
           </Flex>
         </Card>
       </DemoBlock>

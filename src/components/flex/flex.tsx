@@ -18,6 +18,7 @@ export type FlexProps<P = AnyObject> = {
   align?: CSSProperties['alignItems']
   flex?: CSSProperties['flex']
   gap?: CSSProperties['gap'] | SizeType
+  role?: string
   component?: CustomComponent<P>
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   children?: ReactNode
@@ -73,6 +74,7 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>((p, ref) => {
       style={mergedStyle}
       className={mergedCls}
       onClick={props.onClick}
+      role={props.role}
     >
       {children}
     </Component>
