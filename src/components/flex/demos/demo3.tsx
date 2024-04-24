@@ -4,25 +4,37 @@ import { DemoBlock } from 'demos'
 import type { CSSProperties } from 'react'
 import type { FlexProps } from 'antd-mobile'
 
+import './demo.less'
+
+// 常见布局
 // #4096ff #1677ff #0958d9 #4096ff
 // Header Sider Content Footer
+const styles = {
+  header: { backgroundColor: '#4096ff' },
+  sider: { backgroundColor: '#1677ff' },
+  content: { backgroundColor: '#0958d9' },
+  footer: { backgroundColor: '#4096ff' },
+  left: { backgroundColor: '#1677ff' },
+  center: { backgroundColor: '#0958d9' },
+  right: { backgroundColor: '#1b73f0' },
+}
 const Header = () => (
-  <Flex role='header' style={{ backgroundColor: '#4096ff' }}>
+  <Flex role='header' style={styles.header}>
     Header
   </Flex>
 )
 const Sider = () => (
-  <Flex role='sider' style={{ backgroundColor: '#1677ff' }}>
+  <Flex role='sider' style={styles.sider}>
     Sider
   </Flex>
 )
 const Content = () => (
-  <Flex role='content' flex={1} style={{ backgroundColor: '#0958d9' }}>
+  <Flex role='content' flex={1} style={styles.content}>
     Content
   </Flex>
 )
 const Footer = () => (
-  <Flex role='footer' style={{ backgroundColor: '#4096ff' }}>
+  <Flex role='footer' style={styles.footer}>
     Footer
   </Flex>
 )
@@ -68,6 +80,41 @@ export default () => {
               <Content />
               <Footer />
             </Flex>
+          </Flex>
+        </Flex>
+      </DemoBlock>
+
+      {/* Holy Grail Layout */}
+      {/* 页面分上中下三部分，中间部分又分左中右三部分 */}
+      <DemoBlock title='圣杯布局'>
+        <Flex direction='column' style={{ color: '#fff', height: 120 }}>
+          <Header />
+          <Flex flex={1}>
+            <Flex style={styles.left}>Left</Flex>
+            <Flex flex={1} style={styles.center}>
+              Center
+            </Flex>
+            <Flex style={styles.right}>Right</Flex>
+          </Flex>
+          <Footer />
+        </Flex>
+      </DemoBlock>
+
+      <DemoBlock title='百分比布局'>
+        <Flex gap={10} direction='column'>
+          <Flex gap={10}>
+            <Flex className='grid-flex-cell u-1of2'>1/2</Flex>
+            <Flex className='grid-flex-cell'>auto</Flex>
+            <Flex className='grid-flex-cell'>auto</Flex>
+          </Flex>
+          <Flex gap={10}>
+            <Flex className='grid-flex-cell'>auto</Flex>
+            <Flex className='grid-flex-cell u-1of3'>1/3</Flex>
+          </Flex>
+          <Flex gap={10}>
+            <Flex className='grid-flex-cell u-1of4'>1/4</Flex>
+            <Flex className='grid-flex-cell'>auto</Flex>
+            <Flex className='grid-flex-cell u-1of3'>1/3</Flex>
           </Flex>
         </Flex>
       </DemoBlock>

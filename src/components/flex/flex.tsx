@@ -3,6 +3,8 @@ import type { FC, ReactNode, CSSProperties } from 'react'
 import classNames from 'classnames'
 import { NativeProps, withNativeProps } from '../../utils/native-props'
 import { mergeProps } from '../../utils/with-default-props'
+import { dir } from 'console'
+import { wrap } from 'module'
 
 const classPrefix = 'adm-flex'
 
@@ -27,9 +29,9 @@ export type FlexProps<P = AnyObject> = {
 const defaultProps = {
   direction: 'row',
   wrap: 'nowrap',
-  justify: 'normal',
-  align: 'normal',
   flex: 'normal',
+  align: 'normal',
+  justify: 'normal',
   gap: '0',
   component: 'div',
 }
@@ -52,18 +54,21 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>((p, ref) => {
   } = props
 
   const mergedCls = classNames(className, classPrefix, {
-    // [`${classPrefix}-vertical`]: mergedVertical,
+    [`${classPrefix}-align-${props.align}`]: props.align,
+    [`${classPrefix}-justify-${props.justify}`]: props.justify,
+    [`${classPrefix}-wrap-${props.wrap}`]: props.wrap,
+    [`${classPrefix}-direction-${props.direction}`]: props.direction,
   })
 
-  // 通过样式控制
+  // 通过样式控制，优先级太高，不便于重写
   const mergedStyle: CSSProperties = {
     ...style,
     flex,
 
-    flexDirection: direction,
-    flexWrap: wrap,
-    justifyContent: justify,
-    alignItems: align,
+    // flexDirection: direction,
+    // flexWrap: wrap,
+    // justifyContent: justify,
+    // alignItems: align,
     gap: gap,
   }
 
