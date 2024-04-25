@@ -64,3 +64,99 @@
     align-items: normal;
   }
 }
+
+// 还可以通过挂载 class 方式实现
+// 可参考 https://tailwindcss.com/docs/flex-wrap
+// prettier-ignore
+.flex {
+  // direction
+  &-row { flex-direction: row; }
+  &-row-reverse { flex-direction: row-reverse; }
+  &-col { flex-direction: column; }
+  &-col-reverse { flex-direction: column-reverse; }
+
+  // wrap
+  &-wrap { flex-wrap: wrap; }
+  &-wrap-reverse { flex-wrap: wrap-reverse; }
+  &-nowrap { flex-wrap: nowrap; }
+
+  // flex
+  &-1 { flex: 1 1 0%; }
+  &-auto { flex: 1 1 auto; }
+  &-initial { flex: 0 1 auto; }
+  &-none { flex: none; }
+
+  // grow
+  .grow { flex-grow: 1; }
+  .grow-0 { flex-grow: 0; }
+  // shrink
+  .shrink { flex-shrink: 1; }
+  .shrink-0 { flex-shrink: 0; }
+
+  // basis
+  .basis-0 { flex-basis: 0px; }
+  .basis-1 { flex-basis: 0.25rem; /* 4px */ }
+  .basis-2 { flex-basis: 0.5rem; /* 8px */ }
+  .basis-3 { flex-basis: 0.75rem; /* 12px */ }
+  .basis-4 { flex-basis: 1rem; /* 16px */ }
+  .basis-5 { flex-basis: 1.25rem; /* 20px */ }
+  .basis-6 { flex-basis: 1.5rem; /* 24px */ }
+  .basis-7 { flex-basis: 1.75rem; /* 28px */ }
+  .basis-8 { flex-basis: 2rem; /* 32px */ }
+  .basis-9 { flex-basis: 2.25rem; /* 36px */ }
+  .basis-10 { flex-basis: 2.5rem; /* 40px */ }
+  .basis-11 { flex-basis: 2.75rem; /* 44px */ }
+  .basis-12 { flex-basis: 3rem; /* 48px */ }
+  .basis-14 { flex-basis: 3.5rem; /* 56px */ }
+  .basis-16 { flex-basis: 4rem; /* 64px */ }
+  .basis-20 { flex-basis: 5rem; /* 80px */ }
+  .basis-24 { flex-basis: 6rem; /* 96px */ }
+  .basis-28 { flex-basis: 7rem; /* 112px */ }
+  .basis-32 { flex-basis: 8rem; /* 128px */ }
+  .basis-36 { flex-basis: 9rem; /* 144px */ }
+  .basis-40 { flex-basis: 10rem; /* 160px */ }
+  .basis-44 { flex-basis: 11rem; /* 176px */ }
+  .basis-48 { flex-basis: 12rem; /* 192px */ }
+  .basis-52 { flex-basis: 13rem; /* 208px */ }
+  .basis-56 { flex-basis: 14rem; /* 224px */ }
+  .basis-60 { flex-basis: 15rem; /* 240px */ }
+  .basis-64 { flex-basis: 16rem; /* 256px */ }
+  .basis-72 { flex-basis: 18rem; /* 288px */ }
+  .basis-80 { flex-basis: 20rem; /* 320px */ }
+  .basis-96 { flex-basis: 24rem; /* 384px */ }
+  .basis-auto { flex-basis: auto; }
+  .basis-px { flex-basis: 1px; }
+  // 0.5
+  .basis-0_5 { flex-basis: 0.125rem; /* 2px */ }
+  .basis-1_5 { flex-basis: 0.375rem; /* 6px */ }
+  .basis-2_5 { flex-basis: 0.625rem; /* 10px */ }
+  .basis-3_5 { flex-basis: 0.875rem; /* 14px */ }
+  // 1/2
+  .basis-1__2 { flex-basis: 50%; }
+  .basis-1__3 { flex-basis: 33.333333%; }
+  .basis-2__3 { flex-basis: 66.666667%; }
+  .basis-1__4 { flex-basis: 25%; }
+  .basis-2__4 { flex-basis: 50%; }
+  .basis-3__4 { flex-basis: 75%; }
+  .basis-1__5 { flex-basis: 20%; }
+  .basis-2__5 { flex-basis: 40%; }
+  .basis-3__5 { flex-basis: 60%; }
+  .basis-4__5 { flex-basis: 80%; }
+  .basis-1__6 { flex-basis: 16.666667%; }
+  .basis-2__6 { flex-basis: 33.333333%; }
+  .basis-3__6 { flex-basis: 50%; }
+  .basis-4__6 { flex-basis: 66.666667%; }
+  .basis-5__6 { flex-basis: 83.333333%; }
+  .basis-1__12 { flex-basis: 8.333333%; }
+  .basis-2__12 { flex-basis: 16.666667%; }
+  .basis-3__12 { flex-basis: 25%; }
+  .basis-4__12 { flex-basis: 33.333333%; }
+  .basis-5__12 { flex-basis: 41.666667%; }
+  .basis-6__12 { flex-basis: 50%; }
+  .basis-7__12 { flex-basis: 58.333333%; }
+  .basis-8__12 { flex-basis: 66.666667%; }
+  .basis-9__12 { flex-basis: 75%; }
+  .basis-10__12 { flex-basis: 83.333333%; }
+  .basis-11__12 { flex-basis: 91.666667%; }
+  .basis-full { flex-basis: 100%; }
+}
