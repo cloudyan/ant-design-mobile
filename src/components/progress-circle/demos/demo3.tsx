@@ -43,6 +43,7 @@ export default () => {
           >
             {percent}%
           </ProgressCircle>
+
           <div>
             <svg style={{ height: 0, width: 0 }}>
               <defs>

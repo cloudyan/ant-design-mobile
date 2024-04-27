@@ -72,6 +72,7 @@ export default () => {
             <span className={styles.large}>{percent}%</span>
           </ProgressCircle>
         </Space>
+        <p>表示剩余进度</p>
       </DemoBlock>
 
       <DemoBlock title='自定义内部文字'>
