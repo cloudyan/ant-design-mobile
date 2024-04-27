@@ -1,9 +1,11 @@
 @class-prefix-step: ~'adm-step';
 @class-prefix-steps: ~'adm-steps';
 
+
 .@{class-prefix-step} {
   --line-to-next-color: var(--adm-color-border);
   --icon-color: var(--adm-color-border);
+
   position: relative;
   // make other brother component are not covered
   z-index: 0;
@@ -64,6 +66,12 @@
   --description-font-size: var(--adm-font-size-4);
   --indicator-margin-right: 0;
   --icon-size: 18px;
+
+  --wait-icon-color: rgba(0, 0, 0, 0.65);
+  --wait-icon-bg-color: rgba(0, 0, 0, 0.06);
+  --wait-icon-border-color: transparent;
+  --finish-icon-bg-color: #e6f4ff;
+  --finish-icon-border-color: #e6f4ff;
 
   width: 100%;
   box-sizing: border-box;

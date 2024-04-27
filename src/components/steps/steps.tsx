@@ -9,12 +9,19 @@ const classPrefix = `adm-steps`
 const stepClassPrefix = `adm-step`
 
 const defaultIcon = <span className={`${stepClassPrefix}-icon-dot`} />
+const progressIcons = {
+  finish: <span className={`${stepClassPrefix}-icon-dot`} />, // 绿色对勾
+  process: <span className={`${stepClassPrefix}-icon-dot`} />, // 高亮数字
+  wait: <span className={`${stepClassPrefix}-icon-dot`} />, // 灰色数字
+  error: <span className={`${stepClassPrefix}-icon-dot`} />, // 红色错误
+}
 
 type Direction = 'horizontal' | 'vertical'
 
 export type StepsProps = {
   current?: number
   direction?: Direction
+  progressDot?: boolean
   children?: ReactNode
 } & NativeProps<
   | '--title-font-size'
@@ -26,6 +33,7 @@ export type StepsProps = {
 const defaultProps = {
   current: 0,
   direction: 'horizontal',
+  progressDot: true,
 }
 
 export const Steps: FC<StepsProps> = p => {
