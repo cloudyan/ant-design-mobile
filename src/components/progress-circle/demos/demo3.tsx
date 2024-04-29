@@ -55,11 +55,11 @@ export default () => {
                     cy='0.5'
                     r='0.3'
                     fill='none'
-                    stroke-dashoffset='-0.2'
-                    stroke-dasharray={strokeDasharray()}
-                    stroke-linecap='round'
+                    strokeDashoffset='-0.2'
+                    strokeDasharray={strokeDasharray()}
+                    strokeLinecap='round'
                     stroke='#fff'
-                    stroke-width='0.05'
+                    strokeWidth='0.05'
                   ></circle>
                 </mask>
               </defs>

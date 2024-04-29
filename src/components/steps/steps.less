@@ -66,6 +66,7 @@
   --description-font-size: var(--adm-font-size-4);
   --indicator-margin-right: 0;
   --icon-size: 18px;
+  --line-gap: 0;
 
   --wait-icon-color: rgba(0, 0, 0, 0.65);
   --wait-icon-bg-color: rgba(0, 0, 0, 0.06);
@@ -83,6 +84,10 @@
 
     .@{class-prefix-step} {
       flex: 1;
+
+      .@{class-prefix-step}-tail {
+        display: none;
+      }
 
       .@{class-prefix-step}-indicator {
         width: 100%;
@@ -124,6 +129,22 @@
       display: flex;
       align-items: stretch;
 
+      // .@{class-prefix-step}-tail {
+      //   position: absolute;
+      //   top: 0;
+      //   // 有兼容性问题
+      //   // inset-inline-start: calc(var(--ant-steps-icon-size) / 2 - var(--ant-line-width));
+      //   width: 1px;
+      //   height: 100%;
+      //   padding: calc(var(--line-gap) + var(--title-font-size)) 0 calc(var(--line-gap));
+      //   &::after {
+      //     content: '';
+      //     display: inline-block;
+      //     width: 1px;
+      //     height: 100%;
+      //   }
+      // }
+
       .@{class-prefix-step}-indicator {
         flex: none;
         width: 24px;
@@ -131,11 +152,12 @@
 
         &::after {
           left: 50%;
-          top: calc(var(--title-font-size) * 1.5 / 2);
+          top: calc(var(--title-font-size) * 1.5);
           width: 1px;
           transform: translateX(-50%);
-          height: 100%;
+          height: calc(100% - var(--title-font-size) * 1.5);
         }
+        // font-size * 1.5 / 2 是做什么？标题的字体大小*行高/2，为了与标题垂直居中
         .@{class-prefix-step}-icon-container {
           top: calc(var(--title-font-size) * 1.5 / 2);
           left: 50%;

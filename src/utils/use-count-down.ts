@@ -1,13 +1,12 @@
 // 用于倒计时
 import { useUpdate } from 'ahooks'
 import dayjs from 'dayjs'
-import { useEffect, useRef, useLayoutEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { canUseDom } from './can-use-dom'
 import { cancelRaf, raf } from './raf'
-// import { useLatest } from 'ahooks'
 
 export type CurrentTime = {
-  total: number // 剩余时间总毫秒数
+  leftTime: number // 剩余时间总毫秒数
   days: number
   hours: number
   minutes: number
@@ -20,7 +19,7 @@ export type TDate = dayjs.ConfigType
 type Numeric = number | string
 
 export type UseCountDownOptions = {
-  time?: number
+  leftTime?: number
   targetDate?: TDate
   millisecond?: boolean
   interval?: number
@@ -36,52 +35,52 @@ const TIME_UNITS = {
   DAY: 24 * 60 * 60 * 1000,
 }
 
-function parseTime(time: number): CurrentTime {
+function parseTime(leftTime: number): CurrentTime {
   const { DAY, HOUR, MINUTE, SECOND } = TIME_UNITS
   // fixSeconds 让秒数展示在视觉上更符合逻辑
   // 如 倒计时 15 秒
   // 1. 开始时，显示为 15 秒，而不是 14 秒
   // 2. 倒计时结束，刚好显示为 0 秒（不要显示 1 秒或已经显示 0 秒但倒计时还没终止）
-  let fixSeconds = (Math.floor((time - 1) / SECOND) % 60) + (time >= 0 ? 1 : 0)
+  let fixSeconds =
+    (Math.floor((leftTime - 1) / SECOND) % 60) + (leftTime >= 0 ? 1 : 0)
   if (fixSeconds <= 0) {
     fixSeconds = 0
   }
   return {
-    total: time,
-    days: Math.floor(time / DAY),
-    hours: Math.floor(time / HOUR) % 24,
-    minutes: Math.floor(time / MINUTE) % 60,
-    seconds: Math.floor(time / SECOND) % 60,
-    milliseconds: Math.floor(time) % 1000,
+    leftTime,
+    days: Math.floor(leftTime / DAY),
+    hours: Math.floor(leftTime / HOUR) % 24,
+    minutes: Math.floor(leftTime / MINUTE) % 60,
+    seconds: Math.floor(leftTime / SECOND) % 60,
+    milliseconds: Math.floor(leftTime) % 1000,
     fixSeconds,
   }
 }
 
-const calcLeft = (target?: TDate) => {
-  if (!target) return 0
+// const calcLeft = (target?: TDate) => {
+//   if (!target) return 0
 
-  // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
-  const left = dayjs(target).valueOf() - Date.now()
-  return left < 0 ? 0 : left
+//   // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
+//   const left = dayjs(target).valueOf() - Date.now()
+//   return left < 0 ? 0 : left
+// }
+
+function isSameSecond(time1: number, time2: number, interval = 1000): boolean {
+  return Math.floor(time1 / interval) === Math.floor(time2 / interval)
 }
 
-function isSameSecond(time1: number, time2: number): boolean {
-  return Math.floor(time1 / 1000) === Math.floor(time2 / 1000)
-}
-
-// 当秒数变为 0 时，毫秒数还没走完
-// 期望，当秒数展示为 0 即立即停止
+// TODO: 当秒数变为 0 时，毫秒数还没走完
+// Fixed: 当秒数视觉展示为 0 刚好表现为倒计时终止
 export function useCountDown(options: UseCountDownOptions = {}) {
   const getCurrentRemain = () =>
     Math.max(cacheRef.current.endTime - Date.now(), 0)
-
-  const time = options.time || 0
+  const { leftTime = 0, interval = 1000 } = options
   const cacheRef = useRef({
-    remain: time,
+    remain: leftTime,
     counting: false,
-    endTime: Date.now() + time,
+    endTime: Date.now() + leftTime,
     rafId: 0,
-    current: parseTime(Number(time)),
+    current: parseTime(Number(leftTime)),
   })
 
   const update = useUpdate()
@@ -96,15 +95,11 @@ export function useCountDown(options: UseCountDownOptions = {}) {
 
     if (value <= 0) {
       pause()
-      // 将倒计时置为 0
-      // cacheRef.current.current = parseTime(0)
-      // const { current } = cacheRef.current
-      // update()
-      // options.onChange?.(current)
-      // console.log('current', current)
       options.onFinish?.()
     }
   }
+
+  // 毫秒级更新
   const microTick = () => {
     cacheRef.current.rafId = raf(() => {
       const { counting } = cacheRef.current
@@ -119,6 +114,7 @@ export function useCountDown(options: UseCountDownOptions = {}) {
     })
   }
 
+  // 秒级以上更新
   const macroTick = () => {
     cacheRef.current.rafId = raf(() => {
       const { current, remain } = cacheRef.current
@@ -126,7 +122,10 @@ export function useCountDown(options: UseCountDownOptions = {}) {
       if (current) {
         const remainRemain = getCurrentRemain()
 
-        if (!isSameSecond(remainRemain, remain) || remainRemain === 0) {
+        if (
+          !isSameSecond(remainRemain, remain, interval) ||
+          remainRemain === 0
+        ) {
           updateRemain(remainRemain)
         }
 
@@ -162,7 +161,7 @@ export function useCountDown(options: UseCountDownOptions = {}) {
     cancelRaf(cacheRef.current.rafId)
   }
 
-  const reset = (totalTime = time) => {
+  const reset = (totalTime = leftTime) => {
     updateRemain(totalTime)
     pause()
     update()

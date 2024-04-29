@@ -47,6 +47,15 @@ ProgressCircle 仅支持 `px` 单位，因为在 Safari 下非 `px` 单位会出
 
 所以如果你的项目中使用了 rem 布局，那么编译时对样式的预处理会导致默认的 `--size` 和 `--track-width` 的单位变为 `rem`，从而很可能在 iOS 设备中会出现 bug。解决方法是在项目中手动将 `--size` 和 `--track-width` 设置回 `px` 单位。
 
+可以使用方法转为期望的 px
+
+```js
+const innerWidth = window.innerWidth
+const getResoonseSize = (size) => {
+  return size / 375 * innerWidth
+}
+```
+
 ### 控制单位转换
 
 工具方法

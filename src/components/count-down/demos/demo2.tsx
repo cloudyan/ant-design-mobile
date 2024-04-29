@@ -37,7 +37,7 @@ export default () => {
         <CountDown
           ref={countDownRef}
           millisecond
-          time={3000}
+          leftTime={3000}
           autoStart={false}
           format='ss:SSS'
           onFinish={onFinish}

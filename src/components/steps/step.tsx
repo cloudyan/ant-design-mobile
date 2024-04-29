@@ -24,6 +24,7 @@ export const Step: FC<StepProps> = props => {
         `${classPrefix}-status-${status}`
       )}
     >
+      <div className={`${classPrefix}-tail`}></div>
       <div className={`${classPrefix}-indicator`}>
         <div className={`${classPrefix}-icon-container`}>{icon}</div>
       </div>

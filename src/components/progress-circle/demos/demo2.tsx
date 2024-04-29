@@ -48,7 +48,7 @@ export default () => {
 
   const onChange = (current: CurrentTime) => {
     // console.log(current)
-    const realPercent = Math.floor((current.total / (seconds * 1000)) * 100)
+    const realPercent = Math.floor((current.leftTime / (seconds * 1000)) * 100)
     setPercent(realPercent)
 
     // const s = Math.ceil((current.total / (seconds * 1000)) * 15)
@@ -108,7 +108,7 @@ export default () => {
 
         <CountDown
           ref={countDownRef}
-          time={seconds * 1000}
+          leftTime={seconds * 1000}
           millisecond
           autoStart={false}
           format='ss:SSS'
@@ -138,6 +138,7 @@ export default () => {
         </Grid>
       </DemoBlock>
 
+      {/* conic-gradient 锥形渐变 存在兼容性问题 */}
       <DemoBlock title='扇形 渐变 旋转 启停'>
         <div className='circle'>
           <div className='rotater'></div>

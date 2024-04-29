@@ -11,7 +11,7 @@ const classPrefix = `adm-count-down`
 
 export type CountDownProps = {
   ref: ForwardedRef<any>
-  time: number | string
+  leftTime: number | string
   format?: string
   millisecond?: boolean
   autoStart?: boolean
@@ -24,7 +24,7 @@ export type CountDownProps = {
 >
 
 const defaultProps = {
-  time: 0,
+  leftTime: 0,
   format: 'HH:mm:ss',
   autoStart: true,
 }
@@ -43,7 +43,7 @@ export const CountDown = forwardRef<CountDownRef, CountDownProps>((p, ref) => {
   const props = mergeProps(defaultProps, p)
 
   const { current, start, pause, reset } = useCountDown({
-    time: props.time,
+    leftTime: props.leftTime,
     millisecond: props.millisecond,
     autoStart: props.autoStart,
     onChange: props.onChange,

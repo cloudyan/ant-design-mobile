@@ -14,15 +14,19 @@ export default () => {
   const stepsData = [
     {
       title: '第一步',
-      icon: <CheckCircleFill style={{ backgroundColor: '#fff' }} />,
+      icon: <CheckCircleFill />,
     },
     {
       title: '第二步',
-      icon: <ClockCircleFill style={{ backgroundColor: '#fff' }} />,
+      icon: <ClockCircleFill />,
     },
     {
       title: '第三步',
-      icon: <HandPayCircleOutline style={{ backgroundColor: '#fff' }} />,
+      icon: <HandPayCircleOutline />,
+    },
+    {
+      title: '第四步',
+      icon: <HandPayCircleOutline />,
     },
   ]
 
@@ -33,6 +37,18 @@ export default () => {
   return (
     <>
       <DemoBlock title='步骤控制'>
+        <Steps
+          current={2}
+          style={{
+            '--title-font-size': '17px',
+            '--description-font-size': '15px',
+            '--indicator-margin-right': '12px',
+            '--icon-size': '22px',
+          }}
+        >
+          {steps}
+        </Steps>
+
         <Steps
           direction='vertical'
           current={2}
