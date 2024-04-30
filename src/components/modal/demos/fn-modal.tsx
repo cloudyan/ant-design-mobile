@@ -8,8 +8,9 @@ import { CloseOutline } from 'antd-mobile-icons'
 import './fn-modal.less'
 
 // 逻辑封装在内部，通过函数式调用
-interface IAlertOptions {
+interface IModalOptions {
   type: '01' | '02'
+  singleton?: boolean
 }
 const types = {
   '01': {
@@ -24,16 +25,19 @@ const types = {
 // const prefixCls = useId()
 // import { createStyles, css } from 'antd-style';
 // const injectStyle = `${prefixCls} {}`
-export const fnShow = (options: IAlertOptions) => {
-  const { type } = options
+
+// 多次调用，会销毁之前的
+let oldHandler: any = null
+export const fnShow = (options: IModalOptions) => {
+  const { type, singleton = true } = options
   const data = types[type]
 
   const close = () => {
-    modalHandler.close()
+    handler.close()
   }
   const onConfirm = () => {
-    modalHandler.close()
-    console.log('去借款')
+    handler.close()
+    console.log('去')
   }
   // 自定义关闭按钮，怎么触发关闭动作？通过 handler 关闭
   const content = (
@@ -52,7 +56,7 @@ export const fnShow = (options: IAlertOptions) => {
   // 问题：
   // 1. alert 不会返回 handler，需要使用 show 方法
   // 2. 多次调用会展示多个弹窗，期望能支持单例，多次调用还是一个
-  const modalHandler = Modal.show({
+  const handler = Modal.show({
     // singleton, // 支持单例
     className: 'fn-modal', // 需要自定义类约束样式范围
     // bodyStyle: style,
@@ -75,9 +79,15 @@ export const fnShow = (options: IAlertOptions) => {
       },
     ],
   })
+  if (singleton) {
+    if (oldHandler && typeof oldHandler.close === 'function') {
+      oldHandler.close()
+    }
+    oldHandler = handler
+  }
 }
 
-export const fnAlert = (options: IAlertOptions) => {
+export const fnAlert = (options: IModalOptions) => {
   const { type } = options
   const data = types[type]
   // 自定义关闭按钮，怎么触发关闭动作？通过 handler 关闭
@@ -94,7 +104,8 @@ export const fnAlert = (options: IAlertOptions) => {
   )
 
   // alert 无法操作控制器对象 handler
-  const modalHandler = Modal.alert({
+  // const handler =
+  Modal.alert({
     className: 'fn-modal', // 需要自定义类约束样式范围
     // bodyStyle: style,
     // title: '', // data.title,

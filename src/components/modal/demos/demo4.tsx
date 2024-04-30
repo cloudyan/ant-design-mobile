@@ -10,11 +10,19 @@ export default () => {
     <>
       <DemoBlock title='封装函数式复用'>
         <Space direction='vertical' block>
-          <Button block onClick={() => fnShow({ type: '01' })}>
-            弹窗 1
+          <Button
+            block
+            onClick={() => fnShow({ type: '01' })}
+            style={{ position: 'relative', zIndex: 1500 }}
+          >
+            show 弹窗 1
           </Button>
-          <Button block onClick={() => fnAlert({ type: '02' })}>
-            弹窗 2
+          <Button
+            block
+            onClick={() => fnAlert({ type: '02' })}
+            style={{ position: 'relative', zIndex: 1500 }}
+          >
+            alert 弹窗 2
           </Button>
         </Space>
       </DemoBlock>

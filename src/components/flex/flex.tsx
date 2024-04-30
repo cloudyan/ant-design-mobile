@@ -17,6 +17,7 @@ export type FlexProps<P = AnyObject> = {
   direction?: CSSProperties['flexDirection']
   wrap?: CSSProperties['flexWrap']
   justify?: CSSProperties['justifyContent']
+  // alignItems（行内成员） vs alignContent（所有行，仅多行生效）
   align?: CSSProperties['alignItems']
   flex?: CSSProperties['flex']
   gap?: CSSProperties['gap'] | SizeType
@@ -26,13 +27,16 @@ export type FlexProps<P = AnyObject> = {
   children?: ReactNode
 } & NativeProps
 
+// TODO: 以下默认值是否更友好
+// alignContent 默认值改为 flex-start（而不是 stretch）
+// flexShrink 默认值改为0 （而不是1）
 const defaultProps = {
   direction: 'row',
   wrap: 'nowrap',
-  flex: 'normal',
   align: 'normal',
   justify: 'normal',
-  gap: '0',
+  // flex: 'normal',
+  // gap: '0',
   component: 'div',
 }
 
@@ -64,12 +68,7 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>((p, ref) => {
   const mergedStyle: CSSProperties = {
     ...style,
     flex,
-
-    // flexDirection: direction,
-    // flexWrap: wrap,
-    // justifyContent: justify,
-    // alignItems: align,
-    gap: gap,
+    gap,
   }
 
   return withNativeProps(

@@ -6,6 +6,8 @@
 
 适用于为当前页面提供额外功能。
 
+- [ ] 支持 debug 悬浮球
+
 ## 示例
 
 <code src="./demos/demo1.tsx"></code>
