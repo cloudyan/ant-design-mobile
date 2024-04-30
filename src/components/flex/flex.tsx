@@ -54,10 +54,10 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>((p, ref) => {
   } = props
 
   const mergedCls = classNames(className, classPrefix, {
+    [`${classPrefix}-direction-${props.direction}`]: props.direction,
     [`${classPrefix}-align-${props.align}`]: props.align,
     [`${classPrefix}-justify-${props.justify}`]: props.justify,
-    [`${classPrefix}-wrap-${props.wrap}`]: props.wrap,
-    [`${classPrefix}-direction-${props.direction}`]: props.direction,
+    [`${classPrefix}-${props.wrap}`]: props.wrap,
   })
 
   // 通过样式控制，优先级太高，不便于重写

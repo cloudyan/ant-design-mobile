@@ -13,12 +13,14 @@ const baseStyle: CSSProperties = {
   color: 'white',
 }
 
-const boxStyle: CSSProperties = {
-  width: '100%',
-  height: 240,
+const flexStyle: CSSProperties = {
+  width: 300,
+  height: 200,
   borderRadius: 6,
   border: '1px solid #40a9ff',
 }
+const boxStyle: CSSProperties = {}
+
 const justifyOptions = [
   'normal',
   'flex-start',
@@ -49,6 +51,7 @@ const ButtonOption = (props: any) => {
 }
 
 export default () => {
+  const [count, setCount] = useState(3)
   const [direction, setDirection] = useState<FlexProps['direction']>()
   const [wrap, setWrap] = useState<FlexProps['wrap']>()
   const [align, setAlign] = useState<FlexProps['align']>()
@@ -60,35 +63,34 @@ export default () => {
     margin: 8,
   }
 
-  const btns = ['a', 'b', 'c', 'd', 'e', 'f', 'g'].map(text => {
+  const colors = [
+    'powderblue',
+    'skyblue',
+    'steelblue',
+    'orangered',
+    'orange',
+    'mediumseagreen',
+    'deepskyblue',
+    'mediumturquoise',
+    'mediumslateblue',
+    'purple',
+  ]
+  const box1 = colors.slice(0, count).map(item => {
     return (
-      <Button color='primary' style={btnStyle}>
-        {text}
-      </Button>
+      <div
+        style={{
+          width: 50,
+          height: 50,
+          backgroundColor: item,
+          flexShrink: 0,
+        }}
+      ></div>
     )
   })
 
   return (
-    <>
+    <div className='demo-flex'>
       <DemoBlock title='基本布局'>
-        <ButtonOption options={directionOptions} onChange={setDirection} />
-
-        <Flex direction={direction}>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div
-              key={i}
-              style={{
-                ...baseStyle,
-                backgroundColor: i % 2 ? '#1677ff' : '#1677ffbf',
-              }}
-            >
-              {i + 1}
-            </div>
-          ))}
-        </Flex>
-      </DemoBlock>
-
-      <DemoBlock title='对齐方式'>
         {/* <Segmented options={justifyOptions} onChange={setJustify as SegmentedProps['onChange']} /> */}
         <div>
           Select direction :
@@ -106,16 +108,20 @@ export default () => {
           Select wrap :
           <ButtonOption options={wrapOptions} onChange={setWrap} />
         </div>
+        <div>
+          Select count :<button onClick={() => setCount(c => c - 1)}>-1</button>
+          <button onClick={() => setCount(c => c + 1)}>+1</button>
+        </div>
         <Flex
-          style={boxStyle}
+          style={flexStyle}
           direction={direction}
-          wrap={wrap}
           align={align}
           justify={justify}
+          wrap={wrap}
         >
-          {btns}
+          {box1}
         </Flex>
       </DemoBlock>
-    </>
+    </div>
   )
 }
