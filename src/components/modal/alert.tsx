@@ -18,8 +18,8 @@ export function alert(p: ModalAlertProps) {
   }
   const props = mergeProps(defaultProps, p)
   return new Promise<void>(resolve => {
-    // TODO: handler 怎么返回？
-    const handler = show({
+    // TODO: alert 中 handler 怎么返回？
+    show({
       ...props,
       closeOnAction: true,
       actions: [

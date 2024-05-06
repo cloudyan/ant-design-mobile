@@ -6,7 +6,7 @@ import {
   Space,
   CountDown,
   Grid,
-  Toast,
+  // Toast,
 } from 'antd-mobile'
 import type { CountDownRef } from 'antd-mobile'
 import type { CurrentTime } from 'antd-mobile/es/utils/use-count-down'
@@ -19,7 +19,7 @@ export default () => {
   const seconds = 15
   const [percent, setPercent] = useState(100)
   const countDownRef: MutableRefObject<CountDownRef | null> = useRef(null)
-  const [countDownTime, setCountDownTime] = useState(seconds)
+  // const [countDownTime, setCountDownTime] = useState(seconds)
 
   const onFinish = () => {
     // Toast.show('finished')

@@ -16,7 +16,7 @@ export type CurrentTime = {
 }
 
 export type TDate = dayjs.ConfigType
-type Numeric = number | string
+// type Numeric = number | string
 
 export type UseCountDownOptions = {
   leftTime?: number

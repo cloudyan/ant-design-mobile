@@ -13,7 +13,10 @@ export type StepProps = {
   status?: 'wait' | 'process' | 'finish' | 'error'
 } & NativeProps
 
-export const Step: FC<StepProps> = props => {
+const defaultProps = {}
+
+export const Step: FC<StepProps> = p => {
+  const props = mergeProps(defaultProps, p)
   const { title, description, icon, status = 'wait' } = props
 
   return withNativeProps(

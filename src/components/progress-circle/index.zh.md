@@ -51,7 +51,7 @@ ProgressCircle 仅支持 `px` 单位，因为在 Safari 下非 `px` 单位会出
 
 ```js
 const innerWidth = window.innerWidth
-const getResoonseSize = (size) => {
+const getResponseSize = (size) => {
   return size / 375 * innerWidth
 }
 ```

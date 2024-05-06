@@ -2,10 +2,12 @@
   // 公司内代码自动格式化配置未准备好时，需要关闭下列配置项
   // todo:
   // 开启 biome 时，关闭 prettier
-  "biome.enabled": true,
+  "biome.enabled": false,
   "biome.requireConfiguration": true,
   "biome_lsp.trace.server": "messages",
-  "editor.rulers": [80, 100, 120],
+  // 格式化工具
+  "editor.defaultFormatter": "",
+  // "editor.defaultFormatter": "esbenp.prettier-vscode", // 不能全部用 prettier
   "editor.formatOnSave": true, // 保存时自动格式化
   "editor.formatOnType": false, // 按键时自动格式化
   "editor.formatOnPaste": false, // 粘贴时自动格式化
@@ -14,34 +16,31 @@
   // 并结合 eslint-plugin-simple-import-sort 实现 import 友好排序
   // 保存自动修复 eslint stylelint
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "true",
+    // "source.organizeImports.biome": "true",
+    // "quickfix.biome": "true",
     "source.fixAll.eslint": "true",
     "source.fixAll.stylelint": "true",
-    "source.organizeImports.biome": "true",
-    "quickfix.biome": "true"
+    "source.organizeImports": "true"
   },
-  "prettier.enable": true,
-  "prettier.useEditorConfig": true,
-  // 最新格式化 prettier/biome eslint/oxlint
-  // 1. 开启 vscode 自动格式化 prettier/biome
-  // 2. 解决 eslint 格式化冲突
-  // https://github.com/microsoft/vscode-eslint#settings-migration
-  "javascript.format.enable": false, // 关闭默认js格式化程序
-  "eslint.format.enable": false, // 不用 eslint 做格式化
-  "eslint.useESLintClass": true, // 指定使用新 Engine(>8 默认)
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ],
+  "editor.rulers": [80, 100, 120],
+
+  // eslint 配置
+  "eslint.format.enable": true, // 不用 eslint 做格式化
+  // "eslint.useESLintClass": true, // 指定使用新 Engine(>8 默认)
+  // "eslint.workingDirectories": [
+  //   {
+  //     "mode": "auto"
+  //   }
+  // ],
+  // "eslint.codeActionsOnSave.mode": "all",
   "eslint.codeAction.showDocumentation": {
     "enable": true
   },
-  "eslint.run": "onSave",
   "eslint.debug": true,
-  "eslint.options": {
-    "extensions": [".js", ".vue"]
-  },
+  "eslint.run": "onSave",
+  // "eslint.options": {
+  //   "extensions": [".ts", ".tsx", ".js", ".jsx", ".vue"]
+  // },
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -54,15 +53,28 @@
     "editor.formatOnSave",
     "editor.formatOnType"
   ],
+  "html.format.contentUnformatted": "",
+  // 最新格式化 prettier/biome eslint/oxlint
+  // 1. 开启 vscode 自动格式化 prettier/biome
+  // 2. 解决 eslint 格式化冲突
+  // https://github.com/microsoft/vscode-eslint#settings-migration
+  "javascript.format.enable": false, // 关闭默认js格式化程序
+
   // prettier 配置
+  "prettier.enable": true,
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "prettier.requireConfig": true,
   "prettier.trailingComma": "all",
-  "html.format.contentUnformatted": "",
+  "prettier.useEditorConfig": true,
+
+  "oxc_language_server.trace.server": "verbose",
+  "oxc_language_server.configPath": ".eslintrc.json",
+  "oxc_language_server.enable": false,
+  "oxc_language_server.run": "onSave",
   "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass"],
-  // 格式化工具
-  // "editor.defaultFormatter": "esbenp.prettier-vscode", // 不能全部用 prettier
+  "vue.updateImportsOnFileMove.enabled": true,
+
   // 需要分类处理, prettier 可以处理以下格式
   // js,jsx, ts,tsx, json,jsonc,json5, css,less,scss, pug,html vue yaml,yml
   "[javascript]": {
@@ -85,22 +97,26 @@
     // "editor.defaultFormatter": "biomejs.biome"
   },
   "[json,jsonc,json5]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.defaultFormatter": "biomejs.biome"
   },
   "[css,less,scss]": {
     "editor.defaultFormatter": "stylelint.vscode-stylelint"
     // "editor.defaultFormatter": "biomejs.biome"
   },
   "[pug,html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     // "editor.defaultFormatter": "HookyQR.beautify"
-    "editor.defaultFormatter": "biomejs.biome"
+    // "editor.defaultFormatter": "biomejs.biome"
   },
   "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     // "editor.defaultFormatter": "darkriszty.markdown-table-prettify"
-    "editor.defaultFormatter": "biomejs.biome"
+    // "editor.defaultFormatter": "biomejs.biome"
   },
   "[yaml,yml,puml]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // "editor.defaultFormatter": "biomejs.biome"
   },
   // vetur
   "[vue]": {

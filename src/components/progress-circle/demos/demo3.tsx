@@ -1,4 +1,4 @@
-import { ProgressCircle, Slider, Space, Sticky } from 'antd-mobile'
+import { ProgressCircle, Slider, Space } from 'antd-mobile'
 import { DemoBlock } from 'demos'
 import React, { useRef, useState } from 'react'
 

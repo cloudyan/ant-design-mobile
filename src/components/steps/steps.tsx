@@ -9,6 +9,7 @@ const classPrefix = `adm-steps`
 const stepClassPrefix = `adm-step`
 
 const defaultIcon = <span className={`${stepClassPrefix}-icon-dot`} />
+// eslint-disable-next-line
 const progressIcons = {
   finish: <span className={`${stepClassPrefix}-icon-dot`} />, // 绿色对勾
   process: <span className={`${stepClassPrefix}-icon-dot`} />, // 高亮数字

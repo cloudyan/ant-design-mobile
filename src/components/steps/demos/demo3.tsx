@@ -1,8 +1,7 @@
 import React from 'react'
-import { Button, Space, Steps, SpinLoading } from 'antd-mobile'
+import { Steps } from 'antd-mobile'
 import { DemoBlock } from 'demos'
 import {
-  UndoOutline,
   CheckCircleFill,
   ClockCircleFill,
   HandPayCircleOutline,

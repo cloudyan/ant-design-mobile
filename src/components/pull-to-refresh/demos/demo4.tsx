@@ -3,7 +3,7 @@ import {
   Tabs,
   Swiper,
   PullToRefresh,
-  SpinLoading,
+  // SpinLoading,
   DotLoading,
   NoticeBar,
 } from 'antd-mobile'

@@ -50,7 +50,7 @@ export const Statistic: FC<StatisticProps> = p => {
     /* --- FormatConfig starts --- */
     // onMouseEnter,
     // onMouseLeave,
-    ...rest
+    // ...rest
   } = props
 
   const valueNode: React.ReactNode = (

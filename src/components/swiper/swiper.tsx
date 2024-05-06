@@ -80,7 +80,7 @@ const defaultProps = {
   stopPropagation: [] as PropagationEvent[],
 }
 
-// eslint-disable-next-line ban-types
+// eslint-disable-next-line
 let currentUid: undefined | {}
 
 export const Swiper = forwardRef<SwiperRef, SwiperProps>(

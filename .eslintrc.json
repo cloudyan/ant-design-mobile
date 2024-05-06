@@ -49,19 +49,17 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "tsconfig.json",
+    "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "plugins": [
-    "simple-import-sort",
+    "@typescript-eslint",
     "import",
-    "compat",
-    "builtin-compat",
-    "@typescript-eslint"
+    "simple-import-sort"
   ],
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
     "@typescript-eslint/ban-ts-ignore": "off",

@@ -13,7 +13,7 @@ const colorRecord: Record<string, string> = {
 }
 
 export type SpinLoadingProps = {
-  // eslint-disable-next-line ban-types
+  // eslint-disable-next-line
   color?: 'default' | 'primary' | 'white' | (string & {})
 } & NativeProps<'--color' | '--size'>
 

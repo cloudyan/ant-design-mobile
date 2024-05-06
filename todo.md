@@ -107,3 +107,8 @@ Popover/Tooltip/Hovercard
 ## 自动化兼容性检查
 
 - https://segmentfault.com/a/1190000044137569
+
+```json
+  'compat',
+  'builtin-compat',
+```
