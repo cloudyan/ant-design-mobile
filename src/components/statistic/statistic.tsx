@@ -32,10 +32,10 @@ export const Statistic: FC<StatisticProps> = p => {
   const props = mergeProps(defaultProps, p)
 
   const {
-    prefixCls,
+    // prefixCls,
     className,
     style,
-    valueStyle,
+    // valueStyle,
     value = 0,
     title,
     valueRender,

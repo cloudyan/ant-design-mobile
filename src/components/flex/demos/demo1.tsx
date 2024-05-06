@@ -75,9 +75,10 @@ export default () => {
     'mediumslateblue',
     'purple',
   ]
-  const box1 = colors.slice(0, count).map(item => {
+  const box1 = colors.slice(0, count).map((item, index) => {
     return (
       <div
+        key={index}
         style={{
           width: 50,
           height: 50,

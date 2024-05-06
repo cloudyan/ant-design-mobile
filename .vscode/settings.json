@@ -20,8 +20,8 @@
     "source.organizeImports.biome": "true",
     "quickfix.biome": "true"
   },
-  "prettier.enable": false,
-  "prettier.useEditorConfig": false,
+  "prettier.enable": true,
+  "prettier.useEditorConfig": true,
   // 最新格式化 prettier/biome eslint/oxlint
   // 1. 开启 vscode 自动格式化 prettier/biome
   // 2. 解决 eslint 格式化冲突
@@ -37,7 +37,7 @@
   "eslint.codeAction.showDocumentation": {
     "enable": true
   },
-  // "eslint.run": "onSave",
+  "eslint.run": "onSave",
   "eslint.debug": true,
   "eslint.options": {
     "extensions": [".js", ".vue"]
@@ -67,29 +67,29 @@
   // js,jsx, ts,tsx, json,jsonc,json5, css,less,scss, pug,html vue yaml,yml
   "[javascript]": {
     // "editor.defaultFormatter": "HookyQR.beautify"
-    // "editor.defaultFormatter": "esbenp.prettier-vscode"
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.defaultFormatter": "biomejs.biome"
   },
   "[javascriptreact]": {
-    // "editor.defaultFormatter": "esbenp.prettier-vscode"
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.defaultFormatter": "biomejs.biome"
   },
   // typescript,typescriptreact 写在一起保存时未生效
   "[typescript]": {
-    // "editor.defaultFormatter": "esbenp.prettier-vscode"
-    "editor.defaultFormatter": "biomejs.biome"
     // "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
-    // "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.defaultFormatter": "biomejs.biome"
   },
   "[json,jsonc,json5]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
   "[css,less,scss]": {
-    "editor.defaultFormatter": "biomejs.biome"
-    // "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    // "editor.defaultFormatter": "biomejs.biome"
   },
   "[pug,html]": {
     // "editor.defaultFormatter": "HookyQR.beautify"

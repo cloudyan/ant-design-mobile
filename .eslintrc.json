@@ -1,4 +1,14 @@
 {
+<<<<<<< HEAD
+||||||| parent of 60c3b4c08 (feat: update eslint import)
+  "ignorePatterns": [
+    "/*",
+    "!/src",
+    "/src/**/*.js"
+  ],
+=======
+  "ignorePatterns": ["/*", "!/src", "/src/**/*.js"],
+>>>>>>> 60c3b4c08 (feat: update eslint import)
   "env": {
     "browser": true,
     "es6": true
@@ -8,7 +18,6 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "simple-import-sort",
     "prettier"
   ],
   "ignorePatterns": [
@@ -43,9 +52,18 @@
     "sourceType": "module"
   },
   "plugins": [
+    "simple-import-sort",
+    "import",
+    "compat",
+    "builtin-compat",
     "@typescript-eslint"
   ],
   "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/ban-types": [
       "error",
@@ -70,6 +88,21 @@
       }
     ],
     "@typescript-eslint/no-use-before-define": "off",
+<<<<<<< HEAD
+||||||| parent of 60c3b4c08 (feat: update eslint import)
+    "react/display-name": "off",
+    "react/jsx-no-target-blank": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "react/no-unescaped-entities": "off",
+    "react/prop-types": "off",
+    "simple-import-sort/exports": "error",
+=======
+    "react/display-name": "off",
+    "react/jsx-no-target-blank": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "react/no-unescaped-entities": "off",
+    "react/prop-types": "off",
+>>>>>>> 60c3b4c08 (feat: update eslint import)
     "no-case-declarations": "off",
     "no-constant-condition": [
       "error",
@@ -96,5 +129,49 @@
     "react": {
       "version": "detect"
     }
+<<<<<<< HEAD
   }
+||||||| parent of 60c3b4c08 (feat: update eslint import)
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/demos/**/*"
+      ],
+      "rules": {
+        "react/display-name": "off",
+        "react/react-in-jsx-scope": "off"
+      }
+    },
+    {
+      "files": [
+        "**/tests/**/*"
+      ],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "react/display-name": "off",
+        "react/react-in-jsx-scope": "off"
+      }
+    }
+  ]
+=======
+  },
+  "overrides": [
+    {
+      "files": ["**/demos/**/*"],
+      "rules": {
+        "react/display-name": "off",
+        "react/react-in-jsx-scope": "off"
+      }
+    },
+    {
+      "files": ["**/tests/**/*"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "react/display-name": "off",
+        "react/react-in-jsx-scope": "off"
+      }
+    }
+  ]
+>>>>>>> 60c3b4c08 (feat: update eslint import)
 }

@@ -103,3 +103,7 @@ Lightbox/Theatres
 Popover/Tooltip/Hovercard
 
 用于对于页面上某个元素展示额外的信息。常常用来添加额外的说明或提示，或者在用户进行某些动作予以预告形式的提醒（比如“点击这个链接会发生什么”的情景）。
+
+## 自动化兼容性检查
+
+- https://segmentfault.com/a/1190000044137569
