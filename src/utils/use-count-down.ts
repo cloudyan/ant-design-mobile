@@ -180,6 +180,7 @@ export function useCountDown(options: UseCountDownOptions = {}) {
     start,
     pause,
     reset,
+    cancel: pause,
     current: cacheRef.current.current,
   }
 }
