@@ -8,3 +8,10 @@ package-lock.json
 pnpm-lock.yaml
 yarn.lock
 *.min.js
+
+svg-cli
+examples
+docs
+analysis
+iconfont-test.js
+svg-sprite.js

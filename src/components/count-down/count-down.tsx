@@ -78,7 +78,7 @@ export const CountDown = forwardRef<CountDownRef, CountDownProps>((p, ref) => {
 })
 
 export function padZero(num: Numeric, targetLength = 2): string {
-  let str = num + ''
+  const str = num + ''
   return str.padStart(targetLength, '0')
 }
 

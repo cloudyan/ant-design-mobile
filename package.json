@@ -31,6 +31,12 @@
   "scripts": {
     "build": "gulp",
     "build-doc": "dumi build && echo '!.*' > dist/.surgeignore",
+    "eslint": "eslint ./src",
+    "eslint:fix": "eslint --fix .",
+    "prettier": "prettier --check ./src",
+    "prettier:fix": "prettier --write ./src",
+    "stylelint": "stylelint \"**/*.{css,less,scss}\"",
+    "stylelint:fix": "stylelint --fix \"**/*.{css,less,scss}\"",
     "biome:ci": "biome ci ./src",
     "biome:check": "biome format ./src",
     "biome:format": "biome format --write ./src",

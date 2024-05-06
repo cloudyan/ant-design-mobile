@@ -9,3 +9,6 @@ pnpm-lock.yaml
 yarn.lock
 *.min.js
 *.min.css
+
+iconfont-test.js
+svg-sprite.js
