@@ -52,11 +52,15 @@
     }
 
     // 逆时针 🔄
+    // Safari doesn't support negative `stroke-dashoffset`
+    // https://stackoverflow.com/questions/37246113/svg-stroke-dashoffset-not-working-on-safari/39127818#39127818
+    // 解决方案: 可以通过结合 scaleX(-1) 实现
     > .@{class-prefix-progress-circle}-fill-reverse {
-      // 指定 stroke-dasharray 开始的偏移量
+      // 指定 stroke-dasharray 开始的偏移量（避免使用负值）
       stroke-dashoffset: calc(
-        var(--circumference) * ((var(--percent) / 100) - 1)
+        var(--circumference) * ((var(--percent) / 100) - 1) * -1
       );
+      transform: rotate(90deg) scaleX(-1);
     }
   }
 

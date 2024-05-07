@@ -56,6 +56,16 @@ const getResponseSize = (size) => {
 }
 ```
 
+### 关于逆时针
+
+默认顺时针方向进度
+
+iOS 上 Safari 不支持 `stroke-dashoffset` 负值（逆时针转动）
+
+根据公认的答案，这不是"[Safari doesn't support negative `stroke-dashoffset`](https://stackoverflow.com/questions/37246113/svg-stroke-dashoffset-not-working-on-safari/39127818#39127818)"。Safari实际上是在遵循规范。Chrome，Firefox等正在打破规范，可能是因为他们意识到规范定义得不好。
+
+解决方案: 可以通过结合 `scaleX(-1)` 实现
+
 ### 控制单位转换
 
 工具方法
