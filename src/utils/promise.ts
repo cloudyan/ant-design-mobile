@@ -1,5 +1,14 @@
 // promise 工具类
-// 控并发数，轮询，并行请求竞争等
+// - pollingRace 轮询竞争
+// - pLimit 控并发请求
+// - pAll
+// - pAny
+// - pTry
+// - pDeferred
+// - pRetry
+// - pTimeout
+// - pSome
+
 export const sleep = (ms: number, ...rest: any) =>
   new Promise(resolve => setTimeout(resolve, ms, ...rest))
 
@@ -9,7 +18,7 @@ export const sleep = (ms: number, ...rest: any) =>
 type Task = () => any | Promise<any>
 type Tasks = Array<Task>
 
-interface RequestPollingRaceOptions {
+interface PollingRaceOptions {
   concurrency?: 1 | 2 | 3 // 并行数，默认 1，(过大会导致阻塞 HTTP/1.1 并发请求)
   timeout: number // 轮询超时结束时间
   maxTimes: number // 轮询最大次数
@@ -19,7 +28,7 @@ interface RequestPollingRaceOptions {
 }
 
 // 单接口轮询，一个解析为满足条件的第一个请求结果的Promise，或者在超时时间到达时拒绝错误
-export function requestPollingRace(options: RequestPollingRaceOptions) {
+export function pollingRace(options: PollingRaceOptions) {
   const {
     concurrency = 2,
     interval = 1000,
@@ -81,6 +90,7 @@ export function requestPollingRace(options: RequestPollingRaceOptions) {
   })
 }
 
+type Mapper = (res: any, index: number) => any
 /**
  * 有限并发执行一组任务。
  *
@@ -91,15 +101,15 @@ export function requestPollingRace(options: RequestPollingRaceOptions) {
  */
 export function pLimit(
   tasks: Tasks = [],
-  mapper: Function = (res: any, index: number) => res,
+  mapper: Mapper = (res: any, index: number) => res,
   concurrency: number
 ) {
   const cloneTasks = Array.from(tasks)
   return new Promise((resolve, reject) => {
-    let result: any[] = []
+    const result: any[] = []
+    const len = cloneTasks.length
     let currentIndex = 0
     let resolveCount = 0
-    let len = cloneTasks.length
 
     function next() {
       const index = currentIndex++
@@ -126,6 +136,8 @@ export function pLimit(
   })
 }
 
+type GenericFunction = (...args: any[]) => any
+
 type Step = {
   [key: string]: any
 }
@@ -142,8 +154,8 @@ export class GenStep {
     }, 0)
   }
 
-  addTask(fn: Function, ms = 0, first = false) {
-    const task: Function = () => {
+  addTask(fn: GenericFunction, ms = 0, first = false) {
+    const task: GenericFunction = () => {
       setTimeout(() => {
         fn && fn()
         this.next()
