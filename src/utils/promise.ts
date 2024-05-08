@@ -43,6 +43,7 @@ export function pollingRace(options: PollingRaceOptions) {
     const len = maxTimes
     let currentIndex = 0
     let resolveCount = 0
+    let isOver = false
 
     function next(index: number): any {
       const task: Task = request
@@ -51,6 +52,7 @@ export function pollingRace(options: PollingRaceOptions) {
           result[index] = res
           resolveCount++
           if (resolved(res)) {
+            isOver = true
             resolve(res)
           }
         })
@@ -70,6 +72,7 @@ export function pollingRace(options: PollingRaceOptions) {
     function goNext(i: number) {
       const index = currentIndex++
       setTimeout(() => {
+        if (isOver) return
         next(index)
       }, interval * i)
     }
@@ -80,6 +83,7 @@ export function pollingRace(options: PollingRaceOptions) {
 
     if (timeout > 0) {
       setTimeout(() => {
+        isOver = true
         reject({
           message: 'timeout',
           value: timeout,

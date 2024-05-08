@@ -112,3 +112,6 @@ Popover/Tooltip/Hovercard
   'compat',
   'builtin-compat',
 ```
+
+- [判断浏览器对 ES6 是否支持](https://ruanyf.github.io/es-checker/index.cn.html)
+  - github 访问慢，可使用 https://s1.cloudai.net/es6/
