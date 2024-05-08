@@ -4,6 +4,15 @@ import { DemoBlock } from 'demos'
 import { options } from './options'
 
 export default () => {
+  const [value, setValue] = useState('2')
+
+  const onChange = arr => {
+    if (arr.length) {
+      console.log(arr)
+      setValue(arr[0])
+    }
+  }
+
   return (
     <>
       <DemoBlock title='必须选择一项'>
@@ -40,6 +49,8 @@ export default () => {
           showCheckMark={false}
           options={options}
           defaultValue={['1']}
+          value={[value]}
+          onChange={onChange}
         />
       </DemoBlock>
     </>

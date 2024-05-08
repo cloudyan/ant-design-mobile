@@ -24,6 +24,11 @@ export function usePropsValue<T>(options: Options<T>) {
   const update = useUpdate()
 
   const stateRef = useRef<T>(value !== undefined ? value : defaultValue)
+
+  // 此处逻辑解析
+  // 这里是把外层 props 传进来的状态同步到内部的状态，举两个例子，来解释一下作用：
+  // 1. 一个受控组件，值从 1 变成了 2，触发了 props.onChange(2)，但是 onChange 中，外层组件选择不更新值，依旧让值保持为 1，这种情况下，这个受控的组件应该显示 1 而不是 2
+  // 2. 组件一开始是受控状态，然后变为了非受控状态（value 变成了 undefined），这种情况下，组件应该保持原来的值
   if (value !== undefined) {
     stateRef.current = value
   }
