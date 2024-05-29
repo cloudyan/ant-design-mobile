@@ -4,12 +4,14 @@ import { CloseOutline } from 'antd-mobile-icons'
 // 使用 useId hook，如果 react 低于 18 版本，可以 `@reach/auto-id` 替代
 // import { useId } from 'react'
 // import { useId } from '@reach/auto-id'
+import { ModalSingleton } from '../modal-singleton'
 
 import './fn-modal.less'
 
 // 逻辑封装在内部，通过函数式调用
 interface IModalOptions {
   type: '01' | '02'
+  name: string
   singleton?: boolean
 }
 const types = {
@@ -21,14 +23,56 @@ const types = {
     title: '标题 2',
     content: '内容 2',
   },
+  '03': {
+    title: '标题 3',
+    content: '内容 3',
+  },
 }
 // const prefixCls = useId()
 // import { createStyles, css } from 'antd-style';
 // const injectStyle = `${prefixCls} {}`
 
+export const modalFn = () => {
+  const modal = ModalSingleton.getInstance('modal-fn')
+
+  const close = () => {
+    modal.close()
+  }
+
+  const onConfirm = () => {
+    modal.close()
+  }
+
+  const content = (
+    <>
+      <div className='custom-close'>
+        <CloseOutline onClick={close} />
+      </div>
+      内容 03
+    </>
+  )
+  const props = {
+    className: 'fn-modal',
+    showCloseButton: true,
+    title: '标题 03',
+    content,
+    onClose: () => {},
+    closeOnAction: true,
+    actions: [
+      {
+        key: 'confirm',
+        text: '我知道了',
+        primary: true,
+        onClick: onConfirm,
+      },
+    ],
+  }
+  modal.show(props)
+}
+
 // 多次调用，会销毁之前的
 let oldHandler: any = null
-export const fnShow = (options: IModalOptions) => {
+export const fnShow = (options: Omit<IModalOptions, 'name'>) => {
   const { type, singleton = true } = options
   const data = types[type]
 
@@ -87,7 +131,7 @@ export const fnShow = (options: IModalOptions) => {
   }
 }
 
-export const fnAlert = (options: IModalOptions) => {
+export const fnAlert = (options: Omit<IModalOptions, 'name'>) => {
   const { type } = options
   const data = types[type]
   // 自定义关闭按钮，怎么触发关闭动作？通过 handler 关闭

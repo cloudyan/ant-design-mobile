@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Button, Modal, Space, Toast, Divider } from 'antd-mobile'
 import { DemoBlock, DemoDescription, sleep } from 'demos'
-import { fnShow, fnAlert, ModalRef } from './fn-modal'
+import { fnShow, fnAlert, ModalRef, modalFn } from './fn-modal'
 
 // 如何避免
 export default () => {
@@ -23,6 +23,13 @@ export default () => {
             style={{ position: 'relative', zIndex: 1500 }}
           >
             alert 弹窗 2
+          </Button>
+          <Button
+            block
+            onClick={() => modalFn()}
+            style={{ position: 'relative', zIndex: 1500 }}
+          >
+            modal 弹窗 3
           </Button>
         </Space>
       </DemoBlock>
