@@ -114,4 +114,13 @@ Popover/Tooltip/Hovercard
 ```
 
 - [判断浏览器对 ES6 是否支持](https://ruanyf.github.io/es-checker/index.cn.html)
+
   - github 访问慢，可使用 https://s1.cloudai.net/es6/
+
+- algorithms
+  - https://prishedko.github.io/algorithms-ts/index.html
+  - https://www.geeksforgeeks.org/priority-queue-set-1-introduction/
+- std
+  - https://github.com/stdlib-js/stdlib
+  - https://deno.land/std@0.224.0
+  - https://datastructures-js.github.io/
