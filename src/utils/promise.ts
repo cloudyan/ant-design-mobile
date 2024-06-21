@@ -27,8 +27,17 @@ interface PollingRaceOptions {
   resolved: (res: any) => boolean // 轮询结束条件
 }
 
-// 单接口轮询，一个解析为满足条件的第一个请求结果的Promise，或者在超时时间到达时拒绝错误
+/**
+ * @deprecated Use pollingRace() instead.
+ */
+export function requestPollingRace(options: PollingRaceOptions) {
+  const { promise, cancel } = pollingRace(options)
+  return promise
+}
+
+// 单接口轮询
 export function pollingRace(options: PollingRaceOptions) {
+  let isCancelled = false
   const {
     concurrency = 2,
     interval = 1000,
@@ -38,7 +47,7 @@ export function pollingRace(options: PollingRaceOptions) {
     resolved,
   } = options
 
-  return new Promise((resolve, reject) => {
+  const promise = new Promise((resolve, reject) => {
     const result = <any>[]
     const len = maxTimes
     let currentIndex = 0
@@ -49,6 +58,7 @@ export function pollingRace(options: PollingRaceOptions) {
       const task: Task = request
       Promise.resolve(task())
         .then(res => {
+          if (isCancelled) return
           result[index] = res
           resolveCount++
           if (resolved(res)) {
@@ -57,10 +67,12 @@ export function pollingRace(options: PollingRaceOptions) {
           }
         })
         .catch(err => {
+          if (isCancelled) return
           result[index] = err
           resolveCount++
         })
         .finally(() => {
+          if (isCancelled) return
           // resolveCount === len 时轮询请求全部结束
           // 此处我们什么都不做
           if (currentIndex < len) {
@@ -72,6 +84,7 @@ export function pollingRace(options: PollingRaceOptions) {
     function goNext(i: number) {
       const index = currentIndex++
       setTimeout(() => {
+        if (isCancelled) return
         if (isOver) return
         next(index)
       }, interval * i)
@@ -83,6 +96,7 @@ export function pollingRace(options: PollingRaceOptions) {
 
     if (timeout > 0) {
       setTimeout(() => {
+        if (isCancelled) return
         isOver = true
         reject({
           message: 'timeout',
@@ -92,6 +106,13 @@ export function pollingRace(options: PollingRaceOptions) {
       }, timeout)
     }
   })
+
+  return {
+    promise,
+    cancel: () => {
+      isCancelled = true
+    },
+  }
 }
 
 type Mapper = (res: any, index: number) => any
