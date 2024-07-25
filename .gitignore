@@ -10,6 +10,7 @@ node_modules/
 /report.json
 /report.html
 node_modules
+*/node_modules
 
 ~*
 
