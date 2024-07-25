@@ -1,14 +1,5 @@
 import React, { useLayoutEffect, useState } from 'react'
-import {
-  Badge,
-  Divider,
-  JumboTabs,
-  SearchBar,
-  Slider,
-  Space,
-  Switch,
-  TabBar,
-} from 'antd-mobile'
+
 import { DemoBlock } from 'demos'
 import {
   AppOutline,
@@ -29,7 +20,7 @@ export default () => {
 
   return (
     <>
-      <DemoBlock title='Switch'>
+      {/* <DemoBlock title='Switch'>
         <Space align='center'>
           <div>Dark Mode</div>
           <Switch
@@ -39,8 +30,8 @@ export default () => {
             }}
           />
         </Space>
-      </DemoBlock>
-      <DemoBlock title='JumboTabs' padding='0'>
+      </DemoBlock> */}
+      {/* <DemoBlock title='JumboTabs' padding='0'>
         <JumboTabs defaultActiveKey='1'>
           <JumboTabs.Tab title='Espresso' description='描述文案' key='1'>
             1
@@ -93,33 +84,33 @@ export default () => {
 
       <DemoBlock title='Divider'>
         <Divider>默认内容在中间</Divider>
-      </DemoBlock>
+      </DemoBlock> */}
     </>
   )
 }
 
-const tabs = [
-  {
-    key: 'home',
-    title: '首页',
-    icon: <AppOutline />,
-    badge: Badge.dot,
-  },
-  {
-    key: 'todo',
-    title: '我的待办',
-    icon: <UnorderedListOutline />,
-    badge: '5',
-  },
-  {
-    key: 'message',
-    title: '我的消息',
-    icon: (active: boolean) => (active ? <MessageFill /> : <MessageOutline />),
-    badge: '99+',
-  },
-  {
-    key: 'personalCenter',
-    title: '个人中心',
-    icon: <UserOutline />,
-  },
-]
+// const tabs = [
+//   {
+//     key: 'home',
+//     title: '首页',
+//     icon: <AppOutline />,
+//     badge: Badge.dot,
+//   },
+//   {
+//     key: 'todo',
+//     title: '我的待办',
+//     icon: <UnorderedListOutline />,
+//     badge: '5',
+//   },
+//   {
+//     key: 'message',
+//     title: '我的消息',
+//     icon: (active: boolean) => (active ? <MessageFill /> : <MessageOutline />),
+//     badge: '99+',
+//   },
+//   {
+//     key: 'personalCenter',
+//     title: '个人中心',
+//     icon: <UserOutline />,
+//   },
+// ]

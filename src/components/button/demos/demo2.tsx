@@ -1,21 +1,25 @@
 import React from 'react'
-import { Button, Space, SpinLoading } from 'antd-mobile'
+import {
+  Button,
+  // Space,
+  // SpinLoading
+} from 'taro-vant'
 import { DemoBlock, sleep } from 'demos'
-import { SearchOutline } from 'antd-mobile-icons'
+// import { SearchOutline } from 'antd-mobile-icons'
 
 export default () => {
   return (
     <>
-      <DemoBlock title='自定义图标'>
+      {/* <DemoBlock title='自定义图标'>
         <Button>
           <Space>
             <SearchOutline />
             <span>搜索</span>
           </Space>
         </Button>
-      </DemoBlock>
+      </DemoBlock> */}
 
-      <DemoBlock title='形状'>
+      {/* <DemoBlock title='形状'>
         <Space wrap>
           <Button shape='default' color='primary'>
             Default Button
@@ -27,16 +31,15 @@ export default () => {
             Rectangular Button
           </Button>
         </Space>
-      </DemoBlock>
+      </DemoBlock> */}
 
-      <DemoBlock title='加载状态'>
+      {/* <DemoBlock title='加载状态'>
         <Space direction='vertical' block>
           <Button loading color='primary' loadingText='正在加载'>
             Loading
           </Button>
           <Button loading>Loading</Button>
 
-          {/* 还差个动画 */}
           <Button
             block
             color='primary'
@@ -58,16 +61,16 @@ export default () => {
             Auto Loading
           </Button>
         </Space>
-      </DemoBlock>
+      </DemoBlock> */}
 
-      <DemoBlock title='禁用状态'>
+      {/* <DemoBlock title='禁用状态'>
         <Space wrap>
           <Button disabled>Disabled</Button>
           <Button disabled color='primary'>
             Disabled
           </Button>
         </Space>
-      </DemoBlock>
+      </DemoBlock> */}
     </>
   )
 }

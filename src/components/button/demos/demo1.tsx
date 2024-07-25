@@ -1,22 +1,25 @@
 import React from 'react'
-import { Button, Space } from 'antd-mobile'
+import {
+  Button,
+  // Space
+} from 'taro-vant'
 import { DemoBlock } from 'demos'
 
 export default () => {
   return (
     <>
       <DemoBlock title='填充模式'>
-        <Space wrap>
-          <Button color='primary' fill='solid'>
-            Solid
-          </Button>
-          <Button color='primary' fill='outline'>
-            Outline
-          </Button>
-          <Button color='primary' fill='none'>
-            None
-          </Button>
-        </Space>
+        <Button color='primary' fill='solid'>
+          Solid
+        </Button>
+        <Button color='primary' fill='outline'>
+          Outline
+        </Button>
+        <Button color='primary' fill='none'>
+          None
+        </Button>
+        {/* <Space wrap>
+        </Space> */}
       </DemoBlock>
 
       <DemoBlock title='块级按钮'>
@@ -26,36 +29,36 @@ export default () => {
       </DemoBlock>
 
       <DemoBlock title='按钮尺寸'>
-        <Space wrap align='center'>
-          <Button size='mini' color='primary'>
-            Mini
-          </Button>
-          <Button size='small' color='primary'>
-            Small
-          </Button>
-          <Button size='middle' color='primary'>
-            Middle
-          </Button>
-          <Button size='large' color='primary'>
-            Large
-          </Button>
-        </Space>
+        {/* <Space wrap align='center'> */}
+        <Button size='mini' color='primary'>
+          Mini
+        </Button>
+        <Button size='small' color='primary'>
+          Small
+        </Button>
+        <Button size='middle' color='primary'>
+          Middle
+        </Button>
+        <Button size='large' color='primary'>
+          Large
+        </Button>
+        {/* </Space> */}
       </DemoBlock>
 
       <DemoBlock title='语义按钮'>
-        <Space wrap>
-          <Button
-            onClick={() => {
-              alert('hello.')
-            }}
-          >
-            Default
-          </Button>
-          <Button color='primary'>Primary</Button>
-          <Button color='success'>Success</Button>
-          <Button color='danger'>Danger</Button>
-          <Button color='warning'>Warning</Button>
-        </Space>
+        {/* <Space wrap> */}
+        <Button
+          onClick={() => {
+            alert('hello.')
+          }}
+        >
+          Default
+        </Button>
+        <Button color='primary'>Primary</Button>
+        <Button color='success'>Success</Button>
+        <Button color='danger'>Danger</Button>
+        <Button color='warning'>Warning</Button>
+        {/* </Space> */}
       </DemoBlock>
     </>
   )

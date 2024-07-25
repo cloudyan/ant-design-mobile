@@ -1,11 +1,11 @@
 import React from 'react'
-import { Collapse } from 'antd-mobile'
+// import { Collapse } from 'antd-mobile'
 import { DemoBlock, lorem } from 'demos'
 
 export default () => {
   return (
     <DemoBlock title='正常组件' padding='0'>
-      <Collapse defaultActiveKey={['1']}>
+      {/* <Collapse defaultActiveKey={['1']}>
         <Collapse.Panel key='1' title='第一项'>
           {mockContents[0]}
         </Collapse.Panel>
@@ -15,7 +15,7 @@ export default () => {
         <Collapse.Panel key='3' title='第三项'>
           {mockContents[2]}
         </Collapse.Panel>
-      </Collapse>
+      </Collapse> */}
     </DemoBlock>
   )
 }

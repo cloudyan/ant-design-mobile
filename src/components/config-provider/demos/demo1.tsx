@@ -1,11 +1,11 @@
 import React from 'react'
-import { ConfigProvider, ErrorBlock } from 'antd-mobile'
+// import { ConfigProvider, ErrorBlock } from 'antd-mobile'
 import { DemoBlock } from 'demos'
-import zhCN from 'antd-mobile/es/locales/zh-CN'
-import zhTW from 'antd-mobile/es/locales/zh-TW'
-import zhHK from 'antd-mobile/es/locales/zh-HK'
-import enUS from 'antd-mobile/es/locales/en-US'
-import faIR from 'antd-mobile/es/locales/fa-IR'
+// import zhCN from 'antd-mobile/es/locales/zh-CN'
+// import zhTW from 'antd-mobile/es/locales/zh-TW'
+// import zhHK from 'antd-mobile/es/locales/zh-HK'
+// import enUS from 'antd-mobile/es/locales/en-US'
+// import faIR from 'antd-mobile/es/locales/fa-IR'
 
 export default () => {
   return (
@@ -13,7 +13,7 @@ export default () => {
       <DemoBlock title=''>
         <p>多语言支持</p>
       </DemoBlock>
-      <DemoBlock title='中文'>
+      {/* <DemoBlock title='中文'>
         <ConfigProvider locale={zhCN}>
           <ErrorBlock status='disconnected' />
         </ConfigProvider>
@@ -41,7 +41,7 @@ export default () => {
         <ConfigProvider locale={faIR}>
           <ErrorBlock />
         </ConfigProvider>
-      </DemoBlock>
+      </DemoBlock> */}
     </>
   )
 }

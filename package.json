@@ -1,6 +1,6 @@
 {
-  "name": "antd-mobile",
-  "version": "5.37.1",
+  "name": "taro-vant",
+  "version": "0.0.1",
   "homepage": "https://github.com/ant-design/ant-design-mobile#readme",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-mobile/issues"
@@ -52,7 +52,7 @@
     "pub:dev": "npm publish ./lib --tag dev",
     "size-limit": "size-limit",
     "size-limit:ci": "size-limit --json",
-    "start": "dumi dev",
+    "dev": "dumi dev",
     "test": "jest",
     "test-with-coverage": "jest --coverage"
   },
@@ -71,6 +71,7 @@
     "@react-spring/web": "~9.6.1",
     "@use-gesture/react": "10.3.0",
     "ahooks": "^3.7.8",
+    "antd-mobile": "^5.37.1",
     "antd-mobile-icons": "^0.3.0",
     "antd-mobile-v5-count": "^1.0.1",
     "classnames": "^2.3.2",

@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
-import { Collapse, reduceMotion } from 'antd-mobile'
+// import { Collapse, reduceMotion } from 'antd-mobile'
 import { DemoBlock, lorem } from 'demos'
 
 export default () => {
   useEffect(() => {
-    reduceMotion()
+    // reduceMotion()
   }, [])
   return (
     <DemoBlock title='减弱动效之后' padding='0'>
-      <Collapse defaultActiveKey={['1']}>
+      {/* <Collapse defaultActiveKey={['1']}>
         <Collapse.Panel key='1' title='第一项'>
           {mockContents[0]}
         </Collapse.Panel>
@@ -18,7 +18,7 @@ export default () => {
         <Collapse.Panel key='3' title='第三项'>
           {mockContents[2]}
         </Collapse.Panel>
-      </Collapse>
+      </Collapse> */}
     </DemoBlock>
   )
 }
