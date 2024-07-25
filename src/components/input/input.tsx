@@ -57,7 +57,6 @@ export type InputProps = Pick<
   defaultValue?: string
   onChange?: (val: string) => void
   clearable?: boolean
-  forceTrigger?: boolean
   clearIcon?: ReactNode
   onlyShowClearWhenFocus?: boolean
   onClear?: () => void
@@ -154,7 +153,6 @@ export const Input = forwardRef<InputRef, InputProps>((props, ref) => {
         className={`${classPrefix}-element`}
         value={value}
         onChange={e => {
-          console.log('input onChange', e.target.value)
           setValue(e.target.value)
         }}
         onFocus={e => {
