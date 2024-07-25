@@ -30,6 +30,7 @@ export function usePropsValue<T>(options: Options<T>) {
   // 1. 一个受控组件，值从 1 变成了 2，触发了 props.onChange(2)，但是 onChange 中，外层组件选择不更新值，依旧让值保持为 1，这种情况下，这个受控的组件应该显示 1 而不是 2
   // 2. 组件一开始是受控状态，然后变为了非受控状态（value 变成了 undefined），这种情况下，组件应该保持原来的值
   if (value !== undefined) {
+    console.log('实时更新', value)
     stateRef.current = value
   }
 
@@ -40,14 +41,19 @@ export function usePropsValue<T>(options: Options<T>) {
    */
   const setState = useMemoizedFn(
     (v: SetStateAction<T>, forceTrigger: boolean = false) => {
+      console.log('设置状态', v, forceTrigger)
       // `forceTrigger` means trigger `onChange` even if `v` is the same as `stateRef.current`
       const nextValue =
         typeof v === 'function'
           ? (v as (prevState: T) => T)(stateRef.current)
           : v
-      if (!forceTrigger && nextValue === stateRef.current) return
+      if (!forceTrigger && nextValue === stateRef.current) {
+        console.log('值相同，不更新', forceTrigger, nextValue, stateRef.current)
+        return
+      }
       stateRef.current = nextValue
       update()
+      console.log('更新状态', nextValue)
       return onChange?.(nextValue)
     }
   )
