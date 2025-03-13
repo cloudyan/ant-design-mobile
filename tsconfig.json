@@ -12,7 +12,7 @@
     "downlevelIteration": true,
     "sourceMap": true,
     "baseUrl": "./",
-    "typeRoots": ["./src/typings", "./node_modules/@types"],
+    "typeRoots": ["./src/typings", "./node_modules/@types", "./index.d.ts"],
     "lib": ["ES2016", "DOM", "ES5"],
     "paths": {
       "antd-mobile": ["src/index.ts"],

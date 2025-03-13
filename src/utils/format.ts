@@ -1,8 +1,16 @@
-import type { CSSProperties } from 'vue'
-import { inBrowser, type Numeric } from './basic'
-import { windowWidth, windowHeight } from './dom'
+// import type { CSSProperties } from 'vue'
+// import { inBrowser, type Numeric } from './basic'
+// import { windowWidth, windowHeight } from './dom'
+
+import type { CSSProperties } from 'react'
 
 import { isDef, isNumeric } from './validate'
+
+const windowWidth = window.innerWidth
+const windowHeight = window.innerHeight
+const inBrowser = true
+
+type Numeric = number | string
 
 export function addUnit(value?: Numeric): string | undefined {
   if (isDef(value)) {
@@ -58,12 +66,12 @@ function convertRem(value: string) {
 
 function convertVw(value: string) {
   value = value.replace(/vw/g, '')
-  return (+value * windowWidth.value) / 100
+  return (+value * windowWidth) / 100
 }
 
 function convertVh(value: string) {
   value = value.replace(/vh/g, '')
-  return (+value * windowHeight.value) / 100
+  return (+value * windowHeight) / 100
 }
 
 export function unitToPx(value: Numeric): number {

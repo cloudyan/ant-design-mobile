@@ -1,5 +1,6 @@
 interface Window {
   // __microApps__: []
+  isInApp?: boolean
 }
 
 declare module '*.svg'

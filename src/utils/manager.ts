@@ -2,10 +2,6 @@
 // 2. 弹窗管理器
 // 3. 返回拦截
 
-interface Window {
-  isZaf?: boolean // 添加可选属性
-}
-
 // 设计目的
 // 1. 多弹窗管理，支持优先级，支持级联控制
 // 2. 支持全局弹窗管理
@@ -135,7 +131,7 @@ class DialogManager {
   hide = (dialog: SearchDialogParam) => {
     const operDialog = this.find(dialog)
     if (operDialog && isFunction(operDialog.hide)) {
-      operDialog?.hide()
+      // operDialog?.hide()
     }
   }
 
@@ -145,7 +141,7 @@ class DialogManager {
       return false
     }
     if (isFunction(dialog.condition)) {
-      return dialog.condition()
+      // return dialog.condition()
     }
     return true
   }
@@ -190,31 +186,30 @@ class BackIntercept {
     const currentPage = this.getCurrentPage()
     // if (currentPage.inited) return;
     currentPage.inited = true
-    if (window.isZaf) {
-      const fnName: string = currentPage.handleFnName
-      window[fnName] = async () => {
-        this.callback()
-      }
-
-      // 可以改写 setCloseController 获取上一次调用的设置
-      zaf.setCloseController({
-        triggerClose: `window.${currentPage.handleFnName}()`,
-        functionType: '1',
-      })
-    } else {
-      // 效果，需要 devtool 使用 history.back（不是所有 back 都支持）
-      window.addEventListener('popstate', this.callback)
-      window.addEventListener('unload', this.reset)
-      if (window.history.state?.type !== 'retain-popup') {
-        // 如果当前堆栈是弹窗的，则不会继续压栈
-        const state = {
-          type: 'retain-popup',
-          url: window.location.href,
-          time: Date.now(),
-        }
-        window.history.pushState(state, '', window.location.hash)
-      }
-    }
+    // if (window.isInApp) {
+    //   // const fnName: string = currentPage.handleFnName
+    //   // window[fnName] = async () => {
+    //   //   this.callback()
+    //   // }
+    //   // 可以改写 setCloseController 获取上一次调用的设置
+    //   // zaf.setCloseController({
+    //   //   triggerClose: `window.${currentPage.handleFnName}()`,
+    //   //   functionType: '1',
+    //   // })
+    // } else {
+    //   // 效果，需要 devtool 使用 history.back（不是所有 back 都支持）
+    //   window.addEventListener('popstate', this.callback)
+    //   window.addEventListener('unload', this.reset)
+    //   if (window.history.state?.type !== 'retain-popup') {
+    //     // 如果当前堆栈是弹窗的，则不会继续压栈
+    //     const state = {
+    //       type: 'retain-popup',
+    //       url: window.location.href,
+    //       time: Date.now(),
+    //     }
+    //     window.history.pushState(state, '', window.location.hash)
+    //   }
+    // }
   }
 
   callback = () => {
@@ -247,11 +242,11 @@ class BackIntercept {
   }
 
   back = () => {
-    if (window.isZaf) {
-      zaf.navigateBack()
-    } else {
-      history.back()
-    }
+    // if (window.isZaf) {
+    //   zaf.navigateBack()
+    // } else {
+    //   history.back()
+    // }
   }
 
   clear = () => {
@@ -263,27 +258,27 @@ class BackIntercept {
     currentPage.dialogManager.clear()
     currentPage.inited = false // 需要重新初始化
     currentPage.displayed = false
-    if (window.isZaf) {
-      if (version.gte('2.4.0')) {
-        // clear()
-      } else {
-        zaf.setCloseController({
-          triggerClose: '',
-          functionType: '1',
-        })
-      }
-    } else {
-      window.removeEventListener('popstate', this.callback)
-      window.addEventListener('unload', this.reset)
+    // if (window.isZaf) {
+    //   if (version.gte('2.4.0')) {
+    //     // clear()
+    //   } else {
+    //     zaf.setCloseController({
+    //       triggerClose: '',
+    //       functionType: '1',
+    //     })
+    //   }
+    // } else {
+    //   window.removeEventListener('popstate', this.callback)
+    //   window.addEventListener('unload', this.reset)
 
-      // 释放history堆栈
-      if (window.history.state?.type === 'retain-popup') {
-        if (process.env.NODE_ENV !== 'development') {
-          // 热更新时以及老逻辑会有问题，暂不处理
-          // window.history.back()
-        }
-      }
-    }
+    //   // 释放history堆栈
+    //   if (window.history.state?.type === 'retain-popup') {
+    //     if (process.env.NODE_ENV !== 'development') {
+    //       // 热更新时以及老逻辑会有问题，暂不处理
+    //       // window.history.back()
+    //     }
+    //   }
+    // }
   }
 
   // add 时按需 init

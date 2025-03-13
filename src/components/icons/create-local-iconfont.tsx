@@ -13,7 +13,7 @@ export function createLocalIconfont(svgSprite: string) {
     loaded.add(svgSprite)
     const arrts = `aria-hidden='true' style='position:absolute;width:0;height:0;overflow:hidden'`
     const SVG = `${svgSprite}`
-    document.body.insertAdjacentHTML('afterBegin', '' + SVG + '')
+    document.body.insertAdjacentHTML('afterbegin', '' + SVG + '')
   }
   const Iconfont = React.forwardRef<SVGSVGElement, IconBaseProps>(
     (props, ref) => {

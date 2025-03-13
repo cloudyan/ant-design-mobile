@@ -69,7 +69,7 @@ export const Statistic: FC<StatisticProps> = p => {
     props,
     <div className={cls}>
       {title && <div className={`${classPrefix}-title`}>{title}</div>}
-      <Skeleton loading={loading} className={`${classPrefix}-skeleton`}>
+      <Skeleton className={`${classPrefix}-skeleton`}>
         {prefix && (
           <span className={`${classPrefix}-content-prefix`}>{prefix}</span>
         )}
