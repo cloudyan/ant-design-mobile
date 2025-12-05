@@ -7,9 +7,7 @@
     "enabled": false
   },
   "formatter": {
-    "ignore": [
-      "**/.umi/*"
-    ],
+    "ignore": ["**/.umi/*"],
     "enabled": true,
     "indentWidth": 2,
     "indentStyle": "space",
@@ -19,14 +17,11 @@
     "parser": {
       "unsafeParameterDecoratorsEnabled": true
     },
-    "globals": [
-      "$",
-      "_"
-    ],
+    "globals": ["$", "_"],
     "formatter": {
       "quoteStyle": "single",
       "jsxQuoteStyle": "single",
-      "trailingComma": "es5",
+      "trailingCommas": "es5",
       "quoteProperties": "asNeeded",
       "semicolons": "asNeeded",
       "arrowParentheses": "asNeeded"
