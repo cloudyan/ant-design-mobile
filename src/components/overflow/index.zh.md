@@ -45,3 +45,15 @@ showMore/hideMore
    1. 底层为 Intersection Observer API，检测目标元素与祖先元素或 viewport 相交情况
 4. 直接 js 计算高度，超出半行展示更多
    1. 内容真实高度 - 指定行数的高度 > 半行高度
+
+## float 实现原理
+
+浮动布局的奥妙：A（占位）左浮动，B（内容）、C（操作按钮）右浮动
+
+当 B 内容不超出时，C 浮动在容器最右侧；当 B 内容超出时，C 会跑到 A 正下方，在容器最左侧；(调整 C 的偏移，就可以纯 css 实现动态控制显示是否超出的操作按钮了)
+
+效果图如下：
+
+![效果如图](./float-effect.webp)
+
+详细效果分析，参见源码 analysis/demo/overflow demo 示例
